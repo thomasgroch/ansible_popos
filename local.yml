@@ -11,15 +11,15 @@
 
   - name: copy wallpaper file
     copy:
-      src: files/wallpaper.png
-      dest: /usr/share/backgrounds/ansible-wallpaper.png
+      src: files/lighted-winter-path.jpg
+      dest: /usr/share/backgrounds/lighted-winter-path.jpg
       owner: root
       group: root
 
   -name: set wallpaper
     dconf:
       key: "/org/gnome/desktop/background/picture-uri"
-      value: "'file:///usr/share/backgrounds/ansible-wallpaper.png'"
+      value: "'file:///usr/share/backgrounds/lighted-winter-path.jpg'"
 
   - name: set wallpaper position
     dconf:

@@ -9,6 +9,7 @@
       name:
         - dconf-cli
         - python3-psutil
+        - htop
 
   - name: copy wallpaper file
     copy:

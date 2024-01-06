@@ -16,7 +16,7 @@
       owner: root
       group: root
 
-  -name: set wallpaper
+  - name: set wallpaper
     dconf:
       key: "/org/gnome/desktop/background/picture-uri"
       value: "'file:///usr/share/backgrounds/lighted-winter-path.jpg'"

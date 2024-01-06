@@ -8,7 +8,7 @@
     package:
       name:
         - dconf-cli
-        - psutil
+        - python3-psutil
 
   - name: copy wallpaper file
     copy:

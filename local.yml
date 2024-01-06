@@ -9,7 +9,6 @@
       name:
         - dconf-cli
         - python3-psutil
-        - htop
 
   - name: copy wallpaper file
     copy:
@@ -36,3 +35,12 @@
     dconf:
       key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"
+
+  - name: copy .bashrc file
+    copy:
+      src: files/bashrc
+      dest: /home/chris/.bashrc
+      owner: chris
+      group: chris
+
+

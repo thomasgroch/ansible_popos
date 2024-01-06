@@ -8,6 +8,7 @@
     package:
       name:
         - dconf-cli
+        - psutil
 
   - name: copy wallpaper file
     copy:
@@ -17,11 +18,13 @@
       group: root
 
   - name: set wallpaper
+    become_user: chris
     dconf:
       key: "/org/gnome/desktop/background/picture-uri"
       value: "'file:///usr/share/backgrounds/lighted-winter-path.jpg'"
 
   - name: set wallpaper position
+    become_user: chris
     dconf:
       key: "/org/gnome/desktop/background/picture-options"
       value: "'zoom'"

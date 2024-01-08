@@ -1,8 +1,10 @@
 ### Install Base Packages
 
-- name: install packages
+- name: Install apt packages
   package:
     name:
       - dconf-cli
       - python3-psutil
-      - btop
+      - git
+      - thunderbird
+      - gnome-tweaks

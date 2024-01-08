@@ -1,0 +1,4 @@
+### User management playbook
+
+- name: create ansible user
+  user: name=ansible uid=900

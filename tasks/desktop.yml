@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+  - name: copy wallpaper file
+    copy:
+      src: files/lighted-winter-path.jpg
+      dest: /usr/share/backgrounds/lighted-winter-path.jpg
+      owner: root
+      group: root
+
+  - name: set wallpaper
+    become_user: chris
+    dconf:
+      key: "/org/gnome/desktop/background/picture-uri"
+      value: "'file:///usr/share/backgrounds/lighted-winter-path.jpg'"
+
+  - name: set wallpaper dark
+    become_user: chris
+    dconf:
+      key: "/org/gnome/desktop/background/picture-uri-dark"
+      value: "'file:///usr/share/backgrounds/lighted-winter-path.jpg'"
+
+
+  - name: set wallpaper position
+    become_user: chris
+    dconf:
+      key: "/org/gnome/desktop/background/picture-options"
+      value: "'zoom'"
+
+  - name: copy .bashrc file
+    copy:
+      src: files/bashrc
+      dest: /home/chris/.bashrc
+      owner: chris
+      group: chris
+
+

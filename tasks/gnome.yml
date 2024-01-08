@@ -1,5 +1,11 @@
 ### Desktop and Terminal Settings
 
+- name: install packages (Gnome)
+  package:
+    name:
+      - dconf-cli
+      - python3-psutil
+
 - name: copy wallpaper file
   copy:
     src: files/lighted-winter-path.jpg

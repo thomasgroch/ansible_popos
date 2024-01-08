@@ -1,12 +1,8 @@
----
-- hosts: localhost
-  connection: local
-  become: true
+### Install Base Packages
 
-  tasks:
-  - name: install packages
-    package:
-      name:
-        - dconf-cli
-        - python3-psutil
-
+- name: install packages
+  package:
+    name:
+      - dconf-cli
+      - python3-psutil
+      - btop

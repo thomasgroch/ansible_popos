@@ -1,0 +1,5 @@
+### Cron jobs management playbook
+
+- name: install cron job (ansible-pull)
+  cron: user="ansible" name="ansible provision" minute="*/10" job="/usr/bin/ansible-pull -o -U https://github.com/ciswindell/ansible_popos.git > /dev/null"
+

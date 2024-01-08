@@ -2,3 +2,12 @@
 
 - name: create ansible user
   user: name=ansible uid=900
+
+- name: copy suoers_ansible
+  copy:
+    src: files/sudoers_ansible
+    dest: /etc/sudoers.d/ansible
+    owner: root
+    group: root
+    mode: 0440
+

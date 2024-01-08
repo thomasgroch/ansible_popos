@@ -20,4 +20,7 @@ dconf dump / > after.txt
 diff before.txt after.txt
 ```
 
+## Todo
 
+- [ ] Setup Windows VM task
+- [ ] Default Package List

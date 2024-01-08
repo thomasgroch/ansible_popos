@@ -1,3 +1,5 @@
-# ansible_popos
-Ansible configuration for PopOS
-Test
+# Pop!_OS Config Via Ansible
+
+Inspiration taken from Learn Linux TV Youtube video. I'm a new Linux user and really have come to like using Pop!_OS. With my new laptop on the way, I was thinking of all the tweaks that I wanted to make. During my research I came across the video and thought it would be the perfect project to learn some new skills. This repository will sort of a journal of my journey into the world of Ansible!
+
+

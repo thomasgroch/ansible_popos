@@ -1,0 +1,500 @@
+[apps/seahorse/listing]
+keyrings-selected=['secret-service:///org/freedesktop/secrets/collection/login']
+
+[apps/seahorse/windows/key-manager]
+height=985
+width=1912
+
+[com/github/donadigo/eddy]
+mime-types=['application/vnd.debian.binary-package', 'application/x-deb']
+window-x=31
+window-y=63
+
+[com/system76/hidpi]
+mode='lodpi'
+
+[io/elementary/appcenter/settings]
+cached-drivers=@as []
+last-refresh-time=int64 1704671733
+window-maximized=false
+window-size=(1920, 1040)
+
+[org/gnome/Contacts]
+did-initial-setup=true
+window-fullscreen=false
+window-height=1032
+window-maximized=false
+window-width=954
+
+[org/gnome/Geary]
+compose-as-html=true
+formatting-toolbar-visible=false
+migrated-config=true
+startup-notifications=false
+window-maximize=true
+
+[org/gnome/Weather]
+automatic-location=false
+locations=[<(uint32 2, <('Taos', 'KSKX', true, [(0.63617251235193317, -1.8442312487584391)], [(0.63542636664341301, -1.8425976031252798)])>)>]
+
+[org/gnome/baobab/ui]
+window-size=(1912, 1032)
+window-state=87168
+
+[org/gnome/calculator]
+accuracy=9
+angle-units='degrees'
+base=10
+button-mode='basic'
+number-format='automatic'
+show-thousands=false
+show-zeroes=false
+source-currency=''
+source-units='degree'
+target-currency=''
+target-units='radian'
+window-position=(4, 562)
+word-size=64
+
+[org/gnome/calendar]
+active-view='month'
+weather-settings=(true, false, 'Taos, New Mexico, United States', @mv <(uint32 2, <('Taos', 'KSKX', true, [(0.63617251235193317, -1.8442312487584391)], [(0.63542636664341301, -1.8425976031252798)])>)>)
+window-maximized=true
+window-position=(0, 40)
+window-size=(1920, 1040)
+
+[org/gnome/charmap/window-state]
+size=(1912, 995)
+
+[org/gnome/control-center]
+last-panel='bluetooth'
+
+[org/gnome/desktop/a11y/applications]
+screen-magnifier-enabled=false
+
+[org/gnome/desktop/a11y/interface]
+high-contrast=false
+
+[org/gnome/desktop/a11y/keyboard]
+mousekeys-enable=false
+togglekeys-enable=true
+
+[org/gnome/desktop/a11y/magnifier]
+invert-lightness=false
+mouse-tracking='proportional'
+
+[org/gnome/desktop/app-folders]
+folder-children=['Pop-Office', 'Pop-System', 'Pop-Utility']
+
+[org/gnome/desktop/app-folders/folders/Pop-Office]
+apps=['libreoffice-calc.desktop', 'libreoffice-draw.desktop', 'libreoffice-impress.desktop', 'libreoffice-math.desktop', 'libreoffice-startcenter.desktop', 'libreoffice-writer.desktop']
+name='Office'
+translate=true
+
+[org/gnome/desktop/app-folders/folders/Pop-System]
+apps=['gnome-language-selector.desktop', 'gnome-session-properties.desktop', 'gnome-system-monitor.desktop', 'im-config.desktop', 'nm-connection-editor.desktop', 'nvidia-settings.desktop', 'org.gnome.baobab.desktop', 'org.gnome.DiskUtility.desktop', 'org.gnome.PowerStats.desktop', 'org.gnome.seahorse.Application.desktop', 'software-properties-gnome.desktop', 'system76-driver.desktop', 'system76-firmware.desktop']
+name='System'
+translate=true
+
+[org/gnome/desktop/app-folders/folders/Pop-Utility]
+apps=['com.github.donadigo.eddy.desktop', 'com.system76.Popsicle.desktop', 'gucharmap.desktop', 'info.desktop', 'org.gnome.eog.desktop', 'org.gnome.Evince.desktop', 'org.gnome.Extensions.desktop', 'org.gnome.FileRoller.desktop', 'org.gnome.font-viewer.desktop', 'org.gnome.Screenshot.desktop', 'org.gnome.Totem.desktop', 'pop-cosmic-applications.desktop', 'pop-cosmic-launcher.desktop', 'pop-cosmic-workspaces.desktop', 'simple-scan.desktop', 'yelp.desktop']
+name='Utilities'
+translate=true
+
+[org/gnome/desktop/background]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/lighted-winter-path.jpg'
+picture-uri-dark='file:///usr/share/backgrounds/lighted-winter-path.jpg'
+primary-color='#000000000000'
+secondary-color='#000000000000'
+
+[org/gnome/desktop/calendar]
+show-weekdate=false
+
+[org/gnome/desktop/datetime]
+automatic-timezone=false
+
+[org/gnome/desktop/input-sources]
+current=uint32 0
+per-window=false
+sources=[('xkb', 'us')]
+xkb-options=@as []
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+enable-hot-corners=false
+font-antialiasing='grayscale'
+font-hinting='slight'
+locate-pointer=false
+show-battery-percentage=true
+text-scaling-factor=1.25
+
+[org/gnome/desktop/notifications]
+application-children=['gnome-datetime-panel', 'org-gnome-nautilus', 'firefox', 'org-gnome-geary', 'gnome-control-center', 'org-gnome-calendar', 'gnome-printers-panel', 'gucharmap', 'io-elementary-appcenter', 'org-gnome-evolution-alarm-notify', 'org-mozilla-thunderbird', 'gnome-power-panel', 'gnome-system-monitor', 'org-gnome-eog', 'virt-manager', 'org-gnome-terminal', 'org-gnome-evince', 'org-remmina-remmina', 'org-gnome-weather', 'org-gnome-gedit', 'org-onlyoffice-desktopeditors', 'autokey-gtk', 'remote-viewer', 'com-spotify-client']
+
+[org/gnome/desktop/notifications/application/autokey-gtk]
+application-id='autokey-gtk.desktop'
+
+[org/gnome/desktop/notifications/application/com-spotify-client]
+application-id='com.spotify.Client.desktop'
+
+[org/gnome/desktop/notifications/application/firefox]
+application-id='firefox.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-control-center]
+application-id='gnome-control-center.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-datetime-panel]
+application-id='gnome-datetime-panel.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-power-panel]
+application-id='gnome-power-panel.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-printers-panel]
+application-id='gnome-printers-panel.desktop'
+
+[org/gnome/desktop/notifications/application/gnome-system-monitor]
+application-id='gnome-system-monitor.desktop'
+
+[org/gnome/desktop/notifications/application/gucharmap]
+application-id='gucharmap.desktop'
+
+[org/gnome/desktop/notifications/application/io-elementary-appcenter]
+application-id='io.elementary.appcenter.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-calendar]
+application-id='org.gnome.Calendar.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-eog]
+application-id='org.gnome.eog.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-evince]
+application-id='org.gnome.Evince.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-evolution-alarm-notify]
+application-id='org.gnome.Evolution-alarm-notify.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-geary]
+application-id='org.gnome.Geary.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-gedit]
+application-id='org.gnome.gedit.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-nautilus]
+application-id='org.gnome.Nautilus.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-terminal]
+application-id='org.gnome.Terminal.desktop'
+
+[org/gnome/desktop/notifications/application/org-gnome-weather]
+application-id='org.gnome.Weather.desktop'
+
+[org/gnome/desktop/notifications/application/org-mozilla-thunderbird]
+application-id='org.mozilla.Thunderbird.desktop'
+
+[org/gnome/desktop/notifications/application/org-onlyoffice-desktopeditors]
+application-id='org.onlyoffice.desktopeditors.desktop'
+
+[org/gnome/desktop/notifications/application/org-remmina-remmina]
+application-id='org.remmina.Remmina.desktop'
+
+[org/gnome/desktop/notifications/application/remote-viewer]
+application-id='remote-viewer.desktop'
+
+[org/gnome/desktop/notifications/application/virt-manager]
+application-id='virt-manager.desktop'
+
+[org/gnome/desktop/peripherals/mouse]
+speed=0.44852941176470584
+
+[org/gnome/desktop/peripherals/touchpad]
+click-method='areas'
+natural-scroll=true
+speed=0.21323529411764697
+two-finger-scrolling-enabled=true
+
+[org/gnome/desktop/privacy]
+old-files-age=uint32 7
+recent-files-max-age=7
+remove-old-temp-files=true
+report-technical-problems=false
+
+[org/gnome/desktop/screensaver]
+color-shading-type='solid'
+lock-delay=uint32 60
+picture-options='zoom'
+picture-uri='file:///home/chris/.local/share/backgrounds/2023-12-20-16-46-18-zongnan-bao-jI_Cvah8vdY-unsplash.jpg'
+primary-color='#000000000000'
+secondary-color='#000000000000'
+
+[org/gnome/desktop/search-providers]
+disabled=['org.gnome.Calculator.desktop', 'org.gnome.seahorse.Application.desktop', 'org.gnome.Terminal.desktop']
+
+[org/gnome/desktop/session]
+idle-delay=uint32 0
+
+[org/gnome/desktop/wm/keybindings]
+switch-applications=['<Super>Tab']
+switch-applications-backward=['<Shift><Super>Tab']
+switch-windows=['<Alt>Tab']
+switch-windows-backward=['<Shift><Alt>Tab']
+
+[org/gnome/desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+visual-bell=true
+visual-bell-type='frame-flash'
+
+[org/gnome/eog/ui]
+image-gallery=true
+sidebar=false
+
+[org/gnome/eog/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
+
+[org/gnome/evince/default]
+window-ratio=(1.9050852572808208, 1.0097452154514501)
+
+[org/gnome/evolution-data-server]
+migrated=true
+network-monitor-gio-name=''
+
+[org/gnome/evolution-data-server/calendar]
+notify-window-height=995
+notify-window-paned-position=73
+notify-window-width=954
+notify-window-x=4
+notify-window-y=44
+reminders-past=['e070650d0bb73aa48e635b521e4e66ac1a98afe7\n7766352548ae0796c77298c280e325c1df16e30e\t20240115T100000\n1704733200\n1705338000\n1705348800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20160115T100000\r\nDTEND;TZID=America/Denver:20160115T130000\r\nRRULE:FREQ=YEARLY\r\nDTSTAMP:20150714T182546Z\r\nUID:5lr5qehk7ehqc4iul36t49g96s@google.com\r\nCREATED:20150714T182546Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20150714T182546Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Estimated Tax Payment\r\nTRANSP:TRANSPARENT\r\nX-EVOLUTION-CALDAV-ETAG:63572581546\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT15M\r\nX-EVOLUTION-ALARM-UID:a9b85663387c615118b4a6b1457b823b1bc43d65\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-P1D\r\nX-EVOLUTION-ALARM-UID:cde829fe4975391b8f1ba7e47c3938b952d0a34c\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-P7D\r\nX-EVOLUTION-ALARM-UID:7766352548ae0796c77298c280e325c1df16e30e\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'e070650d0bb73aa48e635b521e4e66ac1a98afe7\n69fe2019cdc02d4bba1bd919e0464166bb8ab74e\t20240107T100000\n1704645900\n1704646800\n1704650400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231126T100000\r\nDTEND;TZID=America/Denver:20231126T110000\r\nRRULE:FREQ=WEEKLY\r\nDTSTAMP:20231228T214900Z\r\nORGANIZER;CN=catrey1986.catherine@gmail.com:mailto:\r\n catrey1986.catherine@gmail.com\r\nUID:06aincn7qpp9r871ntt84edsbs@google.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;\r\n CN=catrey1986.catherine@gmail.com;X-NUM-GUESTS=0:mailto:\r\n catrey1986.catherine@gmail.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;\r\n CN=chrisswindell@gmail.com;X-NUM-GUESTS=0:mailto:chrisswindell@gmail.com\r\nX-GOOGLE-CONFERENCE:https://meet.google.com/vwb-xufs-apv\r\nCLASS:PRIVATE\r\nCREATED:20231118T031041Z\r\nDESCRIPTION:Rest up & Rejuvenate\\n\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\\nJoin with Google Meet: \r\n https://meet.google.com/vwb-xufs-apv\\n\\nLearn more about Meet at: https:\r\n //support.google.com/a/users/answer/9282720\\n\\nPlease do not edit this \r\n section.\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~::~:~::-\r\nLAST-MODIFIED:20231228T214900Z\r\nLOCATION:living room\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Cranial Sesh.\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63839483340\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT15M\r\nX-EVOLUTION-ALARM-UID:69fe2019cdc02d4bba1bd919e0464166bb8ab74e\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'e070650d0bb73aa48e635b521e4e66ac1a98afe7\n25b57cf0d4e204d72f22defd02b4df184363409b\t20240106T112000\n1704561600\n1704565200\n1704568800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20240106T112000\r\nDTEND;TZID=America/Denver:20240106T122000\r\nDTSTAMP:20240103T163145Z\r\nORGANIZER;CN=chrisswindell@gmail.com:mailto:chrisswindell@gmail.com\r\nUID:2gh429u9fjk98rn9u4uqvj9mpp@google.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;\r\n CN=catrey1986.catherine@gmail.com;X-NUM-GUESTS=0:mailto:\r\n catrey1986.catherine@gmail.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;\r\n CN=chrisswindell@gmail.com;X-NUM-GUESTS=0:mailto:chrisswindell@gmail.com\r\nX-GOOGLE-CONFERENCE:https://meet.google.com/nhx-qvgh-fhc\r\nCREATED:20231230T171008Z\r\nDESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~:~::~:~::-\\nJoin with Google Meet: https:\r\n //meet.google.com/nhx-qvgh-fhc\\n\\nLearn more about Meet at: https:\r\n //support.google.com/a/users/answer/9282720\\n\\nPlease do not edit this \r\n section.\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~::~:~::-\r\nLAST-MODIFIED:20240103T163145Z\r\nLOCATION:512 Callejon Rd\\, Taos\\, NM 87571\\, USA\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Tour Round House\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63839982705\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1H\r\nX-EVOLUTION-ALARM-UID:25b57cf0d4e204d72f22defd02b4df184363409b\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-P1D\r\nX-EVOLUTION-ALARM-UID:9a700833ed3088353b3a2bca72de6c70a1749987\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'e070650d0bb73aa48e635b521e4e66ac1a98afe7\n9a700833ed3088353b3a2bca72de6c70a1749987\t20240106T112000\n1704478800\n1704565200\n1704568800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20240106T112000\r\nDTEND;TZID=America/Denver:20240106T122000\r\nDTSTAMP:20240103T163145Z\r\nORGANIZER;CN=chrisswindell@gmail.com:mailto:chrisswindell@gmail.com\r\nUID:2gh429u9fjk98rn9u4uqvj9mpp@google.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;\r\n CN=catrey1986.catherine@gmail.com;X-NUM-GUESTS=0:mailto:\r\n catrey1986.catherine@gmail.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;\r\n CN=chrisswindell@gmail.com;X-NUM-GUESTS=0:mailto:chrisswindell@gmail.com\r\nX-GOOGLE-CONFERENCE:https://meet.google.com/nhx-qvgh-fhc\r\nCREATED:20231230T171008Z\r\nDESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~:~::~:~::-\\nJoin with Google Meet: https:\r\n //meet.google.com/nhx-qvgh-fhc\\n\\nLearn more about Meet at: https:\r\n //support.google.com/a/users/answer/9282720\\n\\nPlease do not edit this \r\n section.\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~::~:~::-\r\nLAST-MODIFIED:20240103T163145Z\r\nLOCATION:512 Callejon Rd\\, Taos\\, NM 87571\\, USA\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Tour Round House\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63839982705\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1H\r\nX-EVOLUTION-ALARM-UID:25b57cf0d4e204d72f22defd02b4df184363409b\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-P1D\r\nX-EVOLUTION-ALARM-UID:9a700833ed3088353b3a2bca72de6c70a1749987\r\nEND:VALARM\r\nEND:VEVENT\r\n', "8cac2299700fa48026c2b2a83d3e1b7f5fcfe206\n847bca2ecfc8326cbf14042dacdc04e0080ff000\t20240104T130000\n1704397800\n1704398400\n1704402000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20240104T130000\r\nDTEND;TZID=America/Denver:20240104T140000\r\nDTSTAMP:20240104T192422Z\r\nORGANIZER;CN=Chris Swindell:mailto:chris@landmaninnovations.com\r\nUID:79lg53l58djj5m02k5bsr6c17h@google.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;\r\n CN=derailer70@icloud.com;X-NUM-GUESTS=0:mailto:derailer70@icloud.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;\r\n CN=Chris Swindell;X-NUM-GUESTS=0:mailto:chris@landmaninnovations.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;\r\n CN=amyesllc@gmail.com;X-NUM-GUESTS=0:mailto:amyesllc@gmail.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;\r\n CN=brandonpeck@hotmail.com;X-NUM-GUESTS=0:mailto:brandonpeck@hotmail.com\r\nX-GOOGLE-CONFERENCE:https://meet.google.com/ehg-eaya-dbj\r\nCREATED:20240104T192422Z\r\nDESCRIPTION:Join me at the Google Meet link. I'll share my screen to go \r\n through the NM State runsheet process\\n\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\\nJoin with Google \r\n Meet: https://meet.google.com/ehg-eaya-dbj\\nOr dial: (US) +1 267-520-0696 \r\n PIN: 588131647#\\nMore phone numbers: https:\r\n //tel.meet/ehg-eaya-dbj?pin=1312190231930&hs=7\\n\\nLearn more about Meet \r\n at: https://support.google.com/a/users/answer/9282720\\n\\nPlease do not \r\n edit this section.\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\r\nLAST-MODIFIED:20240104T192422Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:State Runsheet Meeting\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63840079462\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT10M\r\nX-EVOLUTION-ALARM-UID:847bca2ecfc8326cbf14042dacdc04e0080ff000\r\nEND:VALARM\r\nEND:VEVENT\r\n", 'e070650d0bb73aa48e635b521e4e66ac1a98afe7\n69fe2019cdc02d4bba1bd919e0464166bb8ab74e\t20231231T100000\n1704041100\n1704042000\n1704045600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231126T100000\r\nDTEND;TZID=America/Denver:20231126T110000\r\nRRULE:FREQ=WEEKLY\r\nDTSTAMP:20231228T214900Z\r\nORGANIZER;CN=catrey1986.catherine@gmail.com:mailto:\r\n catrey1986.catherine@gmail.com\r\nUID:06aincn7qpp9r871ntt84edsbs@google.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;\r\n CN=catrey1986.catherine@gmail.com;X-NUM-GUESTS=0:mailto:\r\n catrey1986.catherine@gmail.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;\r\n CN=chrisswindell@gmail.com;X-NUM-GUESTS=0:mailto:chrisswindell@gmail.com\r\nX-GOOGLE-CONFERENCE:https://meet.google.com/vwb-xufs-apv\r\nCLASS:PRIVATE\r\nCREATED:20231118T031041Z\r\nDESCRIPTION:Rest up & Rejuvenate\\n\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\\nJoin with Google Meet: \r\n https://meet.google.com/vwb-xufs-apv\\n\\nLearn more about Meet at: https:\r\n //support.google.com/a/users/answer/9282720\\n\\nPlease do not edit this \r\n section.\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~::~:~::-\r\nLAST-MODIFIED:20231228T214900Z\r\nLOCATION:living room\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Cranial Sesh.\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63839483340\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT15M\r\nX-EVOLUTION-ALARM-UID:69fe2019cdc02d4bba1bd919e0464166bb8ab74e\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'e070650d0bb73aa48e635b521e4e66ac1a98afe7\n306beee659e7200a263c8c36d620f8e7bad53f1b\t20231231T100000\n1704041100\n1704042000\n1704045600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231231T100000\r\nDTEND;TZID=America/Denver:20231231T110000\r\nDTSTAMP:20231228T214900Z\r\nORGANIZER;CN=catrey1986.catherine@gmail.com:mailto:\r\n catrey1986.catherine@gmail.com\r\nUID:06aincn7qpp9r871ntt84edsbs@google.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;\r\n CN=catrey1986.catherine@gmail.com;X-NUM-GUESTS=0:mailto:\r\n catrey1986.catherine@gmail.com\r\nATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;\r\n CN=chrisswindell@gmail.com;X-NUM-GUESTS=0:mailto:chrisswindell@gmail.com\r\nX-GOOGLE-CONFERENCE:https://meet.google.com/vwb-xufs-apv\r\nRECURRENCE-ID;TZID=America/Denver:20231231T100000\r\nCLASS:PRIVATE\r\nCREATED:20231118T031041Z\r\nDESCRIPTION:Rest up & Rejuvenate\\n\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\\nJoin with Google Meet: \r\n https://meet.google.com/vwb-xufs-apv\\n\\nLearn more about Meet at: https:\r\n //support.google.com/a/users/answer/9282720\\n\\nPlease do not edit this \r\n section.\\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:\r\n ~:~:~:~:~:~:~:~::~:~::-\r\nLAST-MODIFIED:20231228T214900Z\r\nLOCATION:living room\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Budgeting\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63839483340\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT15M\r\nX-EVOLUTION-ALARM-UID:306beee659e7200a263c8c36d620f8e7bad53f1b\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'b54c51834fe937d523c7105254b0ea4b0e5c7f78\n78b333658a76604cdad278bde7e37dc9b2c869d4\t20240101\n1704038400\n1704067200\n1704153600\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20161001\r\nDTEND;VALUE=DATE:20161002\r\nRRULE:FREQ=MONTHLY;BYMONTHDAY=1\r\nDTSTAMP:20231212T151900Z\r\nUID:ju539bdi1bab1uvjvkdl5v44s4@google.com\r\nCREATED:20160921T222842Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151900Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:TSD Billing DUE TODAY\r\nTRANSP:TRANSPARENT\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151859Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT13H\r\nX-EVOLUTION-ALARM-UID:edb104caf7cf84a31c822b325ade46f97925069e\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT9H\r\nX-EVOLUTION-ALARM-UID:015ce8d138c540219f415e948352926855460056\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT8H\r\nX-EVOLUTION-ALARM-UID:78b333658a76604cdad278bde7e37dc9b2c869d4\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n5462a2b0ec27d0fe38d656ac298233c27ec93551\t20231221T143000\n1703194140\n1703194200\n1703196000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T143000\r\nDTEND;TZID=America/Denver:20231009T150000\r\nEXDATE;TZID=America/Denver:20231012T143000\r\nEXDATE;TZID=America/Denver:20231013T143000\r\nEXDATE;TZID=America/Denver:20231019T143000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;WKST=SU\r\nDTSTAMP:20231220T223001Z\r\nUID:1rcaen81cnvjrbpi3bmc3gjpk2@google.com\r\nCREATED:20231010T022638Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231220T223001Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Yoga Break\r\nTRANSP:OPAQUE\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nX-MOZ-GENERATION:6\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231220T222959Z\r\nX-EVOLUTION-CALDAV-ETAG:63838794601\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:5462a2b0ec27d0fe38d656ac298233c27ec93551\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n8a9a2fb273d3a1786a5494cecb4a553bf472ec24\t20231221T120000\n1703185140\n1703185200\n1703188800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T120000\r\nDTEND;TZID=America/Denver:20231009T130000\r\nEXDATE;TZID=America/Denver:20231012T120000\r\nEXDATE;TZID=America/Denver:20231013T120000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231220T223000Z\r\nUID:1n502qgb4om1ojgqv0pi4joiel@google.com\r\nCREATED:20231010T022352Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231220T223000Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Walk Miki\r\nTRANSP:OPAQUE\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nX-MOZ-GENERATION:5\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231220T222959Z\r\nX-EVOLUTION-CALDAV-ETAG:63838794600\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:8a9a2fb273d3a1786a5494cecb4a553bf472ec24\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n051b63ac2df1fb0b2ef7b3a19f97471f7a93c3e2\t20231221T100000\n1703177940\n1703178000\n1703199600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T100000\r\nDTEND;TZID=America/Denver:20231010T160000\r\nEXDATE;TZID=America/Denver:20231012T100000\r\nEXDATE;TZID=America/Denver:20231019T100000\r\nEXDATE;TZID=America/Denver:20231026T100000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU,TH;WKST=SU\r\nDTSTAMP:20231220T223000Z\r\nUID:3nrafobpusbm9hctafrdhe4nnl@google.com\r\nCREATED:20231010T023840Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231220T223000Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Work\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:4\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231220T222959Z\r\nX-EVOLUTION-CALDAV-ETAG:63838794600\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:051b63ac2df1fb0b2ef7b3a19f97471f7a93c3e2\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n9282ceb367ee5fac0aa6869ba9dc9b202bf96630\t20231221T100000\n1703177940\n1703178000\n1703181600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231012T100000\r\nDTEND;TZID=America/Denver:20231012T110000\r\nEXDATE;TZID=America/Denver:20231012T100000\r\nRRULE:FREQ=WEEKLY;BYDAY=TH\r\nDTSTAMP:20231214T183820Z\r\nUID:7kb47kql2n7asgjtei3bj31p0d@google.com\r\nCREATED:20231010T023613Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231214T183820Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Money\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:2\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231214T183819Z\r\nX-EVOLUTION-CALDAV-ETAG:63838262300\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:9282ceb367ee5fac0aa6869ba9dc9b202bf96630\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n3d1a96ddbb9a92bf632262722df4d462cb8933c6\t20231221T080000\n1703170740\n1703170800\n1703178000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T080000\r\nDTEND;TZID=America/Denver:20231010T100000\r\nEXDATE;TZID=America/Denver:20231012T080000\r\nEXDATE;TZID=America/Denver:20231019T080000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU,TH;WKST=SU\r\nDTSTAMP:20231220T223001Z\r\nUID:205emekkn2cildm27ceavs9ka2@google.com\r\nCREATED:20231010T022013Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231220T223001Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:3\r\nSTATUS:CONFIRMED\r\nSUMMARY:Learn\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231220T222959Z\r\nX-EVOLUTION-CALDAV-ETAG:63838794601\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:3d1a96ddbb9a92bf632262722df4d462cb8933c6\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\nae26bf2d7968e24aa9abf53ef4df7f15f461a190\t20231221T063000\n1703165340\n1703165400\n1703170800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T063000\r\nDTEND;TZID=America/Denver:20231009T080000\r\nEXDATE;TZID=America/Denver:20231012T063000\r\nEXDATE;TZID=America/Denver:20231013T063000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231220T223000Z\r\nUID:7fd0k7unmaodv1doo8nv7f1qs1@google.com\r\nCREATED:20231010T021836Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231220T223000Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Morning Routine\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:5\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231220T222959Z\r\nX-EVOLUTION-CALDAV-ETAG:63838794600\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:ae26bf2d7968e24aa9abf53ef4df7f15f461a190\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\na528c2c290e9574dd980000f7067fed0a01c575a\t20231220T160000\n1703113140\n1703113200\n1703116800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T160000\r\nDTEND;TZID=America/Denver:20231009T170000\r\nEXDATE;TZID=America/Denver:20231012T160000\r\nEXDATE;TZID=America/Denver:20231013T160000\r\nEXDATE;TZID=America/Denver:20231019T160000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231220T223001Z\r\nUID:1ptevdmd8banvj5crgugap4nmf@google.com\r\nCREATED:20231010T025557Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231220T223001Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Todo\r\nTRANSP:OPAQUE\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nX-MOZ-GENERATION:6\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231220T222959Z\r\nX-EVOLUTION-CALDAV-ETAG:63838794601\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:a528c2c290e9574dd980000f7067fed0a01c575a\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n984e848f2d449a1bb071311c576e7f6234f35f65\t20231220T143000\n1703107740\n1703107800\n1703109600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T143000\r\nDTEND;TZID=America/Denver:20231009T150000\r\nEXDATE;TZID=America/Denver:20231012T143000\r\nEXDATE;TZID=America/Denver:20231013T143000\r\nEXDATE;TZID=America/Denver:20231019T143000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;WKST=SU\r\nDTSTAMP:20231219T041201Z\r\nUID:1rcaen81cnvjrbpi3bmc3gjpk2@google.com\r\nCREATED:20231010T022638Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231219T041201Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Yoga Break\r\nTRANSP:OPAQUE\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nX-MOZ-GENERATION:5\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231217T073106Z\r\nX-EVOLUTION-CALDAV-ETAG:63838642321\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:984e848f2d449a1bb071311c576e7f6234f35f65\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n45c76232552636f9fc3748fb132d11a6a5f4dcfe\t20231220T120000\n1703098740\n1703098800\n1703102400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T120000\r\nDTEND;TZID=America/Denver:20231009T130000\r\nEXDATE;TZID=America/Denver:20231012T120000\r\nEXDATE;TZID=America/Denver:20231013T120000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231219T041205Z\r\nUID:1n502qgb4om1ojgqv0pi4joiel@google.com\r\nCREATED:20231010T022352Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231219T041205Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Walk Miki\r\nTRANSP:OPAQUE\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nX-MOZ-GENERATION:4\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231215T201539Z\r\nX-EVOLUTION-CALDAV-ETAG:63838642325\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:45c76232552636f9fc3748fb132d11a6a5f4dcfe\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n95ae8459346b32eaf9cd115eab159dbe8638aeba\t20231220T080000\n1703084340\n1703084400\n1703113200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T080000\r\nDTEND;TZID=America/Denver:20231009T160000\r\nEXDATE;TZID=America/Denver:20231013T080000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR;WKST=SU\r\nDTSTAMP:20231215T201540Z\r\nUID:5usr3a3dlhftqgakog6kt9rkjs@google.com\r\nCREATED:20231010T022731Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231215T201540Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Work\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231215T201539Z\r\nX-EVOLUTION-CALDAV-ETAG:63838354540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:95ae8459346b32eaf9cd115eab159dbe8638aeba\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\nc5118c6cd909f2c51a498a484be093a2dbea4499\t20231220T063000\n1703078940\n1703079000\n1703084400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T063000\r\nDTEND;TZID=America/Denver:20231009T080000\r\nEXDATE;TZID=America/Denver:20231012T063000\r\nEXDATE;TZID=America/Denver:20231013T063000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231215T201540Z\r\nUID:7fd0k7unmaodv1doo8nv7f1qs1@google.com\r\nCREATED:20231010T021836Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231215T201540Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Morning Routine\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:4\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231215T201539Z\r\nX-EVOLUTION-CALDAV-ETAG:63838354540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:c5118c6cd909f2c51a498a484be093a2dbea4499\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n846594cb15f9a0687aa0040e612c75c7cbc476de\t20231219T170000\n1703030340\n1703030400\n1703034000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T170000\r\nDTEND;TZID=America/Denver:20231010T180000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU\r\nDTSTAMP:20231213T060035Z\r\nUID:7ocs1pm9bce9kaq8836ht984as@google.com\r\nCREATED:20231010T023247Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231213T060035Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Socialize\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231213T060035Z\r\nX-EVOLUTION-CALDAV-ETAG:63838130435\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:846594cb15f9a0687aa0040e612c75c7cbc476de\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n7e5d31a0817b08a9d96759c4bcf2ad8b90ca73c5\t20231219T160000\n1703026740\n1703026800\n1703030400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T160000\r\nDTEND;TZID=America/Denver:20231009T170000\r\nEXDATE;TZID=America/Denver:20231012T160000\r\nEXDATE;TZID=America/Denver:20231013T160000\r\nEXDATE;TZID=America/Denver:20231019T160000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231217T073116Z\r\nUID:1ptevdmd8banvj5crgugap4nmf@google.com\r\nCREATED:20231010T025557Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231217T073116Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Todo\r\nTRANSP:OPAQUE\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nX-MOZ-GENERATION:5\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231217T073116Z\r\nX-EVOLUTION-CALDAV-ETAG:63838481476\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:7e5d31a0817b08a9d96759c4bcf2ad8b90ca73c5\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n984e848f2d449a1bb071311c576e7f6234f35f65\t20231219T143000\n1703021340\n1703021400\n1703023200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T143000\r\nDTEND;TZID=America/Denver:20231009T150000\r\nEXDATE;TZID=America/Denver:20231012T143000\r\nEXDATE;TZID=America/Denver:20231013T143000\r\nEXDATE;TZID=America/Denver:20231019T143000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;WKST=SU\r\nDTSTAMP:20231219T041201Z\r\nUID:1rcaen81cnvjrbpi3bmc3gjpk2@google.com\r\nCREATED:20231010T022638Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231219T041201Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Yoga Break\r\nTRANSP:OPAQUE\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nX-MOZ-GENERATION:5\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231217T073106Z\r\nX-EVOLUTION-CALDAV-ETAG:63838642321\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:984e848f2d449a1bb071311c576e7f6234f35f65\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n45c76232552636f9fc3748fb132d11a6a5f4dcfe\t20231219T120000\n1703012340\n1703012400\n1703016000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T120000\r\nDTEND;TZID=America/Denver:20231009T130000\r\nEXDATE;TZID=America/Denver:20231012T120000\r\nEXDATE;TZID=America/Denver:20231013T120000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231219T041205Z\r\nUID:1n502qgb4om1ojgqv0pi4joiel@google.com\r\nCREATED:20231010T022352Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231219T041205Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Walk Miki\r\nTRANSP:OPAQUE\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nX-MOZ-GENERATION:4\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231215T201539Z\r\nX-EVOLUTION-CALDAV-ETAG:63838642325\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:45c76232552636f9fc3748fb132d11a6a5f4dcfe\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\ne295f1b138799f2d424287e7d9590b361e8f14c4\t20231219T100000\n1703005140\n1703005200\n1703026800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T100000\r\nDTEND;TZID=America/Denver:20231010T160000\r\nEXDATE;TZID=America/Denver:20231012T100000\r\nEXDATE;TZID=America/Denver:20231019T100000\r\nEXDATE;TZID=America/Denver:20231026T100000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU,TH;WKST=SU\r\nDTSTAMP:20231214T183820Z\r\nUID:3nrafobpusbm9hctafrdhe4nnl@google.com\r\nCREATED:20231010T023840Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231214T183820Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Work\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231214T183819Z\r\nX-EVOLUTION-CALDAV-ETAG:63838262300\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:e295f1b138799f2d424287e7d9590b361e8f14c4\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n8b8c4f0543a8c5d068fbe40bd0ec2b83772336e2\t20231219T080000\n1702997940\n1702998000\n1703005200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T080000\r\nDTEND;TZID=America/Denver:20231010T100000\r\nEXDATE;TZID=America/Denver:20231012T080000\r\nEXDATE;TZID=America/Denver:20231019T080000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU,TH;WKST=SU\r\nDTSTAMP:20231214T183821Z\r\nUID:205emekkn2cildm27ceavs9ka2@google.com\r\nCREATED:20231010T022013Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231214T183821Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:3\r\nSTATUS:CONFIRMED\r\nSUMMARY:Learn\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:2\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231214T183819Z\r\nX-EVOLUTION-CALDAV-ETAG:63838262301\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:8b8c4f0543a8c5d068fbe40bd0ec2b83772336e2\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\nc5118c6cd909f2c51a498a484be093a2dbea4499\t20231219T063000\n1702992540\n1702992600\n1702998000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T063000\r\nDTEND;TZID=America/Denver:20231009T080000\r\nEXDATE;TZID=America/Denver:20231012T063000\r\nEXDATE;TZID=America/Denver:20231013T063000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231215T201540Z\r\nUID:7fd0k7unmaodv1doo8nv7f1qs1@google.com\r\nCREATED:20231010T021836Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231215T201540Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Morning Routine\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:4\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231215T201539Z\r\nX-EVOLUTION-CALDAV-ETAG:63838354540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:c5118c6cd909f2c51a498a484be093a2dbea4499\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n95ae8459346b32eaf9cd115eab159dbe8638aeba\t20231218T080000\n1702911540\n1702911600\n1702940400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T080000\r\nDTEND;TZID=America/Denver:20231009T160000\r\nEXDATE;TZID=America/Denver:20231013T080000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR;WKST=SU\r\nDTSTAMP:20231215T201540Z\r\nUID:5usr3a3dlhftqgakog6kt9rkjs@google.com\r\nCREATED:20231010T022731Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231215T201540Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Work\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231215T201539Z\r\nX-EVOLUTION-CALDAV-ETAG:63838354540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:95ae8459346b32eaf9cd115eab159dbe8638aeba\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\nc5118c6cd909f2c51a498a484be093a2dbea4499\t20231218T063000\n1702906140\n1702906200\n1702911600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T063000\r\nDTEND;TZID=America/Denver:20231009T080000\r\nEXDATE;TZID=America/Denver:20231012T063000\r\nEXDATE;TZID=America/Denver:20231013T063000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231215T201540Z\r\nUID:7fd0k7unmaodv1doo8nv7f1qs1@google.com\r\nCREATED:20231010T021836Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231215T201540Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Morning Routine\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:4\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231215T201539Z\r\nX-EVOLUTION-CALDAV-ETAG:63838354540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:c5118c6cd909f2c51a498a484be093a2dbea4499\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\ndf9e057de0b4959e1198cf7a01daa4c80c11fe3c\t20231215T143000\n1702675740\n1702675800\n1702677600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T143000\r\nDTEND;TZID=America/Denver:20231009T150000\r\nEXDATE;TZID=America/Denver:20231012T143000\r\nEXDATE;TZID=America/Denver:20231013T143000\r\nEXDATE;TZID=America/Denver:20231019T143000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;WKST=SU\r\nDTSTAMP:20231215T201540Z\r\nUID:1rcaen81cnvjrbpi3bmc3gjpk2@google.com\r\nCREATED:20231010T022638Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231215T201540Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Yoga Break\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:4\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231215T201539Z\r\nX-EVOLUTION-CALDAV-ETAG:63838354540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:df9e057de0b4959e1198cf7a01daa4c80c11fe3c\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n906c293a3c7cedf152ff03b27d3f24311167e987\t20231215T120000\n1702666740\n1702666800\n1702670400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T120000\r\nDTEND;TZID=America/Denver:20231009T130000\r\nEXDATE;TZID=America/Denver:20231012T120000\r\nEXDATE;TZID=America/Denver:20231013T120000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231213T190408Z\r\nUID:1n502qgb4om1ojgqv0pi4joiel@google.com\r\nCREATED:20231010T022352Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231213T190408Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Walk Miki\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231213T190408Z\r\nX-EVOLUTION-CALDAV-ETAG:63838177448\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:906c293a3c7cedf152ff03b27d3f24311167e987\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\ndf8fc00ba1d0cbebe02c26c64d66359e9d351932\t20231215T080000\n1702652340\n1702652400\n1702681200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T080000\r\nDTEND;TZID=America/Denver:20231009T160000\r\nEXDATE;TZID=America/Denver:20231013T080000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR;WKST=SU\r\nDTSTAMP:20231213T155058Z\r\nUID:5usr3a3dlhftqgakog6kt9rkjs@google.com\r\nCREATED:20231010T022731Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231213T155058Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Work\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:2\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231213T155058Z\r\nX-EVOLUTION-CALDAV-ETAG:63838165858\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:df8fc00ba1d0cbebe02c26c64d66359e9d351932\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n97892ec1cdc01f6d9f4df8b6048c36ee74dd63ed\t20231215T063000\n1702646940\n1702647000\n1702652400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T063000\r\nDTEND;TZID=America/Denver:20231009T080000\r\nEXDATE;TZID=America/Denver:20231012T063000\r\nEXDATE;TZID=America/Denver:20231013T063000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231214T183804Z\r\nUID:7fd0k7unmaodv1doo8nv7f1qs1@google.com\r\nCREATED:20231010T021836Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231214T183804Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Morning Routine\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231214T183801Z\r\nX-EVOLUTION-CALDAV-ETAG:63838262284\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:97892ec1cdc01f6d9f4df8b6048c36ee74dd63ed\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'b54c51834fe937d523c7105254b0ea4b0e5c7f78\n50ec91bd65148e4e5839d030527b9d64e7784af1\t20231215\n1702645200\n1702598400\n1702684800\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20161015\r\nDTEND;VALUE=DATE:20161016\r\nRRULE:FREQ=MONTHLY;BYMONTHDAY=15\r\nDTSTAMP:20231212T151900Z\r\nUID:f7gg0url1f43vntln4fs68549k@google.com\r\nCREATED:20160921T223716Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151900Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:TSD Billing DUE TODAY\r\nTRANSP:TRANSPARENT\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151859Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT13H\r\nX-EVOLUTION-ALARM-UID:50ec91bd65148e4e5839d030527b9d64e7784af1\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT9H\r\nX-EVOLUTION-ALARM-UID:7599cf22c1eb2960ef3625b9757c803183018a79\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT8H\r\nX-EVOLUTION-ALARM-UID:cc3551eceb8fe84c9d639ff45f5dc0b6b23458ed\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT11H\r\nX-EVOLUTION-ALARM-UID:d9ae339b632e1dcd74d7d6b6b8807fbf473e0203\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'b54c51834fe937d523c7105254b0ea4b0e5c7f78\n7599cf22c1eb2960ef3625b9757c803183018a79\t20231215\n1702630800\n1702598400\n1702684800\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20161015\r\nDTEND;VALUE=DATE:20161016\r\nRRULE:FREQ=MONTHLY;BYMONTHDAY=15\r\nDTSTAMP:20231212T151900Z\r\nUID:f7gg0url1f43vntln4fs68549k@google.com\r\nCREATED:20160921T223716Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151900Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:TSD Billing DUE TODAY\r\nTRANSP:TRANSPARENT\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151859Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT13H\r\nX-EVOLUTION-ALARM-UID:50ec91bd65148e4e5839d030527b9d64e7784af1\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT9H\r\nX-EVOLUTION-ALARM-UID:7599cf22c1eb2960ef3625b9757c803183018a79\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT8H\r\nX-EVOLUTION-ALARM-UID:cc3551eceb8fe84c9d639ff45f5dc0b6b23458ed\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT11H\r\nX-EVOLUTION-ALARM-UID:d9ae339b632e1dcd74d7d6b6b8807fbf473e0203\r\nEND:VALARM\r\nEND:VEVENT\r\n', '8cac2299700fa48026c2b2a83d3e1b7f5fcfe206\n9c54ce04887e3fe4a6b7b10b4956f64248f5b5bd\t20231215\n1702597800\n1702598400\n1702684800\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20161015\r\nDTEND;VALUE=DATE:20161016\r\nRRULE:FREQ=MONTHLY;BYMONTHDAY=15\r\nDTSTAMP:20231212T151900Z\r\nUID:f7gg0url1f43vntln4fs68549k@google.com\r\nCREATED:20160921T223716Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151900Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:TSD Billing DUE TODAY\r\nTRANSP:TRANSPARENT\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151859Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT10M\r\nX-EVOLUTION-ALARM-UID:9c54ce04887e3fe4a6b7b10b4956f64248f5b5bd\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n661494e7a0950d09b256106794195296caa88ce4\t20231214T160000\n1702594740\n1702594800\n1702598400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T160000\r\nDTEND;TZID=America/Denver:20231009T170000\r\nEXDATE;TZID=America/Denver:20231012T160000\r\nEXDATE;TZID=America/Denver:20231013T160000\r\nEXDATE;TZID=America/Denver:20231019T160000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231213T230101Z\r\nUID:1ptevdmd8banvj5crgugap4nmf@google.com\r\nCREATED:20231010T025557Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231213T230101Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Todo\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231213T230100Z\r\nX-EVOLUTION-CALDAV-ETAG:63838191661\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:661494e7a0950d09b256106794195296caa88ce4\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n16a23fc5e6e2f4196891070af63747d0c8e57391\t20231214T143000\n1702589340\n1702589400\n1702591200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T143000\r\nDTEND;TZID=America/Denver:20231009T150000\r\nEXDATE;TZID=America/Denver:20231012T143000\r\nEXDATE;TZID=America/Denver:20231013T143000\r\nEXDATE;TZID=America/Denver:20231019T143000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;WKST=SU\r\nDTSTAMP:20231213T215340Z\r\nUID:1rcaen81cnvjrbpi3bmc3gjpk2@google.com\r\nCREATED:20231010T022638Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231213T215340Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Yoga Break\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231213T215340Z\r\nX-EVOLUTION-CALDAV-ETAG:63838187620\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:16a23fc5e6e2f4196891070af63747d0c8e57391\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n906c293a3c7cedf152ff03b27d3f24311167e987\t20231214T120000\n1702580340\n1702580400\n1702584000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T120000\r\nDTEND;TZID=America/Denver:20231009T130000\r\nEXDATE;TZID=America/Denver:20231012T120000\r\nEXDATE;TZID=America/Denver:20231013T120000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231213T190408Z\r\nUID:1n502qgb4om1ojgqv0pi4joiel@google.com\r\nCREATED:20231010T022352Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231213T190408Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Walk Miki\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:3\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231213T190408Z\r\nX-EVOLUTION-CALDAV-ETAG:63838177448\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:906c293a3c7cedf152ff03b27d3f24311167e987\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n5ad7ac6287eff56af824835d89604d78b89d7513\t20231214T100000\n1702573140\n1702573200\n1702594800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T100000\r\nDTEND;TZID=America/Denver:20231010T160000\r\nEXDATE;TZID=America/Denver:20231012T100000\r\nEXDATE;TZID=America/Denver:20231019T100000\r\nEXDATE;TZID=America/Denver:20231026T100000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU,TH;WKST=SU\r\nDTSTAMP:20231212T230137Z\r\nUID:3nrafobpusbm9hctafrdhe4nnl@google.com\r\nCREATED:20231010T023840Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T230137Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Work\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:2\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T230137Z\r\nX-EVOLUTION-CALDAV-ETAG:63838105297\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:5ad7ac6287eff56af824835d89604d78b89d7513\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n22d8295f5e6d8f0ca4ed8bc4997ae6f23747bdaf\t20231214T100000\n1702573140\n1702573200\n1702576800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231012T100000\r\nDTEND;TZID=America/Denver:20231012T110000\r\nEXDATE;TZID=America/Denver:20231012T100000\r\nRRULE:FREQ=WEEKLY;BYDAY=TH\r\nDTSTAMP:20231212T151951Z\r\nUID:7kb47kql2n7asgjtei3bj31p0d@google.com\r\nCREATED:20231010T023613Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151951Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Money\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151950Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077591\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:22d8295f5e6d8f0ca4ed8bc4997ae6f23747bdaf\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'b54c51834fe937d523c7105254b0ea4b0e5c7f78\ncc3551eceb8fe84c9d639ff45f5dc0b6b23458ed\t20231215\n1702569600\n1702598400\n1702684800\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20161015\r\nDTEND;VALUE=DATE:20161016\r\nRRULE:FREQ=MONTHLY;BYMONTHDAY=15\r\nDTSTAMP:20231212T151900Z\r\nUID:f7gg0url1f43vntln4fs68549k@google.com\r\nCREATED:20160921T223716Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151900Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:TSD Billing DUE TODAY\r\nTRANSP:TRANSPARENT\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151859Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT13H\r\nX-EVOLUTION-ALARM-UID:50ec91bd65148e4e5839d030527b9d64e7784af1\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT9H\r\nX-EVOLUTION-ALARM-UID:7599cf22c1eb2960ef3625b9757c803183018a79\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT8H\r\nX-EVOLUTION-ALARM-UID:cc3551eceb8fe84c9d639ff45f5dc0b6b23458ed\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT11H\r\nX-EVOLUTION-ALARM-UID:d9ae339b632e1dcd74d7d6b6b8807fbf473e0203\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n59d7e4a5e34cea2806138c4c3a06ebb94453208b\t20231214T080000\n1702565940\n1702566000\n1702573200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T080000\r\nDTEND;TZID=America/Denver:20231010T100000\r\nEXDATE;TZID=America/Denver:20231012T080000\r\nEXDATE;TZID=America/Denver:20231019T080000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU,TH;WKST=SU\r\nDTSTAMP:20231212T151951Z\r\nUID:205emekkn2cildm27ceavs9ka2@google.com\r\nCREATED:20231010T022013Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151951Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:3\r\nSTATUS:CONFIRMED\r\nSUMMARY:Learn\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151950Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077591\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:59d7e4a5e34cea2806138c4c3a06ebb94453208b\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n577b72a24fa956ec64ae4828f1b6c3bb11642667\t20231214T063000\n1702560540\n1702560600\n1702566000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T063000\r\nDTEND;TZID=America/Denver:20231009T080000\r\nEXDATE;TZID=America/Denver:20231012T063000\r\nEXDATE;TZID=America/Denver:20231013T063000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231213T155104Z\r\nUID:7fd0k7unmaodv1doo8nv7f1qs1@google.com\r\nCREATED:20231010T021836Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231213T155104Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Morning Routine\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:2\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231213T155103Z\r\nX-EVOLUTION-CALDAV-ETAG:63838165864\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:577b72a24fa956ec64ae4828f1b6c3bb11642667\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'b54c51834fe937d523c7105254b0ea4b0e5c7f78\nd9ae339b632e1dcd74d7d6b6b8807fbf473e0203\t20231215\n1702558800\n1702598400\n1702684800\nBEGIN:VEVENT\r\nDTSTART;VALUE=DATE:20161015\r\nDTEND;VALUE=DATE:20161016\r\nRRULE:FREQ=MONTHLY;BYMONTHDAY=15\r\nDTSTAMP:20231212T151900Z\r\nUID:f7gg0url1f43vntln4fs68549k@google.com\r\nCREATED:20160921T223716Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151900Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:TSD Billing DUE TODAY\r\nTRANSP:TRANSPARENT\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151859Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT13H\r\nX-EVOLUTION-ALARM-UID:50ec91bd65148e4e5839d030527b9d64e7784af1\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:PT9H\r\nX-EVOLUTION-ALARM-UID:7599cf22c1eb2960ef3625b9757c803183018a79\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT8H\r\nX-EVOLUTION-ALARM-UID:cc3551eceb8fe84c9d639ff45f5dc0b6b23458ed\r\nEND:VALARM\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT11H\r\nX-EVOLUTION-ALARM-UID:d9ae339b632e1dcd74d7d6b6b8807fbf473e0203\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n118a0c1e78a2da6bed25d62443ed4571d37d3c0f\t20231213T160000\n1702508340\n1702508400\n1702512000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T160000\r\nDTEND;TZID=America/Denver:20231009T170000\r\nEXDATE;TZID=America/Denver:20231012T160000\r\nEXDATE;TZID=America/Denver:20231013T160000\r\nEXDATE;TZID=America/Denver:20231019T160000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231212T230138Z\r\nUID:1ptevdmd8banvj5crgugap4nmf@google.com\r\nCREATED:20231010T025557Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T230138Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Todo\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:2\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T230137Z\r\nX-EVOLUTION-CALDAV-ETAG:63838105298\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:118a0c1e78a2da6bed25d62443ed4571d37d3c0f\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n2ad5d07d5537b7a0fc1c6087824a53f5ee5484d4\t20231213T143000\n1702502940\n1702503000\n1702504800\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T143000\r\nDTEND;TZID=America/Denver:20231009T150000\r\nEXDATE;TZID=America/Denver:20231012T143000\r\nEXDATE;TZID=America/Denver:20231013T143000\r\nEXDATE;TZID=America/Denver:20231019T143000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;WKST=SU\r\nDTSTAMP:20231212T230138Z\r\nUID:1rcaen81cnvjrbpi3bmc3gjpk2@google.com\r\nCREATED:20231010T022638Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T230138Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Yoga Break\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:2\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T230137Z\r\nX-EVOLUTION-CALDAV-ETAG:63838105298\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:2ad5d07d5537b7a0fc1c6087824a53f5ee5484d4\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\nebbd66a5e50a33eb008b8e6fd6b26a5a7f4fec63\t20231213T120000\n1702493940\n1702494000\n1702497600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T120000\r\nDTEND;TZID=America/Denver:20231009T130000\r\nEXDATE;TZID=America/Denver:20231012T120000\r\nEXDATE;TZID=America/Denver:20231013T120000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231212T230147Z\r\nUID:1n502qgb4om1ojgqv0pi4joiel@google.com\r\nCREATED:20231010T022352Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T230147Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Walk Miki\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:2\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T230145Z\r\nX-EVOLUTION-CALDAV-ETAG:63838105307\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:ebbd66a5e50a33eb008b8e6fd6b26a5a7f4fec63\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\nb4f888dac2df1b4f4a10fbc766ab0587cb2784fa\t20231213T080000\n1702479540\n1702479600\n1702508400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T080000\r\nDTEND;TZID=America/Denver:20231009T160000\r\nEXDATE;TZID=America/Denver:20231013T080000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR;WKST=SU\r\nDTSTAMP:20231212T151951Z\r\nUID:5usr3a3dlhftqgakog6kt9rkjs@google.com\r\nCREATED:20231010T022731Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151951Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Work\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151950Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077591\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:b4f888dac2df1b4f4a10fbc766ab0587cb2784fa\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\na372e7fbbef8cb4cf2f4aa7bddce223db68a385f\t20231213T063000\n1702474140\n1702474200\n1702479600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T063000\r\nDTEND;TZID=America/Denver:20231009T080000\r\nEXDATE;TZID=America/Denver:20231012T063000\r\nEXDATE;TZID=America/Denver:20231013T063000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231212T151951Z\r\nUID:7fd0k7unmaodv1doo8nv7f1qs1@google.com\r\nCREATED:20231010T021836Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151951Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Morning Routine\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151950Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077591\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:a372e7fbbef8cb4cf2f4aa7bddce223db68a385f\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n9492465629f2d23046acfb1bd981e393593a32a1\t20231212T170000\n1702425540\n1702425600\n1702429200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T170000\r\nDTEND;TZID=America/Denver:20231010T180000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU\r\nDTSTAMP:20231212T151900Z\r\nUID:7ocs1pm9bce9kaq8836ht984as@google.com\r\nCREATED:20231010T023247Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151900Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Socialize\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151859Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077540\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:9492465629f2d23046acfb1bd981e393593a32a1\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\nbf10fdc924e8a3367186ad7c8b7fff825f2829e8\t20231212T160000\n1702421940\n1702422000\n1702425600\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T160000\r\nDTEND;TZID=America/Denver:20231009T170000\r\nEXDATE;TZID=America/Denver:20231012T160000\r\nEXDATE;TZID=America/Denver:20231013T160000\r\nEXDATE;TZID=America/Denver:20231019T160000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231212T151955Z\r\nUID:1ptevdmd8banvj5crgugap4nmf@google.com\r\nCREATED:20231010T025557Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151955Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:1\r\nSTATUS:CONFIRMED\r\nSUMMARY:Todo\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151950Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077595\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:bf10fdc924e8a3367186ad7c8b7fff825f2829e8\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\na85024cf91c67db29199f2e00604777009e0e6bf\t20231212T143000\n1702416540\n1702416600\n1702418400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T143000\r\nDTEND;TZID=America/Denver:20231009T150000\r\nEXDATE;TZID=America/Denver:20231012T143000\r\nEXDATE;TZID=America/Denver:20231013T143000\r\nEXDATE;TZID=America/Denver:20231019T143000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;WKST=SU\r\nDTSTAMP:20231212T151952Z\r\nUID:1rcaen81cnvjrbpi3bmc3gjpk2@google.com\r\nCREATED:20231010T022638Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151952Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:0\r\nSTATUS:CONFIRMED\r\nSUMMARY:Yoga Break\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151950Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077592\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:a85024cf91c67db29199f2e00604777009e0e6bf\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\nf3529eed6788831697ba0645881538e795ce9664\t20231212T120000\n1702407540\n1702407600\n1702411200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T120000\r\nDTEND;TZID=America/Denver:20231009T130000\r\nEXDATE;TZID=America/Denver:20231012T120000\r\nEXDATE;TZID=America/Denver:20231013T120000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nDTSTAMP:20231212T151951Z\r\nUID:1n502qgb4om1ojgqv0pi4joiel@google.com\r\nCREATED:20231010T022352Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151951Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Walk Miki\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151950Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077591\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:f3529eed6788831697ba0645881538e795ce9664\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n2944ad17a06b2fc9b15bf36d2ad6777c7389381d\t20231212T100000\n1702400340\n1702400400\n1702422000\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T100000\r\nDTEND;TZID=America/Denver:20231010T160000\r\nEXDATE;TZID=America/Denver:20231012T100000\r\nEXDATE;TZID=America/Denver:20231019T100000\r\nEXDATE;TZID=America/Denver:20231026T100000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU,TH;WKST=SU\r\nDTSTAMP:20231212T151952Z\r\nUID:3nrafobpusbm9hctafrdhe4nnl@google.com\r\nCREATED:20231010T023840Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231212T151952Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Work\r\nTRANSP:OPAQUE\r\nX-MOZ-GENERATION:1\r\nX-MOZ-GOOGLE-HTML-DESCRIPTION:true\r\nX-MOZ-LASTACK:20231212T151950Z\r\nX-EVOLUTION-CALDAV-ETAG:63838077592\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:2944ad17a06b2fc9b15bf36d2ad6777c7389381d\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n4a8f8b4326bc09503f639ded9bd25df337c67366\t20231212T080000\n1702393140\n1702393200\n1702400400\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231010T080000\r\nDTEND;TZID=America/Denver:20231010T100000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU,TH;WKST=SU\r\nEXDATE;TZID=America/Denver:20231012T080000\r\nEXDATE;TZID=America/Denver:20231019T080000\r\nDTSTAMP:20231010T022908Z\r\nUID:205emekkn2cildm27ceavs9ka2@google.com\r\nCREATED:20231010T022013Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231010T022908Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:3\r\nSTATUS:CONFIRMED\r\nSUMMARY:Learn\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63835344009\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:4a8f8b4326bc09503f639ded9bd25df337c67366\r\nEND:VALARM\r\nEND:VEVENT\r\n', 'cd66f7b728f3f3f1b6897bfff1981f7dceda3c5a\n5eb4c7bc15f0b96aa4dc14dfcea0c9c4bc810a9d\t20231212T063000\n1702387740\n1702387800\n1702393200\nBEGIN:VEVENT\r\nDTSTART;TZID=America/Denver:20231009T063000\r\nDTEND;TZID=America/Denver:20231009T080000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\r\nEXDATE;TZID=America/Denver:20231012T063000\r\nEXDATE;TZID=America/Denver:20231013T063000\r\nDTSTAMP:20231010T022035Z\r\nUID:7fd0k7unmaodv1doo8nv7f1qs1@google.com\r\nCREATED:20231010T021836Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for DESCRIPTION \r\n property. Removing entire property:\r\nLAST-MODIFIED:20231010T022035Z\r\nX-LIC-ERROR;X-LIC-ERRORTYPE=VALUE-PARSE-ERROR:No value for LOCATION \r\n property. Removing entire property:\r\nSEQUENCE:2\r\nSTATUS:CONFIRMED\r\nSUMMARY:Morning Routine\r\nTRANSP:OPAQUE\r\nX-EVOLUTION-CALDAV-ETAG:63835346651\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:This is an event reminder\r\nTRIGGER:-PT1M\r\nX-EVOLUTION-ALARM-UID:5eb4c7bc15f0b96aa4dc14dfcea0c9c4bc810a9d\r\nEND:VALARM\r\nEND:VEVENT\r\n']
+
+[org/gnome/evolution]
+default-address-book='abe8345f983fee797c24ff1c29fc4c499bc9d8f3'
+
+[org/gnome/file-roller/listing]
+list-mode='as-folder'
+name-column-width=250
+show-path=false
+sort-method='name'
+sort-type='ascending'
+
+[org/gnome/file-roller/ui]
+sidebar-width=200
+window-height=985
+window-width=954
+
+[org/gnome/gedit/plugins]
+active-plugins=['docinfo', 'openlinks', 'spell', 'sort', 'filebrowser', 'modelines']
+
+[org/gnome/gedit/plugins/filebrowser]
+root='file:///'
+tree-view=true
+virtual-root='file:///home/chris/PycharmProjects/OpenAIFunctionTest/fine_tune'
+
+[org/gnome/gedit/preferences/ui]
+show-tabs-mode='auto'
+
+[org/gnome/gedit/state/window]
+bottom-panel-size=140
+side-panel-active-page='GeditWindowDocumentsPanel'
+side-panel-size=200
+size=(954, 467)
+state=43908
+
+[org/gnome/gnome-system-monitor]
+current-tab='processes'
+maximized=false
+network-total-in-bits=false
+show-dependencies=false
+show-whose-processes='user'
+window-state=(954, 1032, 4, 44)
+
+[org/gnome/gnome-system-monitor/disktreenew]
+col-6-visible=true
+col-6-width=0
+
+[org/gnome/gnome-system-monitor/proctree]
+columns-order=[0, 1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+sort-col=8
+sort-order=0
+
+[org/gnome/mutter]
+edge-tiling=false
+
+[org/gnome/nautilus/icon-view]
+captions=['none', 'none', 'none']
+
+[org/gnome/nautilus/list-view]
+default-zoom-level='standard'
+use-tree-view=true
+
+[org/gnome/nautilus/preferences]
+default-folder-viewer='list-view'
+search-filter-time-type='last_modified'
+search-view='list-view'
+
+[org/gnome/nautilus/window-state]
+initial-size=(1912, 1032)
+maximized=false
+
+[org/gnome/power-manager]
+info-history-type='charge'
+info-last-device='/org/freedesktop/UPower/devices/battery_BAT0'
+info-page-number=2
+info-stats-type='discharge-accuracy'
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-enabled=true
+night-light-last-coordinates=(37.759999280057592, -97.822000000000003)
+night-light-temperature=uint32 2268
+
+[org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/PopLaunch1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/PopLaunch1]
+binding='Launch1'
+command='gnome-control-center wifi'
+name='WiFi'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+binding='<Super>w'
+command='firefox www.windy.com'
+name='Weather'
+
+[org/gnome/settings-daemon/plugins/power]
+idle-dim=true
+power-button-action='suspend'
+sleep-inactive-ac-timeout=1800
+sleep-inactive-ac-type='nothing'
+sleep-inactive-battery-timeout=1800
+sleep-inactive-battery-type='nothing'
+
+[org/gnome/settings-daemon/plugins/sharing/rygel]
+enabled-connections=@as []
+
+[org/gnome/shell]
+disabled-extensions=@as []
+enabled-extensions=['ding@rastersoft.com', 'pop-cosmic@system76.com', 'pop-shell@system76.com', 'system76-power@system76.com', 'ubuntu-appindicators@ubuntu.com', 'cosmic-dock@system76.com', 'cosmic-workspaces@system76.com', 'popx11gestures@system76.com']
+favorite-apps=['org.gnome.Weather.desktop', 'firefox.desktop', 'org.mozilla.Thunderbird.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'virt-manager.desktop', 'org.remmina.Remmina.desktop', 'jetbrains-pycharm-ce-d2b8e875-6652-4dcc-9ef4-fb75f98c15f0.desktop']
+had-bluetooth-devices-setup=true
+welcome-dialog-last-shown-version='42.5'
+
+[org/gnome/shell/extensions/dash-to-dock]
+click-action='minimize'
+dash-max-icon-size=48
+dock-alignment='CENTER'
+dock-fixed=false
+extend-height=false
+intellihide=true
+manualhide=false
+show-mounts=true
+
+[org/gnome/shell/extensions/pop-cosmic]
+show-applications-button=true
+show-workspaces-button=true
+
+[org/gnome/shell/extensions/pop-shell]
+active-hint=true
+active-hint-border-radius=uint32 1
+gap-inner=uint32 1
+gap-outer=uint32 1
+tile-by-default=true
+
+[org/gnome/shell/weather]
+automatic-location=false
+locations=[<(uint32 2, <('Taos', 'KSKX', true, [(0.63617251235193317, -1.8442312487584391)], [(0.63542636664341301, -1.8425976031252798)])>)>]
+
+[org/gnome/simple-scan]
+document-type='photo'
+page-side='front'
+save-directory='file:///home/chris/Downloads/'
+
+[org/gnome/system/location]
+enabled=true
+
+[org/gtk/settings/file-chooser]
+date-format='regular'
+location-mode='path-bar'
+show-hidden=true
+show-size-column=true
+show-type-column=true
+sidebar-width=175
+sort-column='name'
+sort-directories-first=true
+sort-order='ascending'
+type-format='category'
+window-position=(98, 40)
+window-size=(1724, 993)
+
+[org/virt-manager/virt-manager]
+manager-window-height=995
+manager-window-width=954
+
+[org/virt-manager/virt-manager/confirm]
+delete-storage=false
+forcepoweroff=true
+unapplied-dev=true
+
+[org/virt-manager/virt-manager/connections]
+autoconnect=['qemu:///system']
+uris=['qemu:///system']
+
+[org/virt-manager/virt-manager/conns/qemu:system]
+window-size=(954, 995)
+
+[org/virt-manager/virt-manager/details]
+show-toolbar=true
+
+[org/virt-manager/virt-manager/new-vm]
+graphics-type='vnc'
+
+[org/virt-manager/virt-manager/paths]
+image-default='/home/chris/ISO/Windows10'
+media-default='/home/chris/ISO/Windows10'
+
+[org/virt-manager/virt-manager/urls]
+isos=['/home/chris/ISO/Windows10/Win10_22H2_English_x64v1.iso', '/home/chris/Downloads/Win10_22H2_English_x32v1.iso', '/home/chris/Downloads/ISO/Win10_22H2_English_x64v1.iso', '/home/chris/Downloads/Win10_22H2_English_x64v1.iso']
+
+[org/virt-manager/virt-manager/vmlist-fields]
+disk-usage=false
+network-traffic=false
+
+[org/virt-manager/virt-manager/vms/041f520e68b94874a2afb769bb414f1b]
+autoconnect=1
+scaling=2
+vm-window-size=(954, 995)
+
+[org/virt-manager/virt-manager/vms/083e5ed9dc254121829a941d827fa234]
+autoconnect=1
+scaling=2
+vm-window-size=(954, 982)
+
+[org/virt-manager/virt-manager/vms/240e77eeadd0436297fb67eee5240ed0]
+autoconnect=1
+scaling=2
+vm-window-size=(954, 995)
+
+[org/virt-manager/virt-manager/vms/3ffcf8070055442ab2252e82807dbb19]
+autoconnect=1
+scaling=1
+vm-window-size=(1024, 810)
+
+[org/virt-manager/virt-manager/vms/47a97b3c9193462ba88551dfe2015b1d]
+autoconnect=1
+scaling=2
+vm-window-size=(1912, 995)
+
+[org/virt-manager/virt-manager/vms/788a030fb4554166b8fa9f43507e6b4e]
+autoconnect=1
+scaling=2
+vm-window-size=(954, 995)
+
+[org/virt-manager/virt-manager/vms/80c66f0334864aca9c8bb9b9b7c02e62]
+autoconnect=1
+scaling=2
+vm-window-size=(954, 995)
+
+[org/virt-manager/virt-manager/vms/ac2a183b93554efdb6ac8703d52905e8]
+autoconnect=1
+scaling=2
+vm-window-size=(954, 995)

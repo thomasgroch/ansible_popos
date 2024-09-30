@@ -5,4 +5,4 @@
     user="ansible"
     name="ansible provision"
     minute="*/10"
-    job="/usr/bin/ansible-pull -o -U https://github.com/ciswindell/ansible_popos.git > /dev/null"
+    job="/usr/bin/ansible-pull -o -U https://github.com/thomasgroch/ansible_popos.git > /dev/null"

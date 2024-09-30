@@ -12,5 +12,5 @@
     - include: tasks/users.yml
     - include: tasks/packages.yml
     - include: tasks/gnome.yml
-    - include: tasks/dotfiles.yml
+    #- include: tasks/dotfiles.yml
     - include: tasks/cron.yml

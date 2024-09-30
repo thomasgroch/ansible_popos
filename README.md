@@ -4,7 +4,7 @@ Inspiration taken from Learn Linux TV Youtube video. I'm a new Linux user and re
 
 ## Ansible Pull Command
 ```bash
-sudo ansible-pull -U https://github.com/ciswindell/ansible_popos.git
+sudo ansible-pull -U https://github.com/thomasgroch/ansible_popos.git
 ```
 
 ## GNOME Settings Trick

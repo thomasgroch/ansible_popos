@@ -8,16 +8,15 @@
   register: dotfiles_repo
 
 - name: Verificar se o agente SSH está rodando
-  shell: |
-    echo $SSH_AUTH_SOCK
+  shell: echo $SSH_AUTH_SOCK
   register: ssh_agent_running
   ignore_errors: yes
+
 - name: Iniciar o agente SSH se não estiver rodando
-  shell: |
-    eval "$(ssh-agent -s)"
+  shell: eval "$(ssh-agent -s)" && ssh-add /home/tg/.ssh/id_ed25519
   environment:
     SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
-  when: ssh_agent_running.rc != 0
+  when: ssh_agent_running.stdout == ""
   register: ssh_agent_start
   ignore_errors: yes
 
@@ -30,6 +29,17 @@
   fail:
     msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
   when: ssh_keys.rc != 0
+
+- name: Clonar repositório bare para dotfiles
+  git:
+    repo: 'git@github.com:thomasgroch/dotfiles.git'
+    version: master
+    bare: yes
+    dest: '/home/tg/.dotfiles-bare'
+    accept_hostkey: yes
+    key_file: '/home/tg/.ssh/id_ed25519'
+    update: yes
+  when: ssh_keys.rc == 0
 
 - name: Clonar repositório bare para dotfiles
   git:

@@ -14,9 +14,9 @@
     repo: 'git@github.com:thomasgroch/dotfiles.git'
     version: master
     bare: yes
-    dest: '~/.dotfiles-bare'
+    dest: '/home/tg/.dotfiles-bare'
     accept_hostkey: yes
-    key_file: '~/.ssh/id_ed25519'
+    key_file: '/home/tg/.ssh/id_ed25519'
     update: yes
   when: not dotfiles_repo.stat.exists
 

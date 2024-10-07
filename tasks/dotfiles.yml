@@ -1,31 +1,30 @@
-### Gerenciamento de Dotfiles
-
+---
 - name: Verificar se o repositório de dotfiles já existe
-  become_user: tg
   stat:
-    path: '~/.dotfiles-bare'
-  register: dotfiles_repo
+    path: "{{ dotfiles_bare_dir }}"
+  register: dotfiles_repo_stat
 
 - name: Verificar se o agente SSH está rodando
   shell: echo $SSH_AUTH_SOCK
   register: ssh_agent_running
-  ignore_errors: yes
-  become_user: tg
+  changed_when: false
+  failed_when: false
 
 - name: Iniciar o agente SSH se não estiver rodando
-  shell: eval "$(ssh-agent -s)" && ssh-add /home/tg/.ssh/id_ed25519
+  shell: |
+    eval "$(ssh-agent -s)"
+    ssh-add {{ ssh_key_path }}
   environment:
-    SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
-  when: ssh_agent_running.stdout == ""
+    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+  when: not ssh_agent_running.stdout
   register: ssh_agent_start
-  ignore_errors: yes
-  become_user: tg
+  failed_when: false
 
 - name: Verificar se a chave SSH está carregada
   shell: ssh-add -l
   register: ssh_keys
-  ignore_errors: yes
-  become_user: tg
+  changed_when: false
+  failed_when: false
 
 - name: Exibir as chaves SSH carregadas
   debug:
@@ -35,90 +34,59 @@
   fail:
     msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
   when: ssh_keys.rc != 0
-  become_user: tg
 
-- name: Clonar repositório bare para dotfiles
+- name: Clonar ou atualizar repositório bare para dotfiles
   git:
-    repo: 'git@github.com:thomasgroch/dotfiles.git'
+    repo: "{{ dotfiles_repo }}"
     version: master
     bare: yes
-    dest: '/home/tg/.dotfiles-bare'
+    dest: "{{ dotfiles_bare_dir }}"
     accept_hostkey: yes
-    key_file: '/home/tg/.ssh/id_ed25519'
+    key_file: "{{ ssh_key_path }}"
     update: yes
-  when: ssh_keys.rc == 0
-
-- name: Configurar repositório bare para dotfiles
-  become_user: tg
-  git:
-    repo: 'git@github.com:thomasgroch/dotfiles.git'
-    version: master
-    bare: yes
-    dest: '/home/tg/.dotfiles-bare'
-    accept_hostkey: yes
-    key_file: '/home/tg/.ssh/id_ed25519'
-    update: yes
-  when: not dotfiles_repo.stat.exists
-
-# - name: Register git result
-#   set_fact:
-#     git_result: "{{ lookup('pipe', 'git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME remote -v') }}"
+  register: git_clone
 
 - name: Verificar se existem mudanças não comitadas
-  become_user: tg
-  command: git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME status --porcelain
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree=$HOME status --porcelain
   register: git_status
-  when: not dotfiles_repo.stat.exists
+  changed_when: false
 
 - name: Fazer stash se houver mudanças não comitadas
-  become_user: tg
-  command: git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME stash
-  when: not dotfiles_repo.stat.exists and git_status.stdout | length > 0
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree=$HOME stash
+  when: git_status.stdout | length > 0
 
-- name: Git | Overwrite distro default dotfiles on the first run
-  become_user: tg
-  command: git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME reset --hard
-  when: not dotfiles_repo.stat.exists
-
-# - name: Verificar se houve mudanças no repositório
-#   become_user: tg
-#   debug:
-#     msg: "Mudanças detectadas nos dotfiles."
-#   when: git_result.after != git_result.before
-
-# - name: Executar script de provisionamento se houver mudanças
-#   command: /usr/local/bin/provision.sh
-#   when: git_result.after != git_result.before
+- name: Sobrescrever dotfiles padrão do sistema no primeiro uso
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree=$HOME reset --hard
+  when: git_clone.changed
 
 - name: Configurar Git para não mostrar arquivos não rastreados
-  become_user: tg
   git_config:
     name: status.showUntrackedFiles
     scope: local
-    repo: '~/.dotfiles-bare'
+    repo: "{{ dotfiles_bare_dir }}"
     value: 'no'
 
 - name: Desativar a opção bare no Git para evitar erro fatal
-  become_user: tg
   git_config:
     name: core.bare
     scope: local
-    repo: "~/.dotfiles-bare"
+    repo: "{{ dotfiles_bare_dir }}"
     value: 'false'
 
 - name: Habilitar sparse checkout no Git
-  become_user: tg
   git_config:
     name: core.sparseCheckout
     scope: local
-    repo: "~/.dotfiles-bare"
+    repo: "{{ dotfiles_bare_dir }}"
     value: 'true'
 
-- name: Git | Create symbolic link
-  become_user: tg
+- name: Criar link simbólico para .git
   file:
-    src: "~/.dotfiles-bare"
+    src: "{{ dotfiles_bare_dir }}"
     dest: "~/.git"
-    owner: tg
-    group: tg
     state: link
+
+- name: Executar script de provisionamento se houver mudanças
+  command: /usr/local/bin/provision.sh
+  when: git_clone.changed
+  ignore_errors: yes

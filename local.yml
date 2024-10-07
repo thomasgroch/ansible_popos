@@ -3,6 +3,11 @@
   connection: local
   become: true
 
+  vars:
+    dotfiles_repo: "git@github.com:thomasgroch/dotfiles.git"
+    dotfiles_bare_dir: "~/.dotfiles-bare"
+    ssh_key_path: "~/.ssh/id_ed25519"
+
   pre_tasks:
     - name: update repositories
       apt: update_cache=yes

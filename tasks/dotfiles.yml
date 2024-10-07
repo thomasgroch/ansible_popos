@@ -18,8 +18,11 @@
     accept_hostkey: yes
     key_file: '~/.ssh/id_ed25519'
     update: yes
-    register: git_result
   when: not dotfiles_repo.stat.exists
+
+- name: Register git result
+  set_fact:
+    git_result: "{{ lookup('pipe', 'git --git-dir=~/.dotfiles-bare remote -v') }}"
 
 - name: Verificar se existem mudanças não comitadas
   become: yes

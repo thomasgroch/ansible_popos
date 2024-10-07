@@ -11,7 +11,7 @@
   become: yes
   become_user: tg
   git:
-    repo: 'git@github.com:camilasrody/dotfiles.git'
+    repo: 'git@github.com:thomasgroch/dotfiles.git'
     version: master
     bare: yes
     dest: '~/.dotfiles-bare'

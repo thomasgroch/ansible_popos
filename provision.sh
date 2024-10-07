@@ -4,9 +4,9 @@ LOCALUSER="tg"
 ANSIBLEUSER="ansible"
 BRANCH="master"
 LOGFILE="/var/log/ansible.log"
-DOTFILES_REPO="https://github.com/camilasrody/dotfiles"  # Set the path to your dotfiles repo
+DOTFILES_REPO="https://github.com/thomasgroch/dotfiles"  # Set the path to your dotfiles repo
 LAST_COMMIT_FILE="/tmp/last_dotfiles_commit.txt"
-REPO="https://github.com/camilasrody/ansible_popos"
+REPO="https://github.com/thomasgroch/ansible_popos"
 COMMON_OPTS="--vault-password-file /home/${ANSIBLEUSER}/.vault_key --url $REPO --limit $(cat /etc/hostname).local --checkout $BRANCH"
 
 # Function to check for running ansible-pull processes

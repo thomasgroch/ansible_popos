@@ -37,15 +37,6 @@
     remote_src: yes
   when: go_installed.rc != 0  # Only extract if Go was just downloaded
 
-- name: Add Go to PATH in .zshrc
-  become: yes
-  become_user: tg
-  lineinfile:
-    path: $HOME/.zshrc
-    line: 'export PATH=$PATH:/usr/local/go/bin'
-    state: present
-  when: go_installed.rc != 0  # Only add to PATH if Go was just installed
-
 - name: Clean up Go archive
   file:
     path: /tmp/go.tar.gz

@@ -34,7 +34,6 @@
 - name: Exibir as chaves SSH carregadas
   debug:
     msg: "{{ ssh_keys.stdout_lines }}"
-  when: ssh_keys.rc == 0
 
 - name: Falhar se nenhuma chave SSH estiver carregada
   fail:

@@ -1,8 +1,29 @@
 ### Cron jobs management playbook
 
-- name: install cron job (ansible-pull)
+- name: system setup | cron | install cron package
+  package:
+    name:
+      - "cron"
+    state: latest
+
+- name: system setup | cron | start and enable cronie daemon
+  service:
+    name: cronie
+    state: started
+    enabled: true
+  when: ansible_distribution == "Archlinux"
+
+- name: system setup | cron | schedule automatic ansible provisioning
   cron:
-    user="ansible"
-    name="ansible provision"
-    minute="*/10"
-    job="/usr/bin/ansible-pull -o -U https://github.com/thomasgroch/ansible_popos.git > /dev/null"
+    name: "ansible provision"
+    user: ansible
+    hour: "*"
+    minute: "*/30"
+    job: "/usr/local/bin/provision > /dev/null"
+
+- name: system setup | cron | schedule ansible cleanup at boot
+  cron:
+    name: "ansible refresh at boot"
+    user: tg
+    special_time: reboot
+    job: "/bin/rm -rf /home/tg/.ansible"

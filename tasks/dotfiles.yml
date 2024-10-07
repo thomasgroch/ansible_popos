@@ -1,7 +1,6 @@
 ### Gerenciamento de Dotfiles
 
 - name: Verificar se o repositório de dotfiles já existe
-  become: yes
   become_user: tg
   stat:
     path: '~/.dotfiles-bare'
@@ -11,7 +10,6 @@
   shell: echo $SSH_AUTH_SOCK
   register: ssh_agent_running
   ignore_errors: yes
-  become: yes
   become_user: tg
 
 - name: Iniciar o agente SSH se não estiver rodando
@@ -21,45 +19,13 @@
   when: ssh_agent_running.stdout == ""
   register: ssh_agent_start
   ignore_errors: yes
-  become: yes
   become_user: tg
 
 - name: Verificar se a chave SSH está carregada
   shell: ssh-add -l
   register: ssh_keys
   ignore_errors: yes
-  become: yes
   become_user: tg
-
-
-- name: Verificar o usuário atual que está executando a task com become
-  shell: whoami
-  register: current_user
-  become: yes
-  become_user: tg
-
-- name: Exibir o usuário atual
-  debug:
-    msg: "O Ansible está rodando como o usuário: {{ current_user.stdout }}"
-
-
-- name: Verificar o usuário atual que está executando a task com become
-  shell: whoami
-  register: current_user
-  become_user: tg
-
-- name: Exibir o usuário atual
-  debug:
-    msg: "O Ansible está rodando como o usuário: {{ current_user.stdout }}"
-
-- name: Verificar o usuário atual que está executando a task com become
-  shell: whoami
-  register: current_user
-
-- name: Exibir o usuário atual
-  debug:
-    msg: "O Ansible está rodando como o usuário: {{ current_user.stdout }}"
-
 
 - name: Exibir as chaves SSH carregadas
   debug:
@@ -69,7 +35,6 @@
   fail:
     msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
   when: ssh_keys.rc != 0
-  become: yes
   become_user: tg
 
 - name: Clonar repositório bare para dotfiles
@@ -84,7 +49,6 @@
   when: ssh_keys.rc == 0
 
 - name: Configurar repositório bare para dotfiles
-  become: yes
   become_user: tg
   git:
     repo: 'git@github.com:thomasgroch/dotfiles.git'
@@ -101,14 +65,12 @@
 #     git_result: "{{ lookup('pipe', 'git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME remote -v') }}"
 
 - name: Verificar se existem mudanças não comitadas
-  become: yes
   become_user: tg
   command: git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME status --porcelain
   register: git_status
   when: not dotfiles_repo.stat.exists
 
 - name: Fazer stash se houver mudanças não comitadas
-  become: yes
   become_user: tg
   command: git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME stash
   when: not dotfiles_repo.stat.exists and git_status.stdout | length > 0
@@ -129,7 +91,6 @@
 #   when: git_result.after != git_result.before
 
 - name: Configurar Git para não mostrar arquivos não rastreados
-  become: yes
   become_user: tg
   git_config:
     name: status.showUntrackedFiles
@@ -138,7 +99,6 @@
     value: 'no'
 
 - name: Desativar a opção bare no Git para evitar erro fatal
-  become: yes
   become_user: tg
   git_config:
     name: core.bare
@@ -147,7 +107,6 @@
     value: 'false'
 
 - name: Habilitar sparse checkout no Git
-  become: yes
   become_user: tg
   git_config:
     name: core.sparseCheckout

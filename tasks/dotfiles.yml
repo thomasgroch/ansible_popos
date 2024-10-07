@@ -7,6 +7,11 @@
     path: '~/.dotfiles-bare'
   register: dotfiles_repo
 
+- name: Verificar se o agente SSH está rodando
+  shell: |
+    echo $SSH_AUTH_SOCK
+  register: ssh_agent_running
+  ignore_errors: yes
 - name: Iniciar o agente SSH se não estiver rodando
   shell: |
     eval "$(ssh-agent -s)"
@@ -14,12 +19,6 @@
     SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
   when: ssh_agent_running.rc != 0
   register: ssh_agent_start
-  ignore_errors: yes
-
-- name: Verificar se o agente SSH está rodando
-  shell: |
-    echo $SSH_AUTH_SOCK
-  register: ssh_agent_running
   ignore_errors: yes
 
 - name: Verificar se a chave SSH está carregada

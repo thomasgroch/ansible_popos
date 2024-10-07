@@ -7,6 +7,16 @@
     path: '~/.dotfiles-bare'
   register: dotfiles_repo
 
+- name: Verificar se a chave SSH está carregada
+  shell: ssh-add -l
+  register: ssh_keys
+  ignore_errors: yes
+
+- name: Falhar se nenhuma chave SSH estiver carregada
+  fail:
+    msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
+  when: ssh_keys.rc != 0
+  
 - name: Configurar repositório bare para dotfiles
   become: yes
   become_user: tg
@@ -20,9 +30,9 @@
     update: yes
   when: not dotfiles_repo.stat.exists
 
-- name: Register git result
-  set_fact:
-    git_result: "{{ lookup('pipe', 'git --git-dir=~/.dotfiles-bare remote -v') }}"
+# - name: Register git result
+#   set_fact:
+#     git_result: "{{ lookup('pipe', 'git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME remote -v') }}"
 
 - name: Verificar se existem mudanças não comitadas
   become: yes
@@ -42,11 +52,11 @@
   command: git --git-dir=$HOME/.dotfiles-bare --work-tree=$HOME reset --hard
   when: not dotfiles_repo.stat.exists
 
-- name: Verificar se houve mudanças no repositório
-  become_user: tg
-  debug:
-    msg: "Mudanças detectadas nos dotfiles."
-  when: git_result.after != git_result.before
+# - name: Verificar se houve mudanças no repositório
+#   become_user: tg
+#   debug:
+#     msg: "Mudanças detectadas nos dotfiles."
+#   when: git_result.after != git_result.before
 
 # - name: Executar script de provisionamento se houver mudanças
 #   command: /usr/local/bin/provision.sh

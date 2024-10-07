@@ -11,6 +11,8 @@
   shell: echo $SSH_AUTH_SOCK
   register: ssh_agent_running
   ignore_errors: yes
+  become: yes
+  become_user: tg
 
 - name: Iniciar o agente SSH se não estiver rodando
   shell: eval "$(ssh-agent -s)" && ssh-add /home/tg/.ssh/id_ed25519
@@ -19,16 +21,22 @@
   when: ssh_agent_running.stdout == ""
   register: ssh_agent_start
   ignore_errors: yes
+  become: yes
+  become_user: tg
 
 - name: Verificar se a chave SSH está carregada
   shell: ssh-add -l
   register: ssh_keys
   ignore_errors: yes
+  become: yes
+  become_user: tg
 
 - name: Falhar se nenhuma chave SSH estiver carregada
   fail:
     msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
   when: ssh_keys.rc != 0
+  become: yes
+  become_user: tg
 
 - name: Clonar repositório bare para dotfiles
   git:

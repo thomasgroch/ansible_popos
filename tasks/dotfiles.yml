@@ -7,16 +7,6 @@
     path: '~/.dotfiles-bare'
   register: dotfiles_repo
 
-- name: Check SSH key authentication with GitHub
-  shell: ssh -o StrictHostKeyChecking=no -T git@github.com
-  register: ssh_auth_check
-  ignore_errors: true
-
-- name: Fail if SSH key authentication fails
-  fail:
-    msg: "SSH key authentication failed: {{ ssh_auth_check.stderr }}"
-  when: ssh_auth_check.rc != 0
-
 - name: Configurar repositório bare para dotfiles
   become: yes
   become_user: tg

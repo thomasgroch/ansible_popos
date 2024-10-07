@@ -31,20 +31,35 @@
   become: yes
   become_user: tg
 
-- name: Verificar o usuário atual que está executando a task
-  debug:
-    msg: "O Ansible está rodando como o usuário: {{ ansible_user_id }}"
 
-- name: Verificar o usuário atual que está executando a task
+- name: Verificar o usuário atual que está executando a task com become
+  shell: whoami
+  register: current_user
   become: yes
   become_user: tg
+
+- name: Exibir o usuário atual
   debug:
-    msg: "O Ansible está rodando como o usuário: {{ ansible_user_id }}"
-  
-- name: Verificar o usuário atual que está executando a task
+    msg: "O Ansible está rodando como o usuário: {{ current_user.stdout }}"
+
+
+- name: Verificar o usuário atual que está executando a task com become
+  shell: whoami
+  register: current_user
   become_user: tg
+
+- name: Exibir o usuário atual
   debug:
-    msg: "O Ansible está rodando como o usuário: {{ ansible_user_id }}"
+    msg: "O Ansible está rodando como o usuário: {{ current_user.stdout }}"
+
+- name: Verificar o usuário atual que está executando a task com become
+  shell: whoami
+  register: current_user
+
+- name: Exibir o usuário atual
+  debug:
+    msg: "O Ansible está rodando como o usuário: {{ current_user.stdout }}"
+
 
 - name: Exibir as chaves SSH carregadas
   debug:
@@ -56,17 +71,6 @@
   when: ssh_keys.rc != 0
   become: yes
   become_user: tg
-
-- name: Clonar repositório bare para dotfiles
-  git:
-    repo: 'git@github.com:thomasgroch/dotfiles.git'
-    version: master
-    bare: yes
-    dest: '/home/tg/.dotfiles-bare'
-    accept_hostkey: yes
-    key_file: '/home/tg/.ssh/id_ed25519'
-    update: yes
-  when: ssh_keys.rc == 0
 
 - name: Clonar repositório bare para dotfiles
   git:

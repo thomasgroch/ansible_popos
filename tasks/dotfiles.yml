@@ -31,6 +31,21 @@
   become: yes
   become_user: tg
 
+- name: Verificar o usuário atual que está executando a task
+  debug:
+    msg: "O Ansible está rodando como o usuário: {{ ansible_user_id }}"
+
+- name: Verificar o usuário atual que está executando a task
+  become: yes
+  become_user: tg
+  debug:
+    msg: "O Ansible está rodando como o usuário: {{ ansible_user_id }}"
+  
+- name: Verificar o usuário atual que está executando a task
+  become_user: tg
+  debug:
+    msg: "O Ansible está rodando como o usuário: {{ ansible_user_id }}"
+
 - name: Exibir as chaves SSH carregadas
   debug:
     msg: "{{ ssh_keys.stdout_lines }}"

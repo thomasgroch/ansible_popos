@@ -10,3 +10,11 @@
     owner: root
     group: root
     mode: 0440
+
+- name: copy ssh agent config
+  copy:
+    src: files/ssh_agent
+    dest: /etc/sudoers.d/ssh_agent
+    owner: root
+    group: root
+    mode: 0440

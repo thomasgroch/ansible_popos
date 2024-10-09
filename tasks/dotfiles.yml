@@ -3,37 +3,58 @@
   stat:
     path: "{{ dotfiles_bare_dir }}"
   register: dotfiles_repo_stat
+  become: yes
+  become_user: tg
 
 - name: Verificar se o agente SSH está rodando
   shell: echo $SSH_AUTH_SOCK
   register: ssh_agent_running
   changed_when: false
   failed_when: false
+  become: yes
+  become_user: tg
+  environment:
+    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
 
 - name: Iniciar o agente SSH se não estiver rodando
   shell: |
     eval "$(ssh-agent -s)"
-    ssh-add {{ ssh_key_path }}
+    export SSH_AUTH_SOCK=$(ls /tmp/ssh-*/agent.*)
+    ssh-add /home/tg/.ssh/id_ed25519
   environment:
-    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+    SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
   when: not ssh_agent_running.stdout
   register: ssh_agent_start
   failed_when: false
+  become: yes
+  become_user: tg
 
 - name: Verificar se a chave SSH está carregada
   shell: ssh-add -l
   register: ssh_keys
   changed_when: false
   failed_when: false
+  become: yes
+  become_user: tg
+  environment:
+    SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
 
 - name: Exibir as chaves SSH carregadas
   debug:
     msg: "{{ ssh_keys.stdout_lines }}"
+  become: yes
+  become_user: tg
+  environment:
+    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
 
 - name: Falhar se nenhuma chave SSH estiver carregada
   fail:
     msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
   when: ssh_keys.rc != 0
+  become: yes
+  become_user: tg
+  environment:
+    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
 
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:
@@ -42,22 +63,28 @@
     bare: yes
     dest: "{{ dotfiles_bare_dir }}"
     accept_hostkey: yes
-    key_file: "{{ ssh_key_path }}"
+    key_file: "{{ ansible_ssh_private_key_file }}"
     update: yes
   register: git_clone
+  become: yes
+  become_user: tg
+  environment:
+    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+  when: ssh_keys.rc == 0
 
 - name: Verificar se existem mudanças não comitadas
-  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree=$HOME status --porcelain
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} status --porcelain
   register: git_status
   changed_when: false
+  when: dotfiles_repo_stat.stat.exists == False
 
 - name: Fazer stash se houver mudanças não comitadas
-  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree=$HOME stash
-  when: git_status.stdout | length > 0
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} stash
+  when: git_status.stdout | length > 0 and dotfiles_repo_stat.stat.exists == False
 
 - name: Sobrescrever dotfiles padrão do sistema no primeiro uso
-  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree=$HOME reset --hard
-  when: git_clone.changed
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} reset --hard
+  when: git_clone.changed and dotfiles_repo_stat.stat.exists == False
 
 - name: Configurar Git para não mostrar arquivos não rastreados
   git_config:
@@ -83,10 +110,12 @@
 - name: Criar link simbólico para .git
   file:
     src: "{{ dotfiles_bare_dir }}"
-    dest: "~/.git"
+    dest: "{{ dotfiles_home_dir }}/.git"
     state: link
 
-- name: Executar script de provisionamento se houver mudanças
-  command: /usr/local/bin/provision.sh
-  when: git_clone.changed
-  ignore_errors: yes
+# - name: Executar script de provisionamento se houver mudanças
+#   command: /usr/local/bin/provision.sh
+#   when: git_clone.changed
+#   ignore_errors: yes
+
+# sudo chsh tg -s /bin/zsh

@@ -5,13 +5,14 @@
 
   vars:
     dotfiles_repo: "git@github.com:thomasgroch/dotfiles.git"
-    dotfiles_bare_dir: "~/.dotfiles-bare"
-    ssh_key_path: "~/.ssh/id_ed25519"
+    dotfiles_bare_dir: "/home/tg/.dotfiles-bare"
+    dotfiles_home_dir: "/home/tg/"
+    ansible_ssh_private_key_file: "/home/tg/.ssh/id_ed25519"
 
-  pre_tasks:
-    - name: update repositories
-      apt: update_cache=yes
-      changed_when: False
+  # pre_tasks:
+  #   - name: update repositories
+  #     apt: update_cache=yes
+  #     changed_when: False
 
   tasks:
     - include: tasks/users.yml

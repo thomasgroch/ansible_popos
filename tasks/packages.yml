@@ -20,6 +20,28 @@
       - golang-go
     update_cache: yes
 
+- name: Get latest lazygit version
+  shell: |
+    curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*'
+  register: lazygit_version
+
+- name: Download lazygit tarball
+  shell: |
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ lazygit_version.stdout }}_Linux_x86_64.tar.gz"
+  args:
+    creates: lazygit.tar.gz
+
+- name: Extract lazygit
+  shell: |
+    tar xf lazygit.tar.gz lazygit
+  args:
+    creates: lazygit
+
+- name: Install lazygit
+  become: yes
+  shell: |
+    install lazygit /usr/local/bin
+
 # - name: Check if Go is installed
 #   command: go version
 #   register: go_installed

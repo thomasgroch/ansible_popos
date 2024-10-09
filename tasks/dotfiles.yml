@@ -5,6 +5,15 @@
   register: dotfiles_repo_stat
   become: yes
   become_user: tg
+  
+- name: Criar link simbólico para .git
+  file:
+    src: "{{ dotfiles_bare_dir }}"
+    dest: "{{ dotfiles_home_dir }}.git"
+    state: link
+    force: yes
+  become: yes
+  become_user: tg
 
 - name: Verificar se o agente SSH está rodando
   shell: echo $SSH_AUTH_SOCK
@@ -56,6 +65,9 @@
   environment:
     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
 
+- debug:
+    msg: "{{ dotfiles_bare_dir }}"
+
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:
     repo: "{{ dotfiles_repo }}"
@@ -65,6 +77,9 @@
     accept_hostkey: yes
     key_file: "{{ ansible_ssh_private_key_file }}"
     update: yes
+    track_submodules: yes
+    recursive: yes
+    force: yes
   register: git_clone
   become: yes
   become_user: tg
@@ -74,16 +89,22 @@
 
 - name: Verificar se existem mudanças não comitadas
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} status --porcelain
+  become: yes
+  become_user: tg
   register: git_status
   changed_when: false
   when: dotfiles_repo_stat.stat.exists == False
 
 - name: Fazer stash se houver mudanças não comitadas
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} stash
+  become: yes
+  become_user: tg
   when: git_status.stdout | length > 0 and dotfiles_repo_stat.stat.exists == False
 
 - name: Sobrescrever dotfiles padrão do sistema no primeiro uso
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} reset --hard
+  become: yes
+  become_user: tg
   when: git_clone.changed and dotfiles_repo_stat.stat.exists == False
 
 - name: Configurar Git para não mostrar arquivos não rastreados
@@ -92,6 +113,8 @@
     scope: local
     repo: "{{ dotfiles_bare_dir }}"
     value: 'no'
+  become: yes
+  become_user: tg 
 
 - name: Desativar a opção bare no Git para evitar erro fatal
   git_config:
@@ -99,6 +122,8 @@
     scope: local
     repo: "{{ dotfiles_bare_dir }}"
     value: 'false'
+  become: yes
+  become_user: tg
 
 - name: Habilitar sparse checkout no Git
   git_config:
@@ -106,12 +131,8 @@
     scope: local
     repo: "{{ dotfiles_bare_dir }}"
     value: 'true'
-
-- name: Criar link simbólico para .git
-  file:
-    src: "{{ dotfiles_bare_dir }}"
-    dest: "{{ dotfiles_home_dir }}/.git"
-    state: link
+  become: yes
+  become_user: tg
 
 # - name: Executar script de provisionamento se houver mudanças
 #   command: /usr/local/bin/provision.sh

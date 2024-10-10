@@ -10,6 +10,12 @@
   set_fact:
     SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
   
+- name: Ajustar permissões do SSH_AUTH_SOCK para o usuário ansible
+  ansible.builtin.command:
+    cmd: setfacl -m u:ansible:rwx {{ lookup('env', 'SSH_AUTH_SOCK') }}
+  become: true
+  when: ansible_env.SSH_AUTH_SOCK is defined
+
 - name: Criar link simbólico para .git
   file:
     src: "{{ dotfiles_bare_dir }}"

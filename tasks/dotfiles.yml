@@ -11,7 +11,7 @@
     cmd: setfacl -m u:ansible:rwx "{{ ansible_env.SSH_AUTH_SOCK }}"
   become: true
   become_user: tg
-  when: ansible_env.SSH_AUTH_SOCK is defined
+  when: ansible_env.SSH_AUTH_SOCK is not defined
 
 - name: Exibir valor de SSH_AUTH_SOCK no ambiente do usuário ansible
   debug:

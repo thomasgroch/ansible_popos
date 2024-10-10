@@ -15,6 +15,7 @@
     cmd: setfacl -m u:ansible:rwx {{ lookup('env', 'SSH_AUTH_SOCK') }}
   become: true
   when: ansible_env.SSH_AUTH_SOCK is defined
+  ignore_errors: true  # Ignora se houver erros ao acessar o socket
 
 - name: Criar link simbólico para .git
   file:

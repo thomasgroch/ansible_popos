@@ -1,8 +1,8 @@
 ---
-#- name: Adicionar repositório ao apt
-#  apt_repository:
-#    repo: ppa:
-#    state: present
+# - name: Adicionar repositório ao apt
+#   apt_repository:
+#     repo: ppa:
+#     state: present
 
 - name: Install apt packages
   package:
@@ -18,7 +18,24 @@
       - rustc
       - cargo
       - golang-go
+      - flatpak
+      - npm
     update_cache: yes
+
+- name: Adicionar repositório Flathub
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  args:
+    creates: /var/lib/flatpak/repo/flathub
+
+- name: Instalar Moonlight via Flatpak
+  flatpak:
+    name: com.moonlight_stream.Moonlight
+    state: present
+    remote: flathub
+
+# - name: Definir PATH para incluir diretórios do Flatpak para que Ansible consiga localizar os binários do Flatpak durante a execução
+#   environment:
+#     PATH: "{{ ansible_env.PATH }}:/usr/local/bin:/usr/bin:/bin:/snap/bin:/var/lib/flatpak/exports/bin"
 
 - name: Get latest lazygit version
   shell: |

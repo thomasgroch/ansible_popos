@@ -1,0 +1,68 @@
+#!/bin/bash
+
+LOCALUSER="tg"
+ANSIBLEUSER="ansible"
+BRANCH="master"
+LOGFILE="/home/${ANSIBLEUSER}/ansible.log"
+DOTFILES_PATH="/home/${LOCALUSER}/.dotfiles-bare/"  # Caminho para o repositório de dotfiles
+LAST_COMMIT_FILE="/home/${ANSIBLEUSER}/last_dotfiles_commit.txt"
+REPO="https://github.com/thomasgroch/ansible_popos"
+COMMON_OPTS="--vault-password-file /home/${ANSIBLEUSER}/.vault_key --url $REPO --limit $(cat /etc/hostname).local --checkout $BRANCH"
+
+# Função para verificar processos ansible-pull em execução
+check_running() {
+  if pgrep -f ansible-pull > /dev/null; then
+    printf "\n$(date +"%Y-%m-%d %H:%M:%S") Um processo ansible-pull já está em execução.\nSaindo.\n" | tee -a "$LOGFILE"
+    exit 1
+  fi
+}
+
+# Função para verificar mudanças no repositório de dotfiles
+check_for_changes() {
+  cd "$DOTFILES_PATH" || exit
+
+  git fetch origin
+
+  LATEST_COMMIT=$(git rev-parse origin/$BRANCH)
+
+  if [ -f "$LAST_COMMIT_FILE" ]; then
+    LAST_COMMIT=$(cat "$LAST_COMMIT_FILE")
+  else
+    LAST_COMMIT=""
+  fi
+
+  if [ "$LATEST_COMMIT" != "$LAST_COMMIT" ]; then
+    echo "$LATEST_COMMIT" > "$LAST_COMMIT_FILE"
+    return 0  # Mudanças detectadas
+  fi
+
+  return 1  # Sem mudanças
+}
+
+# Lógica principal do script
+check_running
+
+# Executar ansible-pull
+printf "\n$(date +"%Y-%m-%d %H:%M:%S") Executando ansible-pull...\n" | tee -a "$LOGFILE"
+if [[ ! -z "$1" ]]; then
+  ansible-pull --tags "$1" $COMMON_OPTS >> "$LOGFILE" 2>&1
+else
+  ansible-pull $COMMON_OPTS >> "$LOGFILE" 2>&1
+fi
+
+# Verificar se houve mudanças após a execução do ansible-pull
+if [ $? -eq 0 ]; then
+  printf "\n$(date +"%Y-%m-%d %H:%M:%S") ansible-pull executado com sucesso. Verificando mudanças no repositório de dotfiles...\n" | tee -a "$LOGFILE"
+  if check_for_changes; then
+    printf "\n$(date +"%Y-%m-%d %H:%M:%S") Mudanças detectadas no repositório de dotfiles. Executando ansible-pull novamente...\n" | tee -a "$LOGFILE"
+    if [[ ! -z "$1" ]]; then
+      ansible-pull --tags "$1" $COMMON_OPTS >> "$LOGFILE" 2>&1
+    else
+      ansible-pull $COMMON_OPTS >> "$LOGFILE" 2>&1
+    fi
+  else
+    printf "\n$(date +"%Y-%m-%d %H:%M:%S") Nenhuma mudança detectada no repositório de dotfiles.\n" | tee -a "$LOGFILE"
+  fi
+else
+  printf "\n$(date +"%Y-%m-%d %H:%M:%S") Falha na execução do ansible-pull.\n" | tee -a "$LOGFILE"
+fi

@@ -48,13 +48,13 @@
   environment:
     SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
 
-- name: Exibir as chaves SSH carregadas
-  debug:
-    msg: "{{ ssh_keys.stdout_lines }}"
-  become: yes
-  become_user: tg
-  environment:
-    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+# - name: Exibir as chaves SSH carregadas
+#   debug:
+#     msg: "{{ ssh_keys.stdout_lines }}"
+#   become: yes
+#   become_user: tg
+#   environment:
+#     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
 
 - name: Falhar se nenhuma chave SSH estiver carregada
   fail:
@@ -65,8 +65,8 @@
   environment:
     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
 
-- debug:
-    msg: "{{ dotfiles_bare_dir }}"
+# - debug:
+#     msg: "{{ dotfiles_bare_dir }}"
 
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:
@@ -87,6 +87,53 @@
     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
   when: ssh_keys.rc == 0
 
+# Adiciona o segundo usuário ao grupo do usuário principal (se necessário)
+- name: Adicionar usuário secundário ao grupo do usuário principal
+  user:
+    name: ansible
+    group: tg
+    append: yes
+  become: yes
+
+- name: Conceder permissão de leitura para o grupo na pasta do usuário principal
+  file:
+    path: "{{ dotfiles_bare_dir }}"
+    owner: tg
+    group: tg
+    mode: '0750'
+    recurse: yes
+  become: yes
+
+# - name: Garantir permissões de leitura para ansible no repositório de dotfiles
+#   acl:
+#     path: "{{ dotfiles_bare_dir }}"
+#     entity: ansible
+#     etype: user
+#     permissions: rx
+#     state: present
+#     recursive: yes
+#   become: yes
+
+# - name: Garantir que o diretório de dotfiles é considerado seguro pelo Git para o usuário ansible
+#   command: git config --global --add safe.directory /home/tg/.dotfiles-bare
+#   become: yes
+#   become_user: ansible
+#   ignore_errors: yes  # Ignorar erros se o diretório já estiver configurado
+
+# - name: Garantir permissões corretas para o repositório bare
+#   file:
+#     path: "{{ dotfiles_bare_dir }}"
+#     owner: tg
+#     group: ansible
+#     mode: '0755'
+#     recurse: yes
+#   become: yes
+#   # when: git_clone.changed
+
+# - name: Debug dotfiles_repo_stat
+#   debug:
+#     var: dotfiles_repo_stat
+
 - name: Verificar se existem mudanças não comitadas
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} status --porcelain
   become: yes
@@ -95,11 +142,19 @@
   changed_when: false
   when: dotfiles_repo_stat.stat.exists == False
 
+# - name: Debug git status
+#   debug:
+#     var: git_status
+
+# - name: Verificar se existe saída no git_status
+#   debug:
+#     msg: "stdout está presente: {{ 'stdout' in git_status }}"
+
 - name: Fazer stash se houver mudanças não comitadas
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} stash
   become: yes
   become_user: tg
-  when: git_status.stdout | length > 0 and dotfiles_repo_stat.stat.exists == False
+  when: "'stdout' in git_status and git_status.stdout | length > 0 and dotfiles_repo_stat.stat.exists == False"
 
 - name: Sobrescrever dotfiles padrão do sistema no primeiro uso
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} reset --hard
@@ -113,15 +168,6 @@
     scope: local
     repo: "{{ dotfiles_bare_dir }}"
     value: 'no'
-  become: yes
-  become_user: tg 
-
-- name: Desativar a opção bare no Git para evitar erro fatal
-  git_config:
-    name: core.bare
-    scope: local
-    repo: "{{ dotfiles_bare_dir }}"
-    value: 'false'
   become: yes
   become_user: tg
 

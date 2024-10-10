@@ -6,20 +6,29 @@
       - "cron"
     state: latest
 
-- name: system setup | cron | start and enable cronie daemon
-  service:
-    name: cronie
-    state: started
-    enabled: true
-  when: ansible_distribution == "Archlinux"
+# - name: system setup | cron | start and enable cronie daemon
+#   service:
+#     name: cronie
+#     state: started
+#     enabled: true
+#   when: ansible_distribution == "Archlinux"
+
+- name: system setup | cron | copy provision script to /usr/local/bin
+  copy:
+    src: "files/provision"
+    dest: "/usr/local/bin/provision"
+    owner: root
+    group: root
+    mode: 0755
+  become: true
 
 - name: system setup | cron | schedule automatic ansible provisioning
   cron:
     name: "ansible provision"
     user: ansible
     hour: "*"
-    minute: "*/30"
-    job: "/usr/local/bin/provision > /dev/null"
+    minute: "*/3"
+    job: "{ date; /usr/local/bin/provision; RC=$?; date; echo \"Exit code: $RC\"; } >> ~/ansible_provision.log 2>&1 && if [ $RC -eq 0 ]; then echo $(date) > ~/ansible_provision_last_run.txt; fi"
 
 - name: system setup | cron | schedule ansible cleanup at boot
   cron:

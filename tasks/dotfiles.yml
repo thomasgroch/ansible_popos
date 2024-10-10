@@ -6,6 +6,11 @@
   become: yes
   become_user: tg
 
+- name: Depurar valor de SSH_AUTH_SOCK
+  debug:
+    msg: "Valor de SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
+
+
 - name: Exportar SSH_AUTH_SOCK para o usuário ansible
   ansible.builtin.command:
     cmd: "export SSH_AUTH_SOCK={{ lookup('env', 'SSH_AUTH_SOCK') }} && setfacl -m u:ansible:rwx {{ lookup('env', 'SSH_AUTH_SOCK') }}"

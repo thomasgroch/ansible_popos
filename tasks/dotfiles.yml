@@ -10,6 +10,7 @@
   ansible.builtin.command:
     cmd: setfacl -m u:ansible:rwx {{ lookup('env', 'SSH_AUTH_SOCK') }}
   become: true
+  become_user: tg
   when: lookup('env', 'SSH_AUTH_SOCK') is defined
 
 - name: Exibir valor de SSH_AUTH_SOCK no ambiente do usuário ansible

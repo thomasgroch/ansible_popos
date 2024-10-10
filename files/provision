@@ -16,7 +16,7 @@ check_running() {
 
 # Lógica principal do script
 check_running
-COMMON_OPTS="--vault-password-file /home/${ANSIBLEUSER}/.vault_key --url $REPO --limit $(cat /etc/hostname).local --checkout $BRANCH"
+COMMON_OPTS="--vault-password-file /home/${ANSIBLEUSER}/.vault_key --url $REPO --checkout $BRANCH"
 
 # Executar ansible-pull
 printf "\n$(date +"%Y-%m-%d %H:%M:%S") Executando ansible-pull...\n" | tee -a "$LOGFILE"

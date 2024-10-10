@@ -6,9 +6,12 @@
   become: yes
   become_user: tg
 
-- name: Set SSH_AUTH_SOCK globally
-  set_fact:
-    SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
+- name: Copiar SSH_AUTH_SOCK do usuário tg para ansible
+  ansible.builtin.command:
+    cmd: export SSH_AUTH_SOCK={{ lookup('env', 'SSH_AUTH_SOCK') }}
+  become: true
+  become_user: ansible
+  when: ansible_env.SSH_AUTH_SOCK is defined
   
 - name: Ajustar permissões do SSH_AUTH_SOCK para o usuário ansible
   ansible.builtin.command:

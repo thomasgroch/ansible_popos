@@ -20,6 +20,10 @@ dconf dump / > after.txt
 diff before.txt after.txt
 ```
 
+<!-- [tg@tgworkstation ansible_popos]$ sudo -u ansible bash -->
+<!-- ansible@tgworkstation:/home/tg $ echo "$(pass show vault_key)" > /home/ansible/.vault_key -->
+
+
 ## Todo
 
 - [ ] Setup Windows VM task

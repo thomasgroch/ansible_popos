@@ -68,6 +68,16 @@
 # - debug:
 #     msg: "{{ dotfiles_bare_dir }}"
 
+- name: Garantir que o diretório ~/.ssh e o arquivo ~/.ssh/config existem com as permissões corretas
+  file:
+    path: "{{ item.path }}"
+    mode: "{{ item.mode }}"
+    state: "{{ item.state }}"
+    owner: "{{ ansible_user_id }}"
+  loop:
+    - { path: "{{ ansible_env.HOME }}/.ssh", mode: '0700', state: 'directory' }
+    - { path: "{{ ansible_env.HOME }}/.ssh/config", mode: '0600', state: 'touch' }
+
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:
     repo: "{{ dotfiles_repo }}"

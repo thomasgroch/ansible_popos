@@ -5,6 +5,10 @@
   register: dotfiles_repo_stat
   become: yes
   become_user: tg
+
+- name: Set SSH_AUTH_SOCK globally
+  set_fact:
+    SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
   
 - name: Criar link simbólico para .git
   file:

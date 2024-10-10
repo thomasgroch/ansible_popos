@@ -6,18 +6,17 @@
   become: yes
   become_user: tg
 
+- name: Ajustar permissões do SSH_AUTH_SOCK para o usuário ansible
+  ansible.builtin.command:
+    cmd: setfacl -m u:ansible:rwx {{ lookup('env', 'SSH_AUTH_SOCK') }}
+  become: true
+  when: lookup('env', 'SSH_AUTH_SOCK') is defined
+
 - name: Exibir valor de SSH_AUTH_SOCK no ambiente do usuário ansible
   debug:
     msg: "Valor de SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
   become: true
   become_user: ansible
-
-- name: Exportar SSH_AUTH_SOCK para o usuário ansible
-  ansible.builtin.command:
-    cmd: "export SSH_AUTH_SOCK={{ lookup('env', 'SSH_AUTH_SOCK') }} && setfacl -m u:ansible:rwx {{ lookup('env', 'SSH_AUTH_SOCK') }}"
-  become: true
-  become_user: ansible
-  when: lookup('env', 'SSH_AUTH_SOCK') is defined
 
 - name: Criar link simbólico para .git
   file:

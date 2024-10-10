@@ -8,10 +8,10 @@
 
 - name: Ajustar permissões do SSH_AUTH_SOCK para o usuário ansible
   ansible.builtin.command:
-    cmd: setfacl -m u:ansible:rwx {{ lookup('env', 'SSH_AUTH_SOCK') }}
+    cmd: setfacl -m u:ansible:rwx "{{ ansible_env.SSH_AUTH_SOCK }}"
   become: true
   become_user: tg
-  when: lookup('env', 'SSH_AUTH_SOCK') is defined
+  when: ansible_env.SSH_AUTH_SOCK is defined
 
 - name: Exibir valor de SSH_AUTH_SOCK no ambiente do usuário ansible
   debug:

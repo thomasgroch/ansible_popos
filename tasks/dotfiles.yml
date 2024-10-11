@@ -52,12 +52,12 @@
   become_user: tg
 
 # Adiciona o segundo usuário ao grupo do usuário principal (se necessário)
-- name: Adicionar usuário secundário ao grupo do usuário principal
-  user:
-    name: ansible
-    group: tg
-    append: yes
-  become: yes
+# - name: Adicionar usuário secundário ao grupo do usuário principal
+#   user:
+#     name: ansible
+#     group: tg
+#     append: yes
+#   become: yes
 
 - name: Conceder permissão de leitura para o grupo na pasta do usuário principal
   file:

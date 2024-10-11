@@ -1,7 +1,14 @@
 ### User management playbook
 
 - name: create ansible user
-  user: name=ansible uid=900
+  user:
+    name: "ansible"
+    uid: 900
+    group: "ansible"
+    groups: "ansible,tg,users,adm,sudo,lpadmin"
+    state: present
+    comment: "user"
+    shell: /usr/bin/zsh
 
 - name: copy sudoers_ansible
   copy:
@@ -19,7 +26,7 @@
     group: root
     mode: 0440
 
-- name: create user
+- name: create tg user
   user:
     name: "tg"
     group: "tg"

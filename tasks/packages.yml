@@ -4,7 +4,10 @@
 #     repo: ppa:
 #     state: present
 
-- name: Install apt packages
+- name: Aguardar até que o bloqueio do APT seja liberado
+  shell: while fuser /var/lib/dpkg/lock >/dev/null 2>&1 || fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done
+
+- name: Instalar pacotes apt
   package:
     name:
       - dconf-cli
@@ -21,6 +24,10 @@
       - flatpak
       - npm
     update_cache: yes
+  register: apt_result
+  retries: 5
+  delay: 10
+  until: apt_result is success
 
 - name: Adicionar repositório Flathub
   command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

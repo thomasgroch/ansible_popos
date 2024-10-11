@@ -6,19 +6,6 @@
   become: yes
   become_user: tg
 
-- name: Ajustar permissões do SSH_AUTH_SOCK para o usuário ansible
-  ansible.builtin.command:
-    cmd: setfacl -m u:ansible:rwx "{{ ansible_env.SSH_AUTH_SOCK }}"
-  become: true
-  become_user: tg
-  when: ansible_env.SSH_AUTH_SOCK is defined and ansible_env.SSH_AUTH_SOCK != ""
-
-- name: Exibir valor de SSH_AUTH_SOCK no ambiente do usuário ansible
-  debug:
-    msg: "Valor de SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
-  become: true
-  become_user: ansible
-
 - name: Criar link simbólico para .git
   file:
     src: "{{ dotfiles_bare_dir }}"
@@ -28,68 +15,81 @@
   become: yes
   become_user: tg
 
-- name: Verificar se o agente SSH está rodando
-  shell: echo $SSH_AUTH_SOCK
-  register: ssh_agent_running
-  changed_when: false
-  failed_when: false
-  become: yes
-  become_user: tg
-  environment:
-    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+# - name: Ajustar permissões do SSH_AUTH_SOCK para o usuário ansible
+#   ansible.builtin.command:
+#     cmd: setfacl -m u:ansible:rwx "{{ ansible_env.SSH_AUTH_SOCK }}"
+#   become: true
+#   become_user: tg
+#   when: ansible_env.SSH_AUTH_SOCK is defined and ansible_env.SSH_AUTH_SOCK != ""
 
-- name: Iniciar o agente SSH se não estiver rodando
-  shell: |
-    eval "$(ssh-agent -s)"
-    export SSH_AUTH_SOCK=$(ls /tmp/ssh-*/agent.*)
-    ssh-add /home/tg/.ssh/id_ed25519
-  environment:
-    SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
-  when: not ssh_agent_running.stdout
-  register: ssh_agent_start
-  failed_when: false
-  become: yes
-  become_user: tg
-
-- name: Verificar se a chave SSH está carregada
-  shell: ssh-add -l
-  register: ssh_keys
-  changed_when: false
-  failed_when: false
-  become: yes
-  become_user: tg
-  environment:
-    SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
-
-# - name: Exibir as chaves SSH carregadas
+# - name: Exibir valor de SSH_AUTH_SOCK no ambiente do usuário ansible
 #   debug:
-#     msg: "{{ ssh_keys.stdout_lines }}"
+#     msg: "Valor de SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
+#   become: true
+#   become_user: ansible
+
+# - name: Verificar se o agente SSH está rodando
+#   shell: echo $SSH_AUTH_SOCK
+#   register: ssh_agent_running
+#   changed_when: false
+#   failed_when: false
 #   become: yes
 #   become_user: tg
 #   environment:
 #     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
 
-- name: Falhar se nenhuma chave SSH estiver carregada
-  fail:
-    msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
-  when: ssh_keys.rc != 0
-  become: yes
-  become_user: tg
-  environment:
-    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+# - name: Iniciar o agente SSH se não estiver rodando
+#   shell: |
+#     eval "$(ssh-agent -s)"
+#     export SSH_AUTH_SOCK=$(ls /tmp/ssh-*/agent.*)
+#     ssh-add /home/tg/.ssh/id_ed25519
+#   environment:
+#     SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
+#   when: not ssh_agent_running.stdout
+#   register: ssh_agent_start
+#   failed_when: false
+#   become: yes
+#   become_user: tg
 
-# - debug:
-#     msg: "{{ dotfiles_bare_dir }}"
+# - name: Verificar se a chave SSH está carregada
+#   shell: ssh-add -l
+#   register: ssh_keys
+#   changed_when: false
+#   failed_when: false
+#   become: yes
+#   become_user: tg
+#   environment:
+#     SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
 
-- name: Garantir que o diretório ~/.ssh e o arquivo ~/.ssh/config existem com as permissões corretas
-  file:
-    path: "{{ item.path }}"
-    mode: "{{ item.mode }}"
-    state: "{{ item.state }}"
-    owner: "{{ ansible_user_id }}"
-  loop:
-    - { path: "{{ ansible_env.HOME }}/.ssh", mode: '0700', state: 'directory' }
-    - { path: "{{ ansible_env.HOME }}/.ssh/config", mode: '0600', state: 'touch' }
+# # - name: Exibir as chaves SSH carregadas
+# #   debug:
+# #     msg: "{{ ssh_keys.stdout_lines }}"
+# #   become: yes
+# #   become_user: tg
+# #   environment:
+# #     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+
+# - name: Falhar se nenhuma chave SSH estiver carregada
+#   fail:
+#     msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
+#   when: ssh_keys.rc != 0
+#   become: yes
+#   become_user: tg
+#   environment:
+#     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+
+# # - debug:
+# #     msg: "{{ dotfiles_bare_dir }}"
+
+# - name: Garantir que o diretório ~/.ssh e o arquivo ~/.ssh/config existem com as permissões corretas
+#   file:
+#     path: "{{ item.path }}"
+#     mode: "{{ item.mode }}"
+#     state: "{{ item.state }}"
+#     owner: "{{ ansible_user_id }}"
+#   loop:
+#     - { path: "{{ ansible_env.HOME }}/.ssh", mode: '0700', state: 'directory' }
+#     - { path: "{{ ansible_env.HOME }}/.ssh/config", mode: '0600', state: 'touch' }
 
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:

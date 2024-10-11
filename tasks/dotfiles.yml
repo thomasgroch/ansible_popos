@@ -15,6 +15,26 @@
   become: yes
   become_user: tg
 
+- debug:
+    msg: "Valor tg de ansible_env.SSH_AUTH_SOCK: {{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+  become: true
+  become_user: tg
+
+  debug:
+    msg: "Valor tg de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
+  become: true
+  become_user: tg
+
+- debug:
+    msg: "Valor de ansible_env.SSH_AUTH_SOCK: {{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+  become: true
+  become_user: ansible
+
+  debug:
+    msg: "Valor de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
+  become: true
+  become_user: ansible
+
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:
     repo: "{{ dotfiles_repo }}"
@@ -30,9 +50,6 @@
   register: git_clone
   become: yes
   become_user: tg
-  environment:
-    SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
-  when: ssh_keys.rc == 0
 
 # Adiciona o segundo usuário ao grupo do usuário principal (se necessário)
 - name: Adicionar usuário secundário ao grupo do usuário principal

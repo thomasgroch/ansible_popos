@@ -18,3 +18,12 @@
     owner: root
     group: root
     mode: 0440
+
+- name: create user
+  user:
+    name: "tg"
+    group: "tg"
+    groups: "tg,users,adm,sudo,lpadmin"
+    state: present
+    comment: "user"
+    shell: /usr/bin/zsh

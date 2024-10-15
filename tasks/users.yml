@@ -1,6 +1,18 @@
 ### User management playbook
 
-- name: create ansible user
+- name: Create required groups
+  group:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - ansible
+    - tg
+    - users
+    - adm
+    - sudo
+    - lpadmin
+
+- name: Create ansible user
   user:
     name: "ansible"
     uid: 900
@@ -10,7 +22,7 @@
     comment: "user"
     shell: /usr/bin/zsh
 
-- name: copy sudoers_ansible
+- name: Copy sudoers_ansible
   copy:
     src: files/sudoers_ansible
     dest: /etc/sudoers.d/ansible
@@ -18,7 +30,7 @@
     group: root
     mode: 0440
 
-- name: copy ssh agent config
+- name: Copy ssh agent config
   copy:
     src: files/ssh_agent
     dest: /etc/sudoers.d/ssh_agent
@@ -26,7 +38,7 @@
     group: root
     mode: 0440
 
-- name: create tg user
+- name: Create tg user
   user:
     name: "tg"
     group: "tg"

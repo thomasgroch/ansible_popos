@@ -88,7 +88,7 @@
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:
     repo: "{{ dotfiles_repo }}"
-    version: master
+    version: main
     bare: yes
     dest: "{{ dotfiles_bare_dir }}"
     accept_hostkey: yes
@@ -96,10 +96,15 @@
     update: yes
     track_submodules: yes
     recursive: yes
-    force: yes
   register: git_clone
   become: yes
   become_user: tg
+
+- name: Atualizar submódulos Git
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} submodule update --init --recursive
+  become: yes
+  become_user: tg
+  when: git_clone.changed
 
 # Adiciona o segundo usuário ao grupo do usuário principal (se necessário)
 # - name: Adicionar usuário secundário ao grupo do usuário principal
@@ -109,14 +114,14 @@
 #     append: yes
 #   become: yes
 
-- name: Conceder permissão de leitura para o grupo na pasta do usuário principal
-  file:
-    path: "{{ dotfiles_bare_dir }}"
-    owner: tg
-    group: tg
-    mode: '0750'
-    recurse: yes
-  become: yes
+# - name: Conceder permissão de leitura para o grupo na pasta do usuário principal
+#   file:
+#     path: "{{ dotfiles_bare_dir }}"
+#     owner: tg
+#     group: tg
+#     mode: '0750'
+#     recurse: yes
+#   become: yes
 
 # - name: Garantir permissões de leitura para ansible no repositório de dotfiles
 #   acl:

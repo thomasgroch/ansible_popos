@@ -28,7 +28,7 @@
     user: ansible
     hour: "*"
     minute: "*/3"
-    job: "{ date; /usr/local/bin/provision; RC=$?; date; echo \"Exit code: $RC\"; } >> ~/ansible_provision.log 2>&1 && if [ $RC -eq 0 ]; then echo $(date) > ~/ansible_provision_last_run.txt; fi"
+    job: "{ date; /usr/local/bin/provision; RC=$?; date; echo \"Exit code: $RC\"; } >> /var/tmp/ansible_provision.log 2>&1 && if [ $RC -eq 0 ]; then echo $(date) > /var/tmp/ansible_provision_last_run.txt; fi"
 
 - name: system setup | cron | schedule ansible cleanup at boot
   cron:

@@ -21,6 +21,7 @@
     state: present
     comment: "user"
     shell: /usr/bin/zsh
+    password: "{{ user_password | password_hash('sha512') }}"
 
 - name: Copy sudoers_ansible
   copy:
@@ -46,3 +47,4 @@
     state: present
     comment: "user"
     shell: /usr/bin/zsh
+    password: "{{ user_password | password_hash('sha512') }}"

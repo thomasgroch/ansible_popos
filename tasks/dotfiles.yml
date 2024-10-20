@@ -70,7 +70,7 @@
   become: true
   become_user: tg
 
-  debug:
+- debug:
     msg: "Valor tg de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
   become: true
   become_user: tg
@@ -80,10 +80,10 @@
   become: true
   become_user: ansible
 
-  debug:
+- debug:
     msg: "Valor de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
   become: true
-  become_user: ansible
+  become_user: ansibleZ
 
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:

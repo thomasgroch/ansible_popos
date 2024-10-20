@@ -8,6 +8,7 @@
     dotfiles_bare_dir: "/home/tg/.dotfiles-bare/"
     dotfiles_home_dir: "/home/tg/"
     ansible_ssh_private_key_file: "/home/tg/.ssh/id_ed25519"
+    user_password: "asdasd"
 
   # pre_tasks:
   #   - name: update repositories

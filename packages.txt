@@ -74,6 +74,7 @@ xsel
 gufw
 
 ## CLI's
+guake
 zsh
 # Encrypted pass-through FUSE file system
 encfs

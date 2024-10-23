@@ -21,7 +21,7 @@ COMMON_OPTS="--vault-password-file /home/${ANSIBLEUSER}/.vault_key --url $REPO -
 # Executar ansible-pull
 printf "\n$(date +"%Y-%m-%d %H:%M:%S") Executando ansible-pull...\n" | tee -a "$LOGFILE"
 if [[ ! -z "$1" ]]; then
-  ansible-ppull --tags "$1" $COMMON_OPTS >> "$LOGFILE" 2>&1
+  ansible-pull --tags "$1" $COMMON_OPTS >> "$LOGFILE" 2>&1
 else
   ansible-pull $COMMON_OPTS >> "$LOGFILE" 2>&1
 fi

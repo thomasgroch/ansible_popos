@@ -1,8 +1,8 @@
 ---
-# - name: Adicionar repositório ao apt
-#   apt_repository:
-#     repo: ppa:
-#     state: present
+ - name: Adicionar repositório ao apt
+   apt_repository:
+     repo: ppa:linuxuprising/guake
+     state: present
 
 - name: Aguardar até que o bloqueio do APT seja liberado
   shell: while fuser /var/lib/dpkg/lock >/dev/null 2>&1 || fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done

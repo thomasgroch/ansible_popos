@@ -1,13 +1,13 @@
 ---
- - name: Adicionar repositório ao apt
-   apt_repository:
-     repo: ppa:linuxuprising/guake
-     state: present
+- name: Adicionar repositório ao apt
+  apt_repository:
+    repo: ppa:linuxuprising/guake
+    state: present
 
 - name: Aguardar até que o bloqueio do APT seja liberado
   shell: while fuser /var/lib/dpkg/lock >/dev/null 2>&1 || fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done
 
-- name: Install packages
+- name: Instalar pacotes
   vars:
     packages: "{{ lookup('file', 'packages.txt').splitlines() | select('match', '^[^#]') | list }}"
   package:
@@ -31,32 +31,28 @@
     state: present
     remote: flathub
 
-# - name: Definir PATH para incluir diretórios do Flatpak para que Ansible consiga localizar os binários do Flatpak durante a execução
-#   environment:
-#     PATH: "{{ ansible_env.PATH }}:/usr/local/bin:/usr/bin:/bin:/snap/bin:/var/lib/flatpak/exports/bin"
-
-- name: Get latest lazygit version
+- name: Obter a versão mais recente do lazygit
   shell: |
     curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*'
   register: lazygit_version
 
-- name: Download lazygit tarball
+- name: Baixar tarball do lazygit
   shell: |
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ lazygit_version.stdout }}_Linux_x86_64.tar.gz"
   args:
     creates: lazygit.tar.gz
 
-- name: Extract lazygit
+- name: Extrair lazygit
   shell: |
     tar xf lazygit.tar.gz lazygit
   args:
     creates: lazygit
 
-- name: Install lazygit
+- name: Instalar lazygit
   become: yes
   shell: |
     install lazygit /usr/local/bin
-
+    
 # - name: Check if Go is installed
 #   command: go version
 #   register: go_installed

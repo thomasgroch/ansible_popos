@@ -3,7 +3,7 @@
 LOCALUSER="tg"
 ANSIBLEUSER="ansible"
 BRANCH="main"
-LOGFILE="/home/${ANSIBLEUSER}/ansible.log"
+LOGFILE="/var/tmp/ansible.log"
 REPO="https://github.com/thomasgroch/ansible_popos"
 
 # Função para verificar processos ansible-pull em execução

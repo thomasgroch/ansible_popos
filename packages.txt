@@ -1,0 +1,372 @@
+## Only on arch
+# This is a host application for browserpass browser extension providing it access to your password store.
+# opera
+# vivaldi
+# vivaldi-ffmpeg-codecs
+# The Dart SDK
+# dart
+# Terminal bandwidth utilization tool
+# bandwhich
+# OpenBSD freely-licensed SSH connectivity tools
+# openssh
+# Program that allows you to count code, quickly
+# tokei
+# More intuitive version of du in rust
+# dust
+# Intuitive find & replace CLI
+# sd
+# Modern replacement for ps written by Rust
+# procs
+# Simple, fast and user-friendly alternative to find
+# fd
+# New way to see and navigate directory trees
+# broot
+# C routines to compute the Discrete Fourier Transform
+# fftw
+# python-pip
+# An idempotent command-line utility for managing your /etc/hosts* file.
+# hostess
+# Swiss army knife for network attacks and monitoring
+# bettercap
+# bpytop
+# GNU Transport Layer Security (TLS) Library
+# gnutls
+# Simple terminal UI for git commands
+# Asynchronous event library
+# libevent
+# Drop-in replacement for MySQL
+# mariadb
+# Command-line DNS client
+# Python version management
+# pyenv
+# Open source programming language to build simple/reliable/efficient software
+# go
+# Safe, concurrent, practical language
+# rust
+# Cross platform, open source .NET development framework
+# mono
+# The cross-shell prompt for astronauts
+# alternative to `cat`: https://github.com/sharkdp/bat
+bat
+# General-purpose data compression with high compression ratio
+# Clone of ls with colorful output, file type icons, and more
+# ensure gawk gets good readline
+
+ffmpeg
+#composer
+virtualbox
+# linux513-virtualbox-host-modules
+curl
+file
+# Distributed revision control system
+git
+# Multi-panel tabbed file manager
+# spacefm
+# for video editing
+# kdenlive
+
+# Graphical network analyzer and capture tool
+# wireshark
+
+# Utilities
+xclip
+xsel
+gufw
+
+## CLI's
+zsh
+# Encrypted pass-through FUSE file system
+encfs
+# Static analysis and lint tool, for (ba)sh scripts
+shellcheck
+# Update of iperf: measures TCP, UDP, and SCTP bandwidth
+iperf3
+# Bourne-Again SHell, a UNIX command interpreter
+bash
+# SSL/TLS cryptography library
+openssl
+# Program that can automate interactive applications
+expect
+# Monitor data's progress through a pipe
+pv
+# Classic UNIX line editor
+ed
+# Search tool like grep, but optimized for programmers - http://conqueringthecommandline.com/book/ack_ag
+ack
+# Wrapper around ripgrep that adds multiple rich file types
+ripgrep
+# Fast, highly customisable system info script
+#neofetch
+# Console Matrix
+cmatrix
+dos2unix
+# Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
+findutils
+# GNU awk utility
+gawk
+# Command-line fuzzy finder written in Go
+fzf
+# GNU Pretty Good Privacy (PGP) package
+gnupg
+# upgrade grep so we can get things like inverted match (-v)
+grep
+# Utility for directing compilation
+make
+cmake
+# Free (GNU) replacement for the Pico text editor
+nano
+binutils
+diffutils
+# Color-highlighted diff(1) output
+colordiff
+# Internet file retriever
+wget
+# Download with resuming and segmented downloading
+aria2
+# Bash script to format a block device to UDF
+udftools
+# Install GNU core utilities (those that come with macOS are outdated)
+coreutils
+# https://github.com/jkbrzt/httpie
+httpie
+openconnect
+# better/more recent version of screen
+screen
+asciinema
+tmux
+# Distributed, Highly Available, Datacenter-Aware Scheduler
+# Tool for service discovery, monitoring and configuration
+consul
+# Tool for creating identical machine images for multiple platforms
+# packer
+tree
+vim
+
+## Languages
+# Interpreted, interactive, object-oriented programming language
+python3
+# # Platform built on V8 to build network applications
+# node
+# # Ruby version manager
+# rbenv
+ruby
+
+## Servers
+# Lightweight DNS forwarder and DHCP server
+dnsmasq
+# High-performance, schema-free, document-oriented database
+# mongodb
+# Object-relational database system
+postgresql
+# Persistent key-value database, with built-in net interface
+redis
+
+# # Install some other useful utilities like `sponge`
+# # moreutils" # Disable because conflicts with paralle
+# # Tool to automatically fix PHP coding standards issues
+# php-cs-fixer
+# # Programmer-oriented testing framework for PHP
+# phpunit
+# # Dependency Manager for PHP
+# composer
+syncthing
+# need fontconfig to install/build fonts
+fontconfig
+# Graph visualization software from AT&T and Bell Labs
+graphviz
+# Modern, hackable, featureful, OpenGL based terminal emulator
+#kitty (no ctrl + f)
+# Terminal based YouTube player and downloader
+#mps-youtube #down
+# Media player based on MPlayer and mplayer2
+mpv
+# UNIX movie player
+mplayer
+# # Cross-platform application and UI framework
+# qt5
+# # Toolkit for creating graphical user interfaces
+# gtk+3
+
+## Git addons
+# Git extension for versioning large files"
+git-lfs
+# Add GitHub support to git on the command-line
+hub
+
+## Security and penetration testing tool
+gopass
+# NCurses Disk Usage
+ncdu
+# World's fastest and most advanced password recovery utility
+hashcat
+# Searches a binary image for embedded files and executable code
+binwalk
+# Zip password cracker
+fcrackzip
+# Port scanning utility for large networks
+nmap
+# Network grep
+ngrep
+# Display an interface's bandwidth usage
+iftop
+# Calculate various network masks, etc. from a given IP address
+ipcalc
+# ARP scanning and fingerprinting tool
+arp-scan
+# Tools for the WireGuard secure network tunnel
+wireguard-tools
+# Featureful UNIX password cracker
+john
+# Intercept, modify, replay, save HTTP/S traffic
+mitmproxy
+# SSL manipulation tools, \`mitmproxy --host\` runs on 8080
+# Man-in-the-middle attacks against SSL encrypted network connections
+sslsplit
+
+
+# Utilities
+# Top-like interface for docker container metrics
+ctop
+# generate pronounceable passwords
+pwgen
+# A command-line fuzzy finder
+fzf
+# Command-line translator using Google Translate and more
+translate-shell
+# Configure transparent encryption of files in a Git repo
+#transcrypt
+# Improved top (interactive process viewer)
+htop
+# hardinfo #error
+# Alternative to top/htop
+glances
+psutils
+# Version Control Visualization Tool
+gource
+# Colorize logfiles and command output
+grc
+# An advanced log file viewer for the small-scale
+lnav
+# Popular GNU data compression program
+gzip
+# Image processing tools collection
+graphicsmagick
+# Convert JPG images to ASCII
+jp2a
+# Lightweight and flexible command-line JSON processor
+jq
+# File browser
+ranger
+# Pager program similar to more
+less
+# Text-based web browser
+lynx
+# Macro processing language
+m4
+# Fast and user friendly build system
+meson
+# Text to speech, software speech synthesizer
+# espeak
+prettyping
+## Utilities
+# Scriptable ping program for checking if multiple hosts are up
+fping
+# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
+nginx
+# 'traceroute' and 'ping' in a single tool
+mtr
+# Web server scanner
+nikto
+# Password generator
+pwgen
+# Modular IRC client
+irssi
+# E-mail reader with support for Notmuch, NNTP and much more
+neomutt
+# Synchronize a maildir with an IMAP server
+isync
+# File system client based on SSH File Transfer Protocol
+sshfs
+# Shell command parallelization utility
+parallel
+# Rsync for cloud storage
+rclone
+# Utility that provides fast incremental file transfer
+rsync
+# Command-line interface for https://speedtest.net bandwidth tests
+speedtest-cli
+# Bring your .bashrc, .vimrc, etc. with you when you SSH
+# sshrc" # temp offlin
+# Simplified and community-driven man pages
+tldr
+# Display directories as trees (with optional color/HTML output)
+tree
+# Extract, view, and test RAR archives
+unrar
+# Extraction utility for .zip compressed archives
+unzip
+# Display word differences between text files
+wdiff
+# Download YouTube videos from the command-line
+#youtube-dl
+# Monitor data's progress through a pipe
+pv
+# Statistics utility to count lines of code
+cloc
+# Identify or delete duplicate files
+fdupes
+# Text-based window manager and terminal multiplexer
+byobu
+# Remote terminal application
+mosh
+npm
+yarn
+docker
+
+## GUI apps
+# Run containers through a simple, yet powerful graphical user interface.
+qtpass
+#dia
+#apostrophe
+exa
+calcurse
+
+#wlroots # comment out because wayfire-git conflicts with wlroots
+#wayfire-git # comment out because notfound
+swaybg
+swayidle
+swaylock
+wl-clipboard
+waybar
+wofi
+kanshi
+foot
+grim
+slurp
+wf-recorder
+#light
+yad
+#wlogout
+thunar
+geany
+mpd
+mpc
+viewnior
+imagemagick
+#xfce-polkit
+
+# Pacote 'browserpass' não está disponível.
+# Pacote 'base-devel' não está disponível.
+# Pacote 'lazygit' não está disponível.
+# Pacote 'dog' não está disponível.
+# Pacote 'starship' não está disponível.
+# Pacote 'diff-so-fancy' não está disponível.
+# Pacote 'aalib' não está disponível.
+# Pacote 'libmikmod' não está disponível.
+# Pacote 'xz' não está disponível.
+# Pacote 'lsd' não está disponível.
+# Pacote 'yay' não está disponível.
+# Pacote 'readline' não está disponível.
+# Pacote 'nomad' não está disponível.
+# Pacote 'mako' não está disponível.
+# Pacote 'xorg-xwayland' não está disponível.

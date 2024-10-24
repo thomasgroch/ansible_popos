@@ -94,4 +94,4 @@
   ansible.builtin.command:
     cmd: sudo zerotier-cli join abfd31bd47bb29b7
   become: yes
-  when: "'zerotier' in snaps"
+  when: snap_install_result.results | map(attribute='item') | select('search', 'zerotier') | list | length > 0

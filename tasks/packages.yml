@@ -79,3 +79,45 @@
 
 # - name: Update font cache
 #   command: fc-cache -fv
+
+
+- name: Add ZeroTier repository
+  ansible.builtin.apt_repository:
+    repo: "deb http://download.zerotier.com/debian/buster buster main"
+    state: present
+    filename: zerotier
+  when: ansible_os_family == 'Debian'
+
+- name: Add ZeroTier GPG key
+  ansible.builtin.apt_key:
+    url: "https://download.zerotier.com/contact%40zerotier.com.gpg"
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Install ZeroTier on Debian-based systems
+  ansible.builtin.apt:
+    name: zerotier-one
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Install ZeroTier on RHEL-based systems
+  ansible.builtin.yum:
+    name: zerotier-one
+    state: present
+  when: ansible_os_family == 'RedHat'
+
+- name: Join ZeroTier network
+  ansible.builtin.command:
+    cmd: zerotier-cli join YOUR_NETWORK_ID
+    creates: /var/lib/zerotier-one/networks.d/YOUR_NETWORK_ID.conf
+
+- name: Enable and start the ZeroTier service
+  ansible.builtin.systemd:
+    name: zerotier-one
+    enabled: yes
+    state: started

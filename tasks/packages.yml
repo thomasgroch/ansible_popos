@@ -81,34 +81,19 @@
 #   command: fc-cache -fv
 
 
-- name: Add ZeroTier GPG key
-  ansible.builtin.apt_key:
-    url: https://pgp.mit.edu/pks/lookup?op=get&search=0x1657198823E52A61
-    state: present
-
-- name: Add ZeroTier repository
-  ansible.builtin.apt_repository:
-    repo: "deb https://download.zerotier.com/debian $(lsb_release -cs) main"
-    state: present
-
-- name: Update apt cache
-  ansible.builtin.apt:
-    update_cache: yes
-
-- name: Install ZeroTier
-  ansible.builtin.apt:
-    name: zerotier-one
-    state: present
+- name: Install ZeroTier using snap
+  ansible.builtin.command:
+    cmd: sudo snap install zerotier-one
+  become: yes
 
 - name: Join ZeroTier network
   ansible.builtin.command:
-    cmd: zerotier-cli join abfd31bd47bb29b7
-  args:
+    cmd: sudo zerotier-cli join abfd31bd47bb29b7
     creates: /var/lib/zerotier-one/networks.d/abfd31bd47bb29b7.conf
-  ignore_errors: yes  # Adiciona essa linha para evitar falhas se a rede já estiver unida.
+  become: yes
 
-- name: Enable and start the ZeroTier service
+- name: Enable and start ZeroTier service
   ansible.builtin.systemd:
-    name: zerotier-one
+    name: snap.zerotier-one.zerotier-one
     enabled: yes
     state: started

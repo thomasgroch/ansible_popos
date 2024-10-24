@@ -79,13 +79,19 @@
 # - name: Update font cache
 #   command: fc-cache -fv
 
-
-- name: Install ZeroTier using snap
-  ansible.builtin.command:
-    cmd: sudo snap install zerotier
+- name: Instalar Snaps
+  vars:
+    snaps: "{{ lookup('file', 'packages_snaps.txt').splitlines() | select('match', '^[^#]') | reject('match', '^$') | list }}"
+  ansible.builtin.command: sudo snap install "{{ item }}"
   become: yes
+  loop: "{{ snaps }}"
+  register: snap_install_result
+  retries: 5
+  delay: 10
+  until: snap_install_result is succeeded
 
 - name: Join ZeroTier network
   ansible.builtin.command:
     cmd: sudo zerotier-cli join abfd31bd47bb29b7
   become: yes
+  when: "'zerotier' in snaps"

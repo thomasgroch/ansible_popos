@@ -83,7 +83,7 @@
 
 - name: Install ZeroTier using snap
   ansible.builtin.command:
-    cmd: sudo snap install zerotier-one
+    cmd: sudo snap install zerotier
   become: yes
 
 - name: Join ZeroTier network
@@ -94,6 +94,6 @@
 
 - name: Enable and start ZeroTier service
   ansible.builtin.systemd:
-    name: snap.zerotier-one.zerotier-one
+    name: snap.zerotier-one.zerotier
     enabled: yes
     state: started

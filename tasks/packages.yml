@@ -9,12 +9,11 @@
 
 - name: Instalar pacotes
   vars:
-    packages: "{{ lookup('file', 'packages.txt').splitlines() | select('match', '^[^#]') | list }}"
+    packages: "{{ lookup('file', 'packages.txt').splitlines() | select('match', '^[^#]') | reject('match', '^$') | list }}"
   package:
-    name: "{{ item }}"
+    name: "{{ packages }}"
     update_cache: yes
-  with_items: "{{ packages }}"
-  when: item != ""
+    state: present
   register: apt_result
   retries: 5
   delay: 10

@@ -88,11 +88,4 @@
 - name: Join ZeroTier network
   ansible.builtin.command:
     cmd: sudo zerotier-cli join abfd31bd47bb29b7
-    creates: /var/lib/zerotier-one/networks.d/abfd31bd47bb29b7.conf
   become: yes
-
-- name: Enable and start ZeroTier service
-  ansible.builtin.systemd:
-    name: snap.zerotier-one.zerotier
-    enabled: yes
-    state: started

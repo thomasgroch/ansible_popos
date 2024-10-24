@@ -81,40 +81,31 @@
 #   command: fc-cache -fv
 
 
-- name: Add ZeroTier repository
-  ansible.builtin.apt_repository:
-    repo: "deb http://download.zerotier.com/debian/buster buster main"
-    state: present
-    filename: zerotier
-  when: ansible_os_family == 'Debian'
-
 - name: Add ZeroTier GPG key
   ansible.builtin.apt_key:
-    url: "https://download.zerotier.com/contact%40zerotier.com.gpg"
+    url: https://download.zerotier.com/debian/zerotier.gpg
     state: present
-  when: ansible_os_family == 'Debian'
 
-- name: Update APT cache
+- name: Add ZeroTier repository
+  ansible.builtin.apt_repository:
+    repo: 'deb http://download.zerotier.com/debian/buster buster main'
+    state: present
+
+- name: Update apt cache
   ansible.builtin.apt:
     update_cache: yes
-  when: ansible_os_family == 'Debian'
 
-- name: Install ZeroTier on Debian-based systems
+- name: Install ZeroTier
   ansible.builtin.apt:
     name: zerotier-one
     state: present
-  when: ansible_os_family == 'Debian'
-
-- name: Install ZeroTier on RHEL-based systems
-  ansible.builtin.yum:
-    name: zerotier-one
-    state: present
-  when: ansible_os_family == 'RedHat'
 
 - name: Join ZeroTier network
   ansible.builtin.command:
     cmd: zerotier-cli join abfd31bd47bb29b7
+  args:
     creates: /var/lib/zerotier-one/networks.d/abfd31bd47bb29b7.conf
+  ignore_errors: yes  # Adiciona essa linha para evitar falhas se a rede já estiver unida.
 
 - name: Enable and start the ZeroTier service
   ansible.builtin.systemd:

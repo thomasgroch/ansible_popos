@@ -1,5 +1,5 @@
 zsh
-
+snapd
 dconf-cli
 python3-psutil
 gnome-tweaks

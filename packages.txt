@@ -1,4 +1,8 @@
-## Only on arch
+zsh
+
+dconf-cli
+python3-psutil
+gnome-tweaks
 # This is a host application for browserpass browser extension providing it access to your password store.
 # opera
 # vivaldi
@@ -97,7 +101,7 @@ ack
 # Wrapper around ripgrep that adds multiple rich file types
 ripgrep
 # Fast, highly customisable system info script
-#neofetch
+neofetch
 # Console Matrix
 cmatrix
 dos2unix
@@ -355,7 +359,8 @@ mpc
 viewnior
 imagemagick
 #xfce-polkit
-
+webext-browserpass
+pass-git-helper
 # Pacote 'browserpass' não está disponível.
 # Pacote 'base-devel' não está disponível.
 # Pacote 'lazygit' não está disponível.

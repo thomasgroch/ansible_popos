@@ -1,10 +1,13 @@
 ---
-- name: Verificar se o repositório de dotfiles já existe
-  stat:
-    path: "{{ dotfiles_bare_dir }}"
-  register: dotfiles_repo_stat
+- name: Verificar se existem mudanças não comitadas
+  git_status:
+    repo: "{{ dotfiles_bare_dir }}"
+    work_tree: "{{ dotfiles_home_dir }}"
   become: yes
-  become_user: tg
+  become_user: "tg"
+  register: git_status
+  changed_when: false
+  when: not dotfiles_repo_stat.stat.exists
 
 - name: Criar link simbólico para .git
   file:
@@ -12,6 +15,7 @@
     dest: "{{ dotfiles_home_dir }}.git"
     state: link
     force: yes
+    follow: no
   become: yes
   become_user: tg
 
@@ -98,12 +102,15 @@
     recursive: yes
   register: git_clone
   become: yes
-  become_user: tg
+  become_user: "tg"
 
 - name: Atualizar submódulos Git
-  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} submodule update --init --recursive
+  git_submodule:
+    repo: "{{ dotfiles_bare_dir }}"
+    work_tree: "{{ dotfiles_home_dir }}"
+    recursive: yes
   become: yes
-  become_user: tg
+  become_user: "tg"
   when: git_clone.changed
 
 # Adiciona o segundo usuário ao grupo do usuário principal (se necessário)
@@ -153,13 +160,26 @@
 #   debug:
 #     var: dotfiles_repo_stat
 
-- name: Verificar se existem mudanças não comitadas
-  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} status --porcelain
+- name: Fazer stash se houver mudanças não comitadas
+  git_stash:
+    repo: "{{ dotfiles_bare_dir }}"
+    work_tree: "{{ dotfiles_home_dir }}"
   become: yes
-  become_user: tg
-  register: git_status
-  changed_when: false
-  when: dotfiles_repo_stat.stat.exists == False
+  become_user: "tg"
+  when: 
+    - git_status.changed
+    - not dotfiles_repo_stat.stat.exists
+
+- name: Sobrescrever dotfiles padrão do sistema no primeiro uso
+  git_reset:
+    repo: "{{ dotfiles_bare_dir }}"
+    work_tree: "{{ dotfiles_home_dir }}"
+    mode: hard
+  become: yes
+  become_user: "tg"
+  when: 
+    - git_clone.changed 
+    - not dotfiles_repo_stat.stat.exists
 
 # - name: Debug git status
 #   debug:
@@ -168,18 +188,6 @@
 # - name: Verificar se existe saída no git_status
 #   debug:
 #     msg: "stdout está presente: {{ 'stdout' in git_status }}"
-
-- name: Fazer stash se houver mudanças não comitadas
-  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} stash
-  become: yes
-  become_user: tg
-  when: "'stdout' in git_status and git_status.stdout | length > 0 and dotfiles_repo_stat.stat.exists == False"
-
-- name: Sobrescrever dotfiles padrão do sistema no primeiro uso
-  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} reset --hard
-  become: yes
-  become_user: tg
-  when: git_clone.changed and dotfiles_repo_stat.stat.exists == False
 
 - name: Configurar Git para não mostrar arquivos não rastreados
   git_config:

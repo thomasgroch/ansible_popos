@@ -12,6 +12,7 @@
 - name: Verificar se oh-my-zsh está instalado
   stat:
     path: "{{ dotfiles_home_dir }}/.oh-my-zsh"
+  become_user: "tg"
   register: omz_stat
 
 - name: Instalar oh-my-zsh
@@ -19,7 +20,6 @@
     curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
   args:
     creates: "{{ dotfiles_home_dir }}/.oh-my-zsh"
-  become: no
   become_user: "tg"
   when: not omz_stat.stat.exists
   environment:
@@ -33,6 +33,7 @@
   stat:
     path: "{{ item }}"
   register: omz_dir_stat
+  become_user: "tg"
   loop:
     - "{{ dotfiles_home_dir }}/.oh-my-zsh/cache/completions"
     - "{{ dotfiles_home_dir }}/.oh-my-zsh-custom"
@@ -61,7 +62,6 @@
     state: link
     force: yes
     follow: no
-  become: no
   become_user: tg
 
 # - name: Verificar se o agente SSH está rodando
@@ -69,7 +69,6 @@
 #   register: ssh_agent_running
 #   changed_when: false
 #   failed_when: false
-#   become: no
 #   become_user: tg
 #   environment:
 #     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
@@ -84,7 +83,6 @@
 #   when: not ssh_agent_running.stdout
 #   register: ssh_agent_start
 #   failed_when: false
-#   become: no
 #   become_user: tg
 
 # - name: Verificar se a chave SSH está carregada
@@ -92,7 +90,6 @@
 #   register: ssh_keys
 #   changed_when: false
 #   failed_when: false
-#   become: no
 #   become_user: tg
 #   environment:
 #     SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
@@ -100,7 +97,6 @@
 # - name: Exibir as chaves SSH carregadas
 #   debug:
 #     msg: "{{ ssh_keys.stdout_lines }}"
-#   become: no
 #   become_user: tg
 #   environment:
 #     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
@@ -109,34 +105,32 @@
 #   fail:
 #     msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
 #   when: ssh_keys.rc != 0
-#   become: no
 #   become_user: tg
 #   environment:
 #     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
 
-- debug:
-    msg: "Valor tg de ansible_env.SSH_AUTH_SOCK: {{ ansible_env.SSH_AUTH_SOCK | default('') }}"
-  become: true
-  become_user: tg
+# - debug:
+#     msg: "Valor tg de ansible_env.SSH_AUTH_SOCK: {{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+#   become: true
+#   become_user: tg
 
-- debug:
-    msg: "Valor tg de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
-  become: true
-  become_user: tg
+# - debug:
+#     msg: "Valor tg de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
+#   become: true
+#   become_user: tg
 
-- debug:
-    msg: "Valor de ansible_env.SSH_AUTH_SOCK: {{ ansible_env.SSH_AUTH_SOCK | default('') }}"
-  become: true
-  become_user: ansible
+# - debug:
+#     msg: "Valor de ansible_env.SSH_AUTH_SOCK: {{ ansible_env.SSH_AUTH_SOCK | default('') }}"
+#   become: true
+#   become_user: ansible
 
-- debug:
-    msg: "Valor de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
-  become: true
-  become_user: ansible
+# - debug:
+#     msg: "Valor de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
+#   become: true
+#   become_user: ansible
 
 - name: Verificar se existem mudanças não comitadas
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} status --porcelain
-  become: no
   become_user: "tg"
   register: git_status
   changed_when: false
@@ -155,7 +149,6 @@
     track_submodules: yes
     recursive: yes
   register: git_clone
-  become: no
   become_user: "tg"
   tags: 
     - dotfiles
@@ -163,7 +156,6 @@
 
 - name: Atualizar submódulos Git
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} submodule update --init --recursive
-  become: no
   become_user: "tg"
   when: git_clone.changed
   tags:
@@ -172,7 +164,6 @@
 
 - name: Fazer stash se houver mudanças não comitadas
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} stash
-  become: no
   become_user: "tg"
   when: 
     - git_status is succeeded
@@ -184,7 +175,6 @@
 
 - name: Sobrescrever dotfiles padrão do sistema no primeiro uso
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} reset --hard
-  become: no
   become_user: "tg"
   when: 
     - git_clone.changed 
@@ -199,7 +189,6 @@
 #     name: ansible
 #     group: tg
 #     append: yes
-#   become: no
 
 # - name: Conceder permissão de leitura para o grupo na pasta do usuário principal
 #   file:
@@ -208,7 +197,6 @@
 #     group: tg
 #     mode: '0750'
 #     recurse: yes
-#   become: no
 
 # - name: Garantir permissões de leitura para ansible no repositório de dotfiles
 #   acl:
@@ -218,11 +206,9 @@
 #     permissions: rx
 #     state: present
 #     recursive: yes
-#   become: no
 
 # - name: Garantir que o diretório de dotfiles é considerado seguro pelo Git para o usuário ansible
 #   command: git config --global --add safe.directory /home/tg/.dotfiles-bare
-#   become: no
 #   become_user: ansible
 #   ignore_errors: yes  # Ignorar erros se o diretório já estiver configurado
 
@@ -233,7 +219,6 @@
 #     group: ansible
 #     mode: '0755'
 #     recurse: yes
-#   become: no
 #   # when: git_clone.changed
 
 # - name: Debug dotfiles_repo_stat
@@ -255,7 +240,6 @@
     scope: local
     repo: "{{ dotfiles_bare_dir }}"
     value: 'no'
-  become: no
   become_user: tg
 
 - name: Habilitar sparse checkout no Git
@@ -264,7 +248,6 @@
     scope: local
     repo: "{{ dotfiles_bare_dir }}"
     value: 'true'
-  become: no
   become_user: tg
 
 # - name: Executar script de provisionamento se houver mudanças

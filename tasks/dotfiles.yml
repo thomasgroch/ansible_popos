@@ -29,13 +29,20 @@
     - dotfiles
     - zsh
 
-- name: Corrigir permissões dos diretórios do Oh My Zsh
-  file:
+- name: Verificar se os diretórios do Oh My Zsh existem
+  stat:
     path: "{{ item }}"
-    mode: 'u=rwx,g=rx,o=rx'
+  register: omz_dir_stat
   loop:
     - "{{ dotfiles_home_dir }}/.oh-my-zsh/cache/completions"
     - "{{ dotfiles_home_dir }}/.oh-my-zsh-custom"
+
+- name: Corrigir permissões dos diretórios do Oh My Zsh
+  file:
+    path: "{{ item.item }}"
+    mode: 'u=rwx,g=rx,o=rx'
+  loop: "{{ omz_dir_stat.results }}"
+  when: item.stat.exists
   become: yes
   become_user: tg
   tags:
@@ -50,7 +57,7 @@
 - name: Criar link simbólico para .git
   file:
     src: "{{ dotfiles_bare_dir }}"
-    dest: "{{ dotfiles_home_dir }}.git"
+    dest: "{{ dotfiles_home_dir }}"
     state: link
     force: yes
     follow: no

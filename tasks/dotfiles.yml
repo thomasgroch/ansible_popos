@@ -100,7 +100,8 @@
   become_user: "tg"
   register: git_status
   changed_when: false
-  when: not dotfiles_repo_stat.stat.exists
+  when: dotfiles_repo_stat.stat.exists
+  ignore_errors: yes
 
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:
@@ -134,8 +135,8 @@
   become: yes
   become_user: "tg"
   when: 
+    - git_status is success
     - git_status.stdout | length > 0
-    - not dotfiles_repo_stat.stat.exists
   tags:
     - dotfiles
     - backup

@@ -1,10 +1,8 @@
 ---
 - name: Verificar se existem mudanças não comitadas
-  git_status:
-    repo: "{{ dotfiles_bare_dir }}"
-    work_tree: "{{ dotfiles_home_dir }}"
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} status --porcelain
   become: yes
-  become_user: "tg"
+  become_user: "{{ dotfiles_user | default('tg') }}"
   register: git_status
   changed_when: false
   when: not dotfiles_repo_stat.stat.exists
@@ -87,7 +85,7 @@
 - debug:
     msg: "Valor de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
   become: true
-  become_user: ansibleZ
+  become_user: ansible
 
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:
@@ -102,16 +100,19 @@
     recursive: yes
   register: git_clone
   become: yes
-  become_user: "tg"
+  become_user: "{{ dotfiles_user | default('tg') }}"
+  tags: 
+    - dotfiles
+    - sync
 
 - name: Atualizar submódulos Git
-  git_submodule:
-    repo: "{{ dotfiles_bare_dir }}"
-    work_tree: "{{ dotfiles_home_dir }}"
-    recursive: yes
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} submodule update --init --recursive
   become: yes
-  become_user: "tg"
+  become_user: "{{ dotfiles_user | default('tg') }}"
   when: git_clone.changed
+  tags:
+    - dotfiles
+    - sync
 
 # Adiciona o segundo usuário ao grupo do usuário principal (se necessário)
 # - name: Adicionar usuário secundário ao grupo do usuário principal
@@ -161,25 +162,26 @@
 #     var: dotfiles_repo_stat
 
 - name: Fazer stash se houver mudanças não comitadas
-  git_stash:
-    repo: "{{ dotfiles_bare_dir }}"
-    work_tree: "{{ dotfiles_home_dir }}"
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} stash
   become: yes
-  become_user: "tg"
+  become_user: "{{ dotfiles_user | default('tg') }}"
   when: 
-    - git_status.changed
+    - git_status.stdout | length > 0
     - not dotfiles_repo_stat.stat.exists
+  tags:
+    - dotfiles
+    - backup
 
 - name: Sobrescrever dotfiles padrão do sistema no primeiro uso
-  git_reset:
-    repo: "{{ dotfiles_bare_dir }}"
-    work_tree: "{{ dotfiles_home_dir }}"
-    mode: hard
+  command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} reset --hard
   become: yes
-  become_user: "tg"
+  become_user: "{{ dotfiles_user | default('tg') }}"
   when: 
     - git_clone.changed 
     - not dotfiles_repo_stat.stat.exists
+  tags:
+    - dotfiles
+    - sync
 
 # - name: Debug git status
 #   debug:

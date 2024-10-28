@@ -9,6 +9,26 @@
   tags:
     - always
 
+- name: Verificar se oh-my-zsh está instalado
+  stat:
+    path: "{{ dotfiles_home_dir }}/.oh-my-zsh"
+  register: omz_stat
+
+- name: Instalar oh-my-zsh
+  shell: |
+    curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+  args:
+    creates: "{{ dotfiles_home_dir }}/.oh-my-zsh"
+  become: yes
+  become_user: "tg"
+  when: not omz_stat.stat.exists
+  environment:
+    RUNZSH: "no"
+    KEEP_ZSHRC: "yes"
+  tags:
+    - dotfiles
+    - zsh
+
 - name: Verificar se o repositório dotfiles já existe
   stat:
     path: "{{ dotfiles_bare_dir }}"

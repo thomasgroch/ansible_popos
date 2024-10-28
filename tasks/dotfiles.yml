@@ -29,6 +29,19 @@
     - dotfiles
     - zsh
 
+- name: Corrigir permissões dos diretórios do Oh My Zsh
+  file:
+    path: "{{ item }}"
+    mode: 'u=rwx,g=rx,o=rx'
+  loop:
+    - "{{ dotfiles_home_dir }}/.oh-my-zsh/cache/completions"
+    - "{{ dotfiles_home_dir }}/.oh-my-zsh-custom"
+  become: yes
+  become_user: tg
+  tags:
+    - dotfiles
+    - fix_permissions
+
 - name: Verificar se o repositório dotfiles já existe
   stat:
     path: "{{ dotfiles_bare_dir }}"

@@ -57,7 +57,7 @@
 - name: Criar link simbólico para .git
   file:
     src: "{{ dotfiles_bare_dir }}"
-    dest: "{{ dotfiles_home_dir }}"
+    dest: "{{ dotfiles_home_dir }}/.git"
     state: link
     force: yes
     follow: no

@@ -41,7 +41,8 @@
 - name: Corrigir permissões dos diretórios do Oh My Zsh
   file:
     path: "{{ item.item }}"
-    mode: 'u=rwx,g=rx,o=rx'
+    mode: '0755'
+    recurse: yes
   loop: "{{ omz_dir_stat.results }}"
   when: item.stat.exists
   become: yes
@@ -63,71 +64,6 @@
     force: yes
     follow: no
   become_user: tg
-
-# - name: Verificar se o agente SSH está rodando
-#   shell: echo $SSH_AUTH_SOCK
-#   register: ssh_agent_running
-#   changed_when: false
-#   failed_when: false
-#   become_user: tg
-#   environment:
-#     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
-
-# - name: Iniciar o agente SSH se não estiver rodando
-#   shell: |
-#     eval "$(ssh-agent -s)"
-#     export SSH_AUTH_SOCK=$(ls /tmp/ssh-*/agent.*)
-#     ssh-add /home/tg/.ssh/id_ed25519
-#   environment:
-#     SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
-#   when: not ssh_agent_running.stdout
-#   register: ssh_agent_start
-#   failed_when: false
-#   become_user: tg
-
-# - name: Verificar se a chave SSH está carregada
-#   shell: ssh-add -l
-#   register: ssh_keys
-#   changed_when: false
-#   failed_when: false
-#   become_user: tg
-#   environment:
-#     SSH_AUTH_SOCK: "{{ lookup('env', 'SSH_AUTH_SOCK') }}"
-
-# - name: Exibir as chaves SSH carregadas
-#   debug:
-#     msg: "{{ ssh_keys.stdout_lines }}"
-#   become_user: tg
-#   environment:
-#     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
-
-# - name: Falhar se nenhuma chave SSH estiver carregada
-#   fail:
-#     msg: "Nenhuma chave SSH está carregada. Por favor, adicione uma chave SSH antes de continuar."
-#   when: ssh_keys.rc != 0
-#   become_user: tg
-#   environment:
-#     SSH_AUTH_SOCK: "{{ ansible_env.SSH_AUTH_SOCK | default('') }}"
-
-# - debug:
-#     msg: "Valor tg de ansible_env.SSH_AUTH_SOCK: {{ ansible_env.SSH_AUTH_SOCK | default('') }}"
-#   become: true
-#   become_user: tg
-
-# - debug:
-#     msg: "Valor tg de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
-#   become: true
-#   become_user: tg
-
-# - debug:
-#     msg: "Valor de ansible_env.SSH_AUTH_SOCK: {{ ansible_env.SSH_AUTH_SOCK | default('') }}"
-#   become: true
-#   become_user: ansible
-
-# - debug:
-#     msg: "Valor de env SSH_AUTH_SOCK: {{ lookup('env', 'SSH_AUTH_SOCK') }}"
-#   become: true
-#   become_user: ansible
 
 - name: Verificar se existem mudanças não comitadas
   command: git --git-dir={{ dotfiles_bare_dir }} --work-tree={{ dotfiles_home_dir }} status --porcelain

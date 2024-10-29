@@ -31,3 +31,39 @@
     key: "/org/gnome/desktop/background/picture-options"
     value: "'zoom'"
 
+- name: Criar script para digitar passphrase
+  copy:
+    dest: /usr/local/bin/digitar_passphrase.sh
+    content: |
+      #!/bin/bash
+      notify-send "pasted"
+      # Salva o conteúdo atual da área de transferência
+      #CURRENT_CLIPBOARD=$(xclip -o)
+
+      # Copia a passphrase do arquivo para a área de transferência
+      xclip -selection clipboard < /media/tg/SAFE/safe/gpg/thomas.groch@gmail.com.private.gpg-key.passphrase
+
+      # Cola o conteúdo da área de transferência
+      xdotool key --clearmodifiers ctrl+v
+
+      # Restaura o conteúdo original da área de transferência
+      #echo "$CURRENT_CLIPBOARD" | xclip -selection clipboard
+    mode: '0755'
+
+- name: gnome | keybindings | set custom-keybindings
+  tags: gnome,keybindings
+  become_user: "tg"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+
+- name: gnome | keybindings | set passphrase keybinding
+  tags: gnome,keybindings
+  become_user: "tg"
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name", value: "'Digitar Passphrase'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding", value: "'<Ctrl><Alt>v'" }
+    - { key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command", value: "'/usr/local/bin/digitar_passphrase.sh'" }

@@ -98,11 +98,13 @@
 
 
 - name: Verificar se o Sunshine já está instalado
+  become_user: "tg"
   ansible.builtin.stat:
     path: "~/sunshine.AppImage"
   register: sunshine_installed
 
 - name: Baixar o Sunshine AppImage
+  become_user: "tg"
   ansible.builtin.get_url:
     url: "https://github.com/LizardByte/Sunshine/releases/latest/download/sunshine.AppImage"
     dest: "~/sunshine.AppImage"
@@ -110,12 +112,14 @@
   when: not sunshine_installed.stat.exists
 
 - name: Configurar permissão para uinput
+  become_user: "tg"
   ansible.builtin.copy:
     content: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'
     dest: "/etc/udev/rules.d/60-sunshine.rules"
   when: not sunshine_installed.stat.exists
 
 - name: Reload udev rules
+  become_user: "tg"
   ansible.builtin.shell: |
     sudo udevadm control --reload-rules
     sudo udevadm trigger
@@ -123,16 +127,19 @@
   when: not sunshine_installed.stat.exists
 
 - name: Configurar permissão para KMS Capture (Wayland)
+  become_user: "tg"
   ansible.builtin.command: "setcap cap_sys_admin+p ~/sunshine.AppImage"
   when: not sunshine_installed.stat.exists
 
 - name: Criar diretório para o serviço systemd de usuário
+  become_user: "tg"
   ansible.builtin.file:
     path: "~/.config/systemd/user"
     state: directory
     mode: "0755"
 
 - name: Criar serviço systemd para Sunshine
+  become_user: "tg"
   ansible.builtin.copy:
     dest: "~/.config/systemd/user/sunshine.service"
     content: |
@@ -152,10 +159,12 @@
   when: not sunshine_installed.stat.exists
 
 - name: Habilitar o serviço Sunshine para iniciar com o sistema
+  become_user: "tg"
   ansible.builtin.command: "systemctl --user enable sunshine"
   when: not sunshine_installed.stat.exists
 
 - name: Iniciar o serviço Sunshine manualmente
+  become_user: "tg"
   ansible.builtin.shell: "./sunshine.AppImage"
   args:
     chdir: "~"

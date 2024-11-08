@@ -95,3 +95,62 @@
     cmd: sudo zerotier-cli join abfd31bd47bb29b7
   become: yes
   when: snap_install_result.results | map(attribute='item') | select('search', 'zerotier') | list | length > 0
+
+
+- name: Verificar se o Sunshine já está instalado
+  ansible.builtin.stat:
+    path: "~/sunshine.AppImage"
+  register: sunshine_installed
+
+- name: Baixar o Sunshine AppImage
+  ansible.builtin.get_url:
+    url: "https://github.com/LizardByte/Sunshine/releases/latest/download/sunshine.AppImage"
+    dest: "~/sunshine.AppImage"
+    mode: "0755"
+  when: not sunshine_installed.stat.exists
+
+- name: Configurar permissão para uinput
+  ansible.builtin.copy:
+    content: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'
+    dest: "/etc/udev/rules.d/60-sunshine.rules"
+  when: not sunshine_installed.stat.exists
+
+- name: Reload udev rules
+  ansible.builtin.shell: |
+    sudo udevadm control --reload-rules
+    sudo udevadm trigger
+    sudo modprobe uinput
+  when: not sunshine_installed.stat.exists
+
+- name: Configurar permissão para KMS Capture (Wayland)
+  ansible.builtin.command: "setcap cap_sys_admin+p ~/sunshine.AppImage"
+  when: not sunshine_installed.stat.exists
+
+- name: Criar serviço systemd para Sunshine
+  ansible.builtin.copy:
+    dest: "~/.config/systemd/user/sunshine.service"
+    content: |
+      [Unit]
+      Description=Sunshine self-hosted game stream host for Moonlight
+      StartLimitIntervalSec=500
+      StartLimitBurst=5
+
+      [Service]
+      ExecStart={{ ansible_env.HOME }}/sunshine.AppImage
+      Restart=on-failure
+      RestartSec=5s
+
+      [Install]
+      WantedBy=graphical-session.target
+    mode: "0644"
+  when: not sunshine_installed.stat.exists
+
+- name: Habilitar o serviço Sunshine para iniciar com o sistema
+  ansible.builtin.command: "systemctl --user enable sunshine"
+  when: not sunshine_installed.stat.exists
+
+- name: Iniciar o serviço Sunshine manualmente
+  ansible.builtin.shell: "./sunshine.AppImage"
+  args:
+    chdir: "~"
+  when: not sunshine_installed.stat.exists and ansible_check_mode == false

@@ -98,14 +98,13 @@
 
 
 - name: Verificar se o Sunshine está instalado como um serviço ativo
-  ansible.builtin.shell: "systemctl --user is-active sunshine"
+  ansible.builtin.shell: |
+    export XDG_RUNTIME_DIR=/run/user/{{ ansible_user_id }}
+    export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/{{ ansible_user_id }}/bus
+    systemctl --user is-active sunshine
   register: sunshine_service_status
   failed_when: sunshine_service_status.rc != 0 and sunshine_service_status.rc != 3
   changed_when: false
-
-- name: Definir variável se o Sunshine está instalado e ativo
-  set_fact:
-    sunshine_installed: "{{ sunshine_service_status.rc == 0 }}"
 
 - name: Baixar o Sunshine AppImage
   become_user: "tg"

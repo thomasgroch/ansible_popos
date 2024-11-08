@@ -97,14 +97,10 @@
   when: snap_install_result.results | map(attribute='item') | select('search', 'zerotier') | list | length > 0
 
 
-- name: Verificar se o Sunshine está instalado como um serviço ativo
-  ansible.builtin.shell: |
-    export XDG_RUNTIME_DIR=/run/user/{{ ansible_user_id }}
-    export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/{{ ansible_user_id }}/bus
-    systemctl --user is-active sunshine
-  register: sunshine_service_status
-  failed_when: sunshine_service_status.rc != 0 and sunshine_service_status.rc != 3
-  changed_when: false
+- name: Verificar se o Sunshine está instalado
+  command: which sunshine
+  register: sunshine_installed
+  ignore_errors: yes
 
 - name: Baixar o Sunshine AppImage
   become_user: "tg"

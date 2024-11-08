@@ -126,6 +126,12 @@
   ansible.builtin.command: "setcap cap_sys_admin+p ~/sunshine.AppImage"
   when: not sunshine_installed.stat.exists
 
+- name: Criar diretório para o serviço systemd de usuário
+  ansible.builtin.file:
+    path: "~/.config/systemd/user"
+    state: directory
+    mode: "0755"
+
 - name: Criar serviço systemd para Sunshine
   ansible.builtin.copy:
     dest: "~/.config/systemd/user/sunshine.service"

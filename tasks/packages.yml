@@ -99,7 +99,11 @@
 
 
 - name: Verificar se o Sunshine está instalado como um serviço ativo
-  ansible.builtin.shell: "systemctl --user is-active sunshine"
+  ansible.builtin.shell: |
+    export XDG_RUNTIME_DIR="/run/user/$(id -u tg)"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+    systemctl --user is-active sunshine
+  become_user: "tg"
   register: sunshine_service_status
   failed_when: sunshine_service_status.rc != 0 and sunshine_service_status.rc != 3
   changed_when: false

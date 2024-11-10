@@ -169,7 +169,10 @@
 
 - name: Habilitar o serviço Sunshine para iniciar com o sistema
   become_user: "tg"
-  ansible.builtin.command: "systemctl --user enable sunshine"
+  ansible.builtin.shell: |
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+    systemctl --user enable sunshine
   when: not sunshine_installed
 
 - name: Iniciar o serviço Sunshine manualmente

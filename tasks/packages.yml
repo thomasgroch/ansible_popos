@@ -128,11 +128,11 @@
   when: not sunshine_installed
 
 - name: Reload udev rules
-  become_user: "tg"
+  become: yes
   ansible.builtin.shell: |
-    sudo udevadm control --reload-rules
-    sudo udevadm trigger
-    sudo modprobe uinput
+    udevadm control --reload-rules
+    udevadm trigger
+    modprobe uinput
   when: not sunshine_installed
 
 - name: Configurar permissão para KMS Capture (Wayland)

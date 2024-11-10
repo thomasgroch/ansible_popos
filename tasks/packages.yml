@@ -170,11 +170,11 @@
 - name: Habilitar o serviço Sunshine para iniciar com o sistema
   become_user: "tg"
   ansible.builtin.command: "systemctl --user enable sunshine"
-  when: not sunshine_installed.stat.exists
+  when: not sunshine_installed
 
 - name: Iniciar o serviço Sunshine manualmente
   become_user: "tg"
   ansible.builtin.shell: "./sunshine.AppImage"
   args:
     chdir: "~"
-  when: not sunshine_installed.stat.exists and ansible_check_mode == false
+  when: not sunshine_installed and ansible_check_mode == false

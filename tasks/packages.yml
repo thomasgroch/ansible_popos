@@ -136,7 +136,7 @@
   when: not sunshine_installed
 
 - name: Configurar permissão para KMS Capture (Wayland)
-  become_user: "tg"
+  become: yes
   ansible.builtin.command: "setcap cap_sys_admin+p ~/sunshine.AppImage"
   when: not sunshine_installed
 

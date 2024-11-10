@@ -118,14 +118,14 @@
     url: "https://github.com/LizardByte/Sunshine/releases/latest/download/sunshine.AppImage"
     dest: "~/sunshine.AppImage"
     mode: "0755"
-  when: not sunshine_installed.stat.exists
+  when: not sunshine_installed
 
 - name: Configurar permissão para uinput
   become_user: "tg"
   ansible.builtin.copy:
     content: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'
     dest: "/etc/udev/rules.d/60-sunshine.rules"
-  when: not sunshine_installed.stat.exists
+  when: not sunshine_installed
 
 - name: Reload udev rules
   become_user: "tg"
@@ -133,12 +133,12 @@
     sudo udevadm control --reload-rules
     sudo udevadm trigger
     sudo modprobe uinput
-  when: not sunshine_installed.stat.exists
+  when: not sunshine_installed
 
 - name: Configurar permissão para KMS Capture (Wayland)
   become_user: "tg"
   ansible.builtin.command: "setcap cap_sys_admin+p ~/sunshine.AppImage"
-  when: not sunshine_installed.stat.exists
+  when: not sunshine_installed
 
 - name: Criar diretório para o serviço systemd de usuário
   become_user: "tg"
@@ -165,7 +165,7 @@
       [Install]
       WantedBy=graphical-session.target
     mode: "0644"
-  when: not sunshine_installed.stat.exists
+  when: not sunshine_installed
 
 - name: Habilitar o serviço Sunshine para iniciar com o sistema
   become_user: "tg"

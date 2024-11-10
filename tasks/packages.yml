@@ -97,6 +97,7 @@
   when: snap_install_result.results | map(attribute='item') | select('search', 'zerotier') | list | length > 0
 
 
+
 - name: Verificar se o Sunshine está instalado como um serviço ativo
   ansible.builtin.shell: "systemctl --user is-active sunshine"
   register: sunshine_service_status

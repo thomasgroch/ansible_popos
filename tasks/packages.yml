@@ -175,9 +175,10 @@
     systemctl --user enable sunshine
   when: not sunshine_installed
 
-- name: Iniciar o serviço Sunshine manualmente
+- name: Iniciar o serviço Sunshine
   become_user: "tg"
-  ansible.builtin.shell: "./sunshine.AppImage"
-  args:
-    chdir: "~"
-  when: not sunshine_installed and ansible_check_mode == false
+  ansible.builtin.shell: |
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+    systemctl --user start sunshine
+  #when: not sunshine_installed and ansible_check_mode == false

@@ -154,6 +154,7 @@
     content: |
       [Unit]
       Description=Sunshine self-hosted game stream host for Moonlight
+      After=gnome-session-wayland@gnome.target
       StartLimitIntervalSec=500
       StartLimitBurst=5
 

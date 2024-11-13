@@ -158,7 +158,7 @@
       StartLimitBurst=5
 
       [Service]
-      ExecStart={{ ansible_env.HOME }}/sunshine.AppImage
+      ExecStart=~/sunshine.AppImage
       Restart=on-failure
       RestartSec=5s
 

@@ -158,7 +158,7 @@
       StartLimitBurst=5
 
       [Service]
-      ExecStart={{ $HOME }}/sunshine.AppImage
+      ExecStart=/home/tg/sunshine.AppImage
       Restart=on-failure
       RestartSec=5s
 

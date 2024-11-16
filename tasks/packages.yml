@@ -121,7 +121,6 @@
   when: not sunshine_installed
 
 - name: Configurar permissão para uinput
-  become_user: "tg"
   become: yes
   ansible.builtin.copy:
     content: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'

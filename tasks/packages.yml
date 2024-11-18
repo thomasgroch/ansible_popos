@@ -113,33 +113,53 @@
   become: yes
   when: snap_install_result.results | map(attribute='item') | select('search', 'zerotier') | list | length > 0
 
-- name: Verificar se Sunshine está instalado
-  shell: "dpkg -l | grep sunshine"
-  register: sunshine_installed_check
-  ignore_errors: yes
-
-- name: Baixar o arquivo .deb do Sunshine
-  get_url:
-    url: "https://github.com/LizardByte/Sunshine/releases/download/latest/sunshine-{{ ansible_distribution | lower }}-{{ ansible_distribution_version | replace('.', '') }}-{{ ansible_architecture }}.deb"
-    dest: "/tmp/sunshine.deb"
-    mode: "0644"
-  when: not sunshine_installed_check.stdout
-
-- name: Instalar o pacote .deb do Sunshine
-  dpkg_selections:
-    name: "/tmp/sunshine.deb"
-    state: present
-  when: not sunshine_installed_check.stdout
-
-- name: Corrigir dependências faltantes
+- name: Ensure required dependencies are installed
   apt:
-    deb: "/tmp/sunshine.deb"
+    name:
+      - git
+      - build-essential
+      - cmake
+      - pkg-config
+      - libssl-dev
+      - libsdl2-dev
+      - libvpx-dev
+      - libavcodec-dev
+      - libavformat-dev
+      - libswscale-dev
+      - libfdk-aac-dev
+      - libprotobuf-dev
     state: present
-    fix_broken: yes
-  when: not sunshine_installed_check.stdout
+    update_cache: yes
 
-- name: Limpar arquivo .deb
-  file:
-    path: "/tmp/sunshine.deb"
-    state: absent
-  when: not sunshine_installed_check.stdout
+- name: Clone the Sunshine repository
+  git:
+    repo: 'https://github.com/LizardByte/Sunshine.git'
+    dest: '/opt/sunshine'
+    version: 'master'
+    force: yes
+
+- name: Build Docker container for Sunshine
+  shell: |
+    cd /opt/sunshine/scripts
+    ./build-container.sh -f Dockerfile-{{ ansible_distribution | lower }}
+  args:
+    creates: "/opt/sunshine/scripts/Dockerfile-{{ ansible_distribution | lower }}"
+
+- name: Build the Sunshine package inside the Docker container
+  shell: |
+    cd /opt/sunshine/scripts
+    docker run --rm -v /opt/sunshine:/sunshine sunshine-build /bin/bash -c 'cd /sunshine && ./build-sunshine -p -s ..'
+  args:
+    creates: "/opt/sunshine/sunshine-build/sunshine.deb"
+
+- name: Install the resulting .deb package
+  apt:
+    deb: "/opt/sunshine/sunshine-build/sunshine.deb"
+    state: present
+
+- name: Clean up the Docker container
+  shell: |
+    /opt/sunshine/scripts/build-container.sh -c delete
+  args:
+    removes: "/opt/sunshine/scripts/Dockerfile-{{ ansible_distribution | lower }}"
+    when: delete_container is defined and delete_container

@@ -52,15 +52,26 @@
     curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*'
   register: lazygit_version
 
+- name: Verificar se o lazygit está instalado
+  command: lazygit --version
+  register: lazygit_installed_version
+  ignore_errors: yes
+
+- name: Comparar versões e decidir se precisa atualizar
+  set_fact:
+    install_lazygit: "{{ lazygit_installed_version.stdout | version_compare(lazygit_version.stdout, '<') }}"
+
 - name: Baixar tarball do lazygit
   shell: |
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ lazygit_version.stdout }}_Linux_x86_64.tar.gz"
+  when: install_lazygit
   args:
     creates: lazygit.tar.gz
 
 - name: Extrair lazygit
   shell: |
     tar xf lazygit.tar.gz lazygit
+  when: install_lazygit
   args:
     creates: lazygit
 
@@ -68,7 +79,8 @@
   become: yes
   shell: |
     install lazygit /usr/local/bin
-    
+  when: install_lazygit
+
 # - name: Check if Go is installed
 #   command: go version
 #   register: go_installed

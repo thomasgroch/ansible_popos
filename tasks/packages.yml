@@ -34,6 +34,7 @@
   register: apt_result
   retries: 5
   delay: 10
+  until: apt_result is succeeded
 
 - name: Adicionar repositório Flathub
   command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -134,52 +135,88 @@
   become: yes
   when: snap_install_result.results | map(attribute='item') | select('search', 'zerotier') | list | length > 0
 
-- name: Ensure required dependencies are installed
-  apt:
-    name:
-      - git
-      - build-essential
-      - cmake
-      - pkg-config
-      - libssl-dev
-      - libsdl2-dev
-      - libvpx-dev
-      - libavcodec-dev
-      - libavformat-dev
-      - libswscale-dev
-      - libfdk-aac-dev
-      - libprotobuf-dev
-    state: present
-    update_cache: yes
+- name: Verificar se o Sunshine está instalado como um serviço ativo
+  ansible.builtin.shell: |
+    export XDG_RUNTIME_DIR="/run/user/$(id -u tg)"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+    systemctl --user is-active sunshine
+  become_user: "tg"
+  register: sunshine_service_status
+  failed_when: sunshine_service_status.rc != 0 and sunshine_service_status.rc != 3
+  changed_when: false
 
-- name: Clone the Sunshine repository
-  git:
-    repo: 'https://github.com/LizardByte/Sunshine.git'
-    dest: '/opt/sunshine'
-    version: 'master'
-    force: yes
+- name: Definir variável se o Sunshine está instalado e ativo
+  set_fact:
+    sunshine_installed: "{{ sunshine_service_status.rc == 0 }}"
 
-- name: Build Docker container for Sunshine
-  shell: |
-    /opt/sunshine/scripts/linux_build.sh
-  args:
-    creates: "/opt/sunshine/scripts/linux_build.sh"
+- name: Baixar o Sunshine AppImage
+  become_user: "tg"
+  ansible.builtin.get_url:
+    url: "https://github.com/LizardByte/Sunshine/releases/latest/download/sunshine.AppImage"
+    dest: "~/sunshine.AppImage"
+    mode: "0755"
+  when: not sunshine_installed
 
-- name: Build the Sunshine package inside the Docker container
-  shell: |
-    cd /opt/sunshine/scripts
-    docker run --rm -v /opt/sunshine:/sunshine sunshine-build /bin/bash -c 'cd /sunshine && ./build-sunshine -p -s ..'
-  args:
-    creates: "/opt/sunshine/sunshine-build/sunshine.deb"
+- name: Configurar permissão para uinput
+  become: yes
+  ansible.builtin.copy:
+    content: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'
+    dest: "/etc/udev/rules.d/60-sunshine.rules"
+  when: not sunshine_installed
 
-- name: Install the resulting .deb package
-  apt:
-    deb: "/opt/sunshine/sunshine-build/sunshine.deb"
-    state: present
+- name: Reload udev rules
+  become: yes
+  ansible.builtin.shell: |
+    udevadm control --reload-rules
+    udevadm trigger
+    modprobe uinput
+  when: not sunshine_installed
 
-- name: Clean up the Docker container
-  shell: |
-    /opt/sunshine/scripts/build-container.sh -c delete
-  args:
-    removes: "/opt/sunshine/scripts/Dockerfile-{{ ansible_distribution | lower }}"
-    when: delete_container is defined and delete_container
+- name: Configurar permissão para KMS Capture (Wayland)
+  become: yes
+  ansible.builtin.command: "setcap cap_sys_admin+p ~/sunshine.AppImage"
+  when: not sunshine_installed
+
+- name: Criar diretório para o serviço systemd de usuário
+  become_user: "tg"
+  ansible.builtin.file:
+    path: "~/.config/systemd/user"
+    state: directory
+    mode: "0755"
+
+- name: Criar serviço systemd para Sunshine
+  become_user: "tg"
+  ansible.builtin.copy:
+    dest: "~/.config/systemd/user/sunshine.service"
+    content: |
+      [Unit]
+      Description=Sunshine self-hosted game stream host for Moonlight
+      After=gnome-session-wayland@gnome.target
+      StartLimitIntervalSec=500
+      StartLimitBurst=5
+
+      [Service]
+      ExecStart=/home/tg/sunshine.AppImage
+      Restart=on-failure
+      RestartSec=5s
+
+      [Install]
+      WantedBy=graphical-session.target
+    mode: "0644"
+  when: not sunshine_installed
+
+- name: Habilitar o serviço Sunshine para iniciar com o sistema
+  become_user: "tg"
+  ansible.builtin.shell: |
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+    systemctl --user enable sunshine
+  when: not sunshine_installed
+
+- name: Iniciar o serviço Sunshine
+  become_user: "tg"
+  ansible.builtin.shell: |
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
+    systemctl --user start sunshine
+  #when: not sunshine_installed and ansible_check_mode == false

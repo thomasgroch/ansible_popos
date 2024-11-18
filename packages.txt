@@ -1,9 +1,14 @@
 apt-transport-https
+ca-certificates
+software-properties-common
 zsh
 snapd
 dconf-cli
 python3-psutil
 gnome-tweaks
+docker-ce
+docker-ce-cli
+containerd.io
 # This is a host application for browserpass browser extension providing it access to your password store.
 # opera
 # vivaldi
@@ -327,7 +332,6 @@ byobu
 mosh
 npm
 yarn
-docker
 
 ## GUI apps
 # Run containers through a simple, yet powerful graphical user interface.

@@ -34,7 +34,6 @@
   register: apt_result
   retries: 5
   delay: 10
-  until: apt_result is succeeded
 
 - name: Adicionar repositório Flathub
   command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

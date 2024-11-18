@@ -57,9 +57,14 @@
   register: lazygit_installed_version
   ignore_errors: yes
 
-- name: Comparar versões e decidir se precisa atualizar
+- name: Determinar se precisa instalar ou atualizar o lazygit
   set_fact:
-    install_lazygit: "{{ lazygit_installed_version.stdout | version_compare(lazygit_version.stdout, '<') }}"
+    install_lazygit: >
+      {% if lazygit_installed_version.failed or (lazygit_installed_version.stdout | regex_replace('^v', '') | version_compare(lazygit_version.stdout, '<')) %}
+        true
+      {% else %}
+        false
+      {% endif %}
 
 - name: Baixar tarball do lazygit
   shell: |

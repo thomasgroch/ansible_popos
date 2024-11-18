@@ -7,6 +7,23 @@
 - name: Aguardar até que o bloqueio do APT seja liberado
   shell: while fuser /var/lib/dpkg/lock >/dev/null 2>&1 || fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do sleep 1; done
 
+- name: Fix GPG directory permissions to prevent warnings
+  file:
+    path: "/home/tg/.gnupg"
+    mode: '0700'
+    recurse: yes
+    owner: tg
+    group: tg
+
+- name: Fix permissions on files inside .gnupg
+  file:
+    path: "/home/tg/.gnupg/{{ item }}"
+    mode: '0600'
+    owner: tg
+    group: tg
+  with_fileglob:
+    - "/home/tg/.gnupg/*"
+
 - name: Instalar pacotes
   vars:
     packages: "{{ lookup('file', 'packages.txt').splitlines() | select('match', '^[^#]') | reject('match', '^$') | list }}"
@@ -96,90 +113,33 @@
   become: yes
   when: snap_install_result.results | map(attribute='item') | select('search', 'zerotier') | list | length > 0
 
+- name: Verificar se Sunshine está instalado
+  shell: "dpkg -l | grep sunshine"
+  register: sunshine_installed_check
+  ignore_errors: yes
 
-
-- name: Verificar se o Sunshine está instalado como um serviço ativo
-  ansible.builtin.shell: |
-    export XDG_RUNTIME_DIR="/run/user/$(id -u tg)"
-    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
-    systemctl --user is-active sunshine
-  become_user: "tg"
-  register: sunshine_service_status
-  failed_when: sunshine_service_status.rc != 0 and sunshine_service_status.rc != 3
-  changed_when: false
-
-- name: Definir variável se o Sunshine está instalado e ativo
-  set_fact:
-    sunshine_installed: "{{ sunshine_service_status.rc == 0 }}"
-
-- name: Baixar o Sunshine AppImage
-  become_user: "tg"
-  ansible.builtin.get_url:
-    url: "https://github.com/LizardByte/Sunshine/releases/latest/download/sunshine.AppImage"
-    dest: "~/sunshine.AppImage"
-    mode: "0755"
-  when: not sunshine_installed
-
-- name: Configurar permissão para uinput
-  become: yes
-  ansible.builtin.copy:
-    content: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'
-    dest: "/etc/udev/rules.d/60-sunshine.rules"
-  when: not sunshine_installed
-
-- name: Reload udev rules
-  become: yes
-  ansible.builtin.shell: |
-    udevadm control --reload-rules
-    udevadm trigger
-    modprobe uinput
-  when: not sunshine_installed
-
-- name: Configurar permissão para KMS Capture (Wayland)
-  become: yes
-  ansible.builtin.command: "setcap cap_sys_admin+p ~/sunshine.AppImage"
-  when: not sunshine_installed
-
-- name: Criar diretório para o serviço systemd de usuário
-  become_user: "tg"
-  ansible.builtin.file:
-    path: "~/.config/systemd/user"
-    state: directory
-    mode: "0755"
-
-- name: Criar serviço systemd para Sunshine
-  become_user: "tg"
-  ansible.builtin.copy:
-    dest: "~/.config/systemd/user/sunshine.service"
-    content: |
-      [Unit]
-      Description=Sunshine self-hosted game stream host for Moonlight
-      After=gnome-session-wayland@gnome.target
-      StartLimitIntervalSec=500
-      StartLimitBurst=5
-
-      [Service]
-      ExecStart=/home/tg/sunshine.AppImage
-      Restart=on-failure
-      RestartSec=5s
-
-      [Install]
-      WantedBy=graphical-session.target
+- name: Baixar o arquivo .deb do Sunshine
+  get_url:
+    url: "https://github.com/LizardByte/Sunshine/releases/download/latest/sunshine-{{ ansible_distribution | lower }}-{{ ansible_distribution_version | replace('.', '') }}-{{ ansible_architecture }}.deb"
+    dest: "/tmp/sunshine.deb"
     mode: "0644"
-  when: not sunshine_installed
+  when: not sunshine_installed_check.stdout
 
-- name: Habilitar o serviço Sunshine para iniciar com o sistema
-  become_user: "tg"
-  ansible.builtin.shell: |
-    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
-    systemctl --user enable sunshine
-  when: not sunshine_installed
+- name: Instalar o pacote .deb do Sunshine
+  dpkg_selections:
+    name: "/tmp/sunshine.deb"
+    state: present
+  when: not sunshine_installed_check.stdout
 
-- name: Iniciar o serviço Sunshine
-  become_user: "tg"
-  ansible.builtin.shell: |
-    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-    export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
-    systemctl --user start sunshine
-  #when: not sunshine_installed and ansible_check_mode == false
+- name: Corrigir dependências faltantes
+  apt:
+    deb: "/tmp/sunshine.deb"
+    state: present
+    fix_broken: yes
+  when: not sunshine_installed_check.stdout
+
+- name: Limpar arquivo .deb
+  file:
+    path: "/tmp/sunshine.deb"
+    state: absent
+  when: not sunshine_installed_check.stdout

@@ -60,10 +60,15 @@
 - name: Determinar se precisa instalar ou atualizar o lazygit
   set_fact:
     install_lazygit: >
-      {% if lazygit_installed_version.failed or (lazygit_installed_version.stdout | regex_replace('^v', '') | version_compare(lazygit_version.stdout, '<')) %}
+      {% if lazygit_installed_version.failed %}
         true
       {% else %}
-        false
+        {% set installed_version = lazygit_installed_version.stdout.split()[1] | regex_replace('^v', '') %}
+        {% if installed_version < lazygit_version.stdout %}
+          true
+        {% else %}
+          false
+        {% endif %}
       {% endif %}
 
 - name: Baixar tarball do lazygit

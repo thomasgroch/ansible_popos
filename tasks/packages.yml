@@ -17,7 +17,7 @@
 
 - name: Fix permissions on files inside .gnupg
   file:
-    path: "/home/tg/.gnupg/{{ item }}"
+    path: "/home/tg/.gnupg/{{ item | basename }}"
     mode: '0600'
     owner: tg
     group: tg

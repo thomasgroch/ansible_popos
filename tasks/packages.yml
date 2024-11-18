@@ -162,10 +162,9 @@
 
 - name: Build Docker container for Sunshine
   shell: |
-    cd /opt/sunshine/scripts
-    ./build-container.sh -f Dockerfile-{{ ansible_distribution | lower }}
+    /opt/sunshine/scripts/linux_build.sh
   args:
-    creates: "/opt/sunshine/scripts/Dockerfile-{{ ansible_distribution | lower }}"
+    creates: "/opt/sunshine/scripts/linux_build.sh"
 
 - name: Build the Sunshine package inside the Docker container
   shell: |

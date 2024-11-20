@@ -221,3 +221,67 @@
     export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
     systemctl --user start sunshine
   when: not sunshine_installed and ansible_check_mode == false
+
+
+- name: Verificar se o TigerVNC está instalado
+  shell: dpkg -l | grep -q tigervnc-standalone-server
+  register: vnc_installed
+  changed_when: false
+  failed_when: false
+
+- name: Verificar se o VNC já está configurado
+  stat:
+    path: /home/tg/.vnc/xstartup
+  register: vnc_xstartup
+
+- name: Configurar VNC se estiver instalado e não configurado
+  block:
+    - name: Criar arquivo xstartup para GNOME
+      copy:
+        dest: "/home/tg/.vnc/xstartup"
+        content: |
+          #!/bin/bash
+          xrdb $HOME/.Xresources
+          gnome-session &
+      owner: tg
+      group: tg
+      mode: '0755'
+
+    - name: Criar diretório .vnc e configurar senha
+      shell: |
+        mkdir -p /home/tg/.vnc
+        echo -n 'your_vnc_password' | vncpasswd -f > /home/tg/.vnc/passwd
+        chmod 600 /home/tg/.vnc/passwd
+      args:
+        executable: /bin/bash
+      become_user: tg
+
+    - name: Criar serviço systemd para VNC
+      copy:
+        dest: /etc/systemd/system/vncserver@.service
+        content: |
+          [Unit]
+          Description=Start TigerVNC server at startup
+          After=syslog.target network.target
+
+          [Service]
+          Type=forking
+          User=tg
+          WorkingDirectory=/home/tg
+
+          PIDFile=/home/tg/.vnc/%H:%i.pid
+          ExecStart=/usr/bin/vncserver -geometry 1920x1080 -depth 24 :%i
+          ExecStop=/usr/bin/vncserver -kill :%i
+
+          [Install]
+          WantedBy=multi-user.target
+      mode: '0644'
+
+    - name: Habilitar e iniciar serviço do VNC
+      systemd:
+        name: vncserver@1.service
+        enabled: yes
+        state: started
+  when:
+    - vnc_installed.rc == 0
+    - not vnc_xstartup.stat.exists

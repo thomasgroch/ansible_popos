@@ -223,6 +223,7 @@
   when: not sunshine_installed and ansible_check_mode == false
 
 
+
 - name: Verificar se o TigerVNC está instalado
   shell: dpkg -l | grep -q tigervnc-standalone-server
   register: vnc_installed
@@ -288,4 +289,4 @@
         state: started
   when:
     - vnc_installed.rc == 0
-    - not vnc_xstartup.stat.exists
+    - vnc_xstartup.stat.exists == false

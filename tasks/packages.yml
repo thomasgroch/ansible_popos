@@ -280,7 +280,7 @@
 
           [Install]
           WantedBy=multi-user.target
-      mode: '0644'
+        mode: '0644'
 
     - name: Habilitar e iniciar serviço do VNC
       systemd:

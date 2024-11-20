@@ -243,14 +243,18 @@
           #!/bin/bash
           xrdb $HOME/.Xresources
           gnome-session &
-      owner: tg
-      group: tg
-      mode: '0755'
+        mode: '0755'
+
+    - name: Ajustar propriedade do arquivo xstartup
+      file:
+        path: "/home/tg/.vnc/xstartup"
+        owner: tg
+        group: tg
 
     - name: Criar diretório .vnc e configurar senha
       shell: |
         mkdir -p /home/tg/.vnc
-        echo -n 'your_vnc_password' | vncpasswd -f > /home/tg/.vnc/passwd
+        echo -n 'asdasd' | vncpasswd -f > /home/tg/.vnc/passwd
         chmod 600 /home/tg/.vnc/passwd
       args:
         executable: /bin/bash

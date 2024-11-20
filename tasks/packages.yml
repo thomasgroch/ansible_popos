@@ -237,6 +237,14 @@
 
 - name: Configurar VNC se estiver instalado e não configurado
   block:
+    - name: Garantir que o diretório .vnc exista
+      file:
+        path: /home/tg/.vnc
+        state: directory
+        owner: tg
+        group: tg
+        mode: '0755'
+
     - name: Criar arquivo xstartup para GNOME
       copy:
         dest: "/home/tg/.vnc/xstartup"

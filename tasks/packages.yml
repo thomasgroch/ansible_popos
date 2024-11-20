@@ -245,12 +245,27 @@
         group: tg
         mode: '0755'
 
+    - name: Garantir que o arquivo .Xauthority exista
+      file:
+        path: /home/tg/.Xauthority
+        state: touch
+        owner: tg
+        group: tg
+
+    - name: Garantir que o arquivo .Xresources exista
+      file:
+        path: /home/tg/.Xresources
+        state: touch
+        owner: tg
+        group: tg
+
     - name: Criar arquivo xstartup para GNOME
       copy:
         dest: "/home/tg/.vnc/xstartup"
         content: |
           #!/bin/bash
           xrdb $HOME/.Xresources
+          export DISPLAY=:1
           gnome-session &
         mode: '0755'
 
@@ -281,7 +296,6 @@
           Type=forking
           User=tg
           WorkingDirectory=/home/tg
-
           PIDFile=/home/tg/.vnc/%H:%i.pid
           ExecStart=/usr/bin/vncserver -geometry 1920x1080 -depth 24 :%i
           ExecStop=/usr/bin/vncserver -kill :%i

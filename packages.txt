@@ -9,6 +9,7 @@ gnome-tweaks
 docker-ce
 docker-ce-cli
 containerd.io
+openssh-server
 # This is a host application for browserpass browser extension providing it access to your password store.
 # opera
 # vivaldi

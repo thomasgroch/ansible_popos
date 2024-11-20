@@ -160,8 +160,9 @@
 - name: Configurar permissão para uinput
   become: yes
   ansible.builtin.copy:
-    content: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'
-    dest: "/etc/udev/rules.d/60-sunshine.rules"
+    content: 'KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"'
+    # content: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'
+    dest: "/etc/udev/rules.d/85-sunshine.rules"
   when: not sunshine_installed
 
 - name: Reload udev rules
@@ -219,4 +220,4 @@
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
     export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
     systemctl --user start sunshine
-  #when: not sunshine_installed and ansible_check_mode == false
+  when: not sunshine_installed and ansible_check_mode == false

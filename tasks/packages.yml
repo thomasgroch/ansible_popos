@@ -265,8 +265,9 @@
         content: |
           #!/bin/bash
           xrdb $HOME/.Xresources
-          export DISPLAY=:1
-          gnome-session &
+          xsetroot -solid grey
+          export XKL_XMODMAP_DISABLE=1
+          exec gnome-session &
         mode: '0755'
 
     - name: Ajustar propriedade do arquivo xstartup

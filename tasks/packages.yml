@@ -300,6 +300,7 @@
           PIDFile=/home/tg/.vnc/%H:%i.pid
           ExecStart=/usr/bin/vncserver -geometry 1920x1080 -depth 24 :%i
           ExecStop=/usr/bin/vncserver -kill :%i
+          Environment=DISPLAY=:1
 
           [Install]
           WantedBy=multi-user.target

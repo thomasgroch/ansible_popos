@@ -264,9 +264,11 @@
         dest: "/home/tg/.vnc/xstartup"
         content: |
           #!/bin/bash
+          unset SESSION_MANAGER
+          unset DBUS_SESSION_BUS_ADDRESS
           export XDG_CURRENT_DESKTOP=GNOME
           export XDG_SESSION_TYPE=x11
-          exec gnome-session &
+          exec /usr/bin/gnome-session &
         mode: '0755'
 
     - name: Ajustar propriedade do arquivo xstartup
@@ -299,9 +301,6 @@
           PIDFile=/home/tg/.vnc/%H%i.pid
           ExecStart=/usr/bin/vncserver -geometry 1920x1080 -depth 24 :%i
           ExecStop=/usr/bin/vncserver -kill :%i
-          Environment="XDG_CURRENT_DESKTOP=GNOME"
-          Environment="XDG_SESSION_TYPE=x11"
-          Environment="DISPLAY=:0"
           ExecStartPost=/bin/sleep 5
 
           [Install]

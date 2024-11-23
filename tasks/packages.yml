@@ -263,11 +263,12 @@
       copy:
         dest: "/home/tg/.vnc/xstartup"
         content: |
-          #!/bin/bash
-          xrdb $HOME/.Xresources
-          xsetroot -solid grey
-          export XKL_XMODMAP_DISABLE=1
-          exec gnome-session &
+          #!/bin/sh
+          export XDG_SESSION_TYPE=x11
+          export XDG_CURRENT_DESKTOP=pop:GNOME
+          unset SESSION_MANAGER
+          unset DBUS_SESSION_BUS_ADDRESS
+          exec /usr/bin/gnome-session &
         mode: '0755'
 
     - name: Ajustar propriedade do arquivo xstartup

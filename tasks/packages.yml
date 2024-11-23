@@ -298,8 +298,8 @@
           PIDFile=/home/tg/.vnc/%H%i.pid
           ExecStart=/usr/bin/vncserver -geometry 1920x1080 -depth 24 :%i
           ExecStop=/usr/bin/vncserver -kill :%i
-          ExecStartPre=/usr/bin/dbus-launch
-          Environment=XDG_CURRENT_DESKTOP=pop:GNOME
+          Environment="XDG_SESSION_TYPE=x11"
+          Environment="DISPLAY=:1"
 
           [Install]
           WantedBy=multi-user.target

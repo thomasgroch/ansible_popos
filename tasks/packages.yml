@@ -138,10 +138,13 @@
   register: sunshine_service_status
   failed_when: sunshine_service_status.rc != 0 and sunshine_service_status.rc != 3
   changed_when: false
+  when: not dockerenv.stat.exists
 
 - name: Definir variável se o Sunshine está instalado e ativo
   set_fact:
     sunshine_installed: "{{ sunshine_service_status.rc == 0 }}"
+  when: not dockerenv.stat.exists
+
 
 - name: Baixar o Sunshine AppImage
   become_user: "tg"
@@ -149,7 +152,7 @@
     url: "https://github.com/LizardByte/Sunshine/releases/latest/download/sunshine.AppImage"
     dest: "~/sunshine.AppImage"
     mode: "0755"
-  when: not sunshine_installed
+  when: not sunshine_installed and not dockerenv.stat.exists
 
 - name: Configurar permissão para uinput
   become: yes
@@ -157,7 +160,7 @@
     content: 'KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"'
     # content: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'
     dest: "/etc/udev/rules.d/85-sunshine.rules"
-  when: not sunshine_installed
+  when: not sunshine_installed and not dockerenv.stat.exists
 
 - name: Reload udev rules
   become: yes
@@ -165,12 +168,12 @@
     udevadm control --reload-rules
     udevadm trigger
     modprobe uinput
-  when: not sunshine_installed
+  when: not sunshine_installed and not dockerenv.stat.exists
 
 - name: Configurar permissão para KMS Capture (Wayland)
   become: yes
   ansible.builtin.command: "setcap cap_sys_admin+p ~/sunshine.AppImage"
-  when: not sunshine_installed
+  when: not sunshine_installed and not dockerenv.stat.exists
 
 - name: Criar diretório para o serviço systemd de usuário
   become_user: "tg"
@@ -178,6 +181,7 @@
     path: "~/.config/systemd/user"
     state: directory
     mode: "0755"
+  when: not dockerenv.stat.exists
 
 - name: Criar serviço systemd para Sunshine
   become_user: "tg"
@@ -198,7 +202,7 @@
       [Install]
       WantedBy=graphical-session.target
     mode: "0644"
-  when: not sunshine_installed
+  when: not sunshine_installed and not dockerenv.stat.exists
 
 - name: Habilitar o serviço Sunshine para iniciar com o sistema
   become_user: "tg"
@@ -206,7 +210,7 @@
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
     export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
     systemctl --user enable sunshine
-  when: not sunshine_installed
+  when: not sunshine_installed and not dockerenv.stat.exists
 
 - name: Iniciar o serviço Sunshine
   become_user: "tg"
@@ -214,7 +218,7 @@
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
     export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR}/bus"
     systemctl --user start sunshine
-  when: not sunshine_installed and ansible_check_mode == false
+  when: not sunshine_installed and ansible_check_mode == false and not dockerenv.stat.exists
 
 
 

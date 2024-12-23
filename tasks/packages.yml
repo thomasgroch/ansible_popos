@@ -91,37 +91,24 @@
     install lazygit /usr/local/bin
   when: install_lazygit
 
-# - name: Check if Go is installed
-#   command: go version
-#   register: go_installed
-#   ignore_errors: yes
+- name: Install snapd
+  become: yes
+  apt:
+    name: snapd
+    state: present
+    update_cache: yes
 
-# - name: Download Go archive
-#   get_url:
-#     url: https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz
-#     dest: /tmp/go.tar.gz
-#   when: go_installed.rc != 0  # Proceed only if Go is not installed
-
-# - name: Extract Go to /usr/local
-#   unarchive:
-#     src: /tmp/go.tar.gz
-#     dest: /usr/local
-#     remote_src: yes
-#   when: go_installed.rc != 0  # Only extract if Go was just downloaded
-
-# - name: Clean up Go archive
-#   file:
-#     path: /tmp/go.tar.gz
-#     state: absent
-#   when: go_installed.rc != 0  # Only clean up if Go was downloaded
-
-# - name: Update font cache
-#   command: fc-cache -fv
+- name: Ensure snapd service is running
+  become: yes
+  systemd:
+    name: snapd
+    state: started
+    enabled: yes
 
 - name: Instalar Snaps
   vars:
     snaps: "{{ lookup('file', 'packages_snaps.txt').splitlines() | select('match', '^[^#]') | reject('match', '^$') | list }}"
-  ansible.builtin.command: sudo snap install "{{ item }}"
+  ansible.builtin.command: snap install "{{ item }}"
   become: yes
   loop: "{{ snaps }}"
   register: snap_install_result

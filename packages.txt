@@ -1,6 +1,6 @@
 tigervnc-standalone-server
 tigervnc-xorg-extension
-apt-transport-https
+# apt-transport-https
 ca-certificates
 software-properties-common
 zsh
@@ -369,18 +369,3 @@ imagemagick
 #xfce-polkit
 webext-browserpass
 pass-git-helper
-# Pacote 'browserpass' não está disponível.
-# Pacote 'base-devel' não está disponível.
-# Pacote 'lazygit' não está disponível.
-# Pacote 'dog' não está disponível.
-# Pacote 'starship' não está disponível.
-# Pacote 'diff-so-fancy' não está disponível.
-# Pacote 'aalib' não está disponível.
-# Pacote 'libmikmod' não está disponível.
-# Pacote 'xz' não está disponível.
-# Pacote 'lsd' não está disponível.
-# Pacote 'yay' não está disponível.
-# Pacote 'readline' não está disponível.
-# Pacote 'nomad' não está disponível.
-# Pacote 'mako' não está disponível.
-# Pacote 'xorg-xwayland' não está disponível.

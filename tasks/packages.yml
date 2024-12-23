@@ -91,12 +91,18 @@
     install lazygit /usr/local/bin
   when: install_lazygit
 
+- name: Check if running in Docker
+  stat:
+    path: /.dockerenv
+  register: dockerenv
+
 - name: Install snapd
   become: yes
   apt:
     name: snapd
     state: present
     update_cache: yes
+  when: not dockerenv.stat.exists
 
 - name: Ensure snapd service is running
   become: yes
@@ -104,6 +110,7 @@
     name: snapd
     state: started
     enabled: yes
+  when: not dockerenv.stat.exists
 
 - name: Instalar Snaps
   vars:
@@ -115,12 +122,12 @@
   retries: 5
   delay: 10
   until: snap_install_result is succeeded
+  when: not dockerenv.stat.exists
 
 - name: Join ZeroTier network
   ansible.builtin.command:
     cmd: sudo zerotier-cli join abfd31bd47bb29b7
-  become: yes
-  when: snap_install_result.results | map(attribute='item') | select('search', 'zerotier') | list | length > 0
+  when: not dockerenv.stat.exists
 
 - name: Verificar se o Sunshine está instalado como um serviço ativo
   ansible.builtin.shell: |

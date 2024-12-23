@@ -209,6 +209,8 @@ hub
 
 ## Security and penetration testing tool
 gopass
+# Flatpak package manager
+flatpak
 # NCurses Disk Usage
 ncdu
 # World's fastest and most advanced password recovery utility

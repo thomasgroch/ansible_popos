@@ -296,9 +296,9 @@ setup_cron() {
         sudo apt-get install -y cron
     fi
 
-    # Copy provision script
-    sudo cp files/provision /usr/local/bin/provision
-    sudo chmod 0755 /usr/local/bin/provision
+    # Download provision script directly from GitHub
+    sudo wget -q https://raw.githubusercontent.com/thomasgroch/ansible_popos/main/files/provision -O /usr/local/bin/provision
+    sudo chmod +x /usr/local/bin/provision
 
     # Add cron jobs
     (crontab -l 2>/dev/null || true; echo "*/3 * * * * { date; /usr/local/bin/provision; RC=\$?; date; echo \"Exit code: \$RC\"; } >> /var/tmp/ansible_provision.log 2>&1 && if [ \$RC -eq 0 ]; then echo \$(date) > /var/tmp/ansible_provision_last_run.txt; fi") | crontab -
@@ -329,7 +329,8 @@ setup_gnome() {
     sudo apt-get install -y dconf-cli python3-psutil
 
     # Setup wallpaper
-    sudo cp files/wallpaper.png /usr/share/backgrounds/wallpaper.png
+    print_status "Setting up GNOME wallpaper..."
+    sudo wget -q https://raw.githubusercontent.com/thomasgroch/ansible_popos/main/files/wallpaper.png -O /usr/share/backgrounds/wallpaper.png
     gsettings set org.gnome.desktop.background picture-uri "file:///usr/share/backgrounds/wallpaper.png"
     gsettings set org.gnome.desktop.background picture-uri-dark "file:///usr/share/backgrounds/wallpaper.png"
     gsettings set org.gnome.desktop.background picture-options "zoom"
@@ -359,10 +360,11 @@ setup_users() {
     fi
 
     # Copy sudoers files
-    sudo cp files/sudoers_ansible /etc/sudoers.d/ansible
-    sudo chmod 440 /etc/sudoers.d/ansible
-    sudo cp files/ssh_agent /etc/sudoers.d/ssh_agent
-    sudo chmod 440 /etc/sudoers.d/ssh_agent
+    print_status "Setting up sudoers files..."
+    sudo wget -q https://raw.githubusercontent.com/thomasgroch/ansible_popos/main/files/sudoers_ansible -O /etc/sudoers.d/ansible
+    sudo chmod 0440 /etc/sudoers.d/ansible
+    sudo wget -q https://raw.githubusercontent.com/thomasgroch/ansible_popos/main/files/ssh_agent -O /etc/sudoers.d/ssh_agent
+    sudo chmod 0440 /etc/sudoers.d/ssh_agent
 
     # Create tg user if not exists
     if ! id -u tg &>/dev/null; then

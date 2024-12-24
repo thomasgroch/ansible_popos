@@ -54,6 +54,15 @@ detect_distro() {
         PKG_UPDATE="pacman -Sy"
         PKG_CHECK="pacman -Q"
         REPO_ADD="echo"  # Arch uses pacman.conf for repos
+        
+        # Check for AUR helper
+        if command -v yay >/dev/null 2>&1; then
+            AUR_HELPER="yay"
+            AUR_INSTALL="yay -S --noconfirm"
+        elif command -v paru >/dev/null 2>&1; then
+            AUR_HELPER="paru"
+            AUR_INSTALL="paru -S --noconfirm"
+        fi
     elif command -v zypper >/dev/null 2>&1; then
         PKG_MANAGER="zypper"
         PKG_INSTALL="zypper install -y"
@@ -250,11 +259,12 @@ install_packages() {
     local needs_update=false
     
     # Define package names for different distributions
+    # Format: apt-get,dnf,pacman,zypper
     declare -A PACKAGE_NAMES=(
         ["tigervnc"]="tigervnc-standalone-server,tigervnc,tigervnc,tigervnc"
         ["ca-certificates"]="ca-certificates,ca-certificates,ca-certificates,ca-certificates"
         ["zsh"]="zsh,zsh,zsh,zsh"
-        ["snapd"]="snapd,snapd,snapd,snapd"
+        ["snapd"]="snapd,snapd,snapd-xdg-support,snapd"
         ["dconf"]="dconf-cli,dconf,dconf,dconf"
         ["python3-psutil"]="python3-psutil,python3-psutil,python-psutil,python3-psutil"
         ["gnome-tweaks"]="gnome-tweaks,gnome-tweaks,gnome-tweaks,gnome-tweaks"
@@ -275,6 +285,12 @@ install_packages() {
         ["bash"]="bash,bash,bash,bash"
         ["openssl"]="openssl,openssl,openssl,openssl"
         ["gopass"]="gopass,gopass,gopass,gopass"
+    )
+
+    # Define AUR packages for Arch Linux
+    declare -A AUR_PACKAGES=(
+        ["guake"]="guake"
+        ["gufw"]="gufw"
     )
 
     # Get package name for current distro
@@ -302,14 +318,32 @@ install_packages() {
     if [ "$needs_update" = true ]; then
         print_status "Installing missing packages..."
         $PKG_UPDATE
+
+        # Install packages based on package manager
         for pkg in "${!PACKAGE_NAMES[@]}"; do
             local pkg_name
             pkg_name=$(get_package_name "$pkg")
+            
+            # Skip AUR packages on Arch if they'll be installed later
+            if [ "$PKG_MANAGER" = "pacman" ] && [ -n "${AUR_PACKAGES[$pkg]}" ]; then
+                continue
+            fi
+            
             if ! is_package_installed "$pkg_name"; then
                 print_status "Installing $pkg_name..."
                 $PKG_INSTALL "$pkg_name" || print_warning "Failed to install $pkg_name"
             fi
         done
+
+        # Install AUR packages if on Arch Linux and AUR helper is available
+        if [ "$PKG_MANAGER" = "pacman" ] && [ -n "$AUR_HELPER" ]; then
+            for pkg in "${!AUR_PACKAGES[@]}"; do
+                if ! is_package_installed "${AUR_PACKAGES[$pkg]}"; then
+                    print_status "Installing ${AUR_PACKAGES[$pkg]} from AUR..."
+                    $AUR_INSTALL "${AUR_PACKAGES[$pkg]}" || print_warning "Failed to install ${AUR_PACKAGES[$pkg]} from AUR"
+                fi
+            done
+        fi
     else
         print_warning "All packages are already installed"
     fi

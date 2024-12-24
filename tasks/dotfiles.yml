@@ -73,6 +73,14 @@
   failed_when: false
   when: dotfiles_repo_stat.stat.exists
 
+- name: Ensure Ansible temporary directory exists
+  file:
+    path: /tmp/.ansible/tmp
+    state: directory
+    mode: '0777'
+    recurse: yes
+  become: yes
+
 - name: Clonar ou atualizar repositório bare para dotfiles
   git:
     repo: "{{ dotfiles_repo }}"

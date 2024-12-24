@@ -240,11 +240,11 @@ install_packages() {
 
 # Install Flatpak applications
 install_flatpak_apps() {
-    print_status "Checking Flatpak applications..."
+    print_status "Installing Flatpak applications as user $REAL_USER..."
     
-    if ! is_flatpak_installed "com.moonlight_stream.Moonlight"; then
+    if ! sudo -u "$REAL_USER" flatpak list --app | grep -q "com.moonlight_stream.Moonlight"; then
         print_status "Installing Moonlight..."
-        flatpak install -y flathub com.moonlight_stream.Moonlight
+        sudo -u "$REAL_USER" flatpak install -y flathub com.moonlight_stream.Moonlight
     else
         print_warning "Moonlight already installed"
     fi

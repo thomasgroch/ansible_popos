@@ -58,26 +58,106 @@ fi
 REAL_USER=$(logname || who am i | awk '{print $1}')
 REAL_HOME=$(eval echo ~$REAL_USER)
 
+# Setup XDG Base Directories
+setup_xdg_dirs() {
+    print_status "Setting up XDG Base Directories..."
+    
+    # Define XDG Base Directory paths
+    export XDG_CONFIG_HOME="$REAL_HOME/.config"
+    export XDG_CACHE_HOME="$REAL_HOME/.cache"
+    export XDG_DATA_HOME="$REAL_HOME/.local/share"
+    export XDG_STATE_HOME="$REAL_HOME/.local/state"
+    
+    # Create XDG Base Directories with proper permissions
+    mkdir -p "$XDG_CONFIG_HOME"
+    mkdir -p "$XDG_CACHE_HOME"
+    mkdir -p "$XDG_DATA_HOME"
+    mkdir -p "$XDG_STATE_HOME"
+    
+    # Set correct ownership
+    chown -R "$REAL_USER:$REAL_USER" "$XDG_CONFIG_HOME"
+    chown -R "$REAL_USER:$REAL_USER" "$XDG_CACHE_HOME"
+    chown -R "$REAL_USER:$REAL_USER" "$XDG_DATA_HOME"
+    chown -R "$REAL_USER:$REAL_USER" "$XDG_STATE_HOME"
+    
+    # Set correct permissions
+    chmod 700 "$XDG_CONFIG_HOME"
+    chmod 700 "$XDG_CACHE_HOME"
+    chmod 700 "$XDG_DATA_HOME"
+    chmod 700 "$XDG_STATE_HOME"
+    
+    # Create XDG user directories config
+    if [ ! -f "$XDG_CONFIG_HOME/user-dirs.dirs" ]; then
+        print_status "Creating XDG user directories configuration..."
+        cat > "$XDG_CONFIG_HOME/user-dirs.dirs" << EOL
+XDG_DESKTOP_DIR="$REAL_HOME/Desktop"
+XDG_DOWNLOAD_DIR="$REAL_HOME/Downloads"
+XDG_TEMPLATES_DIR="$REAL_HOME/Templates"
+XDG_PUBLICSHARE_DIR="$REAL_HOME/Public"
+XDG_DOCUMENTS_DIR="$REAL_HOME/Documents"
+XDG_MUSIC_DIR="$REAL_HOME/Music"
+XDG_PICTURES_DIR="$REAL_HOME/Pictures"
+XDG_VIDEOS_DIR="$REAL_HOME/Videos"
+EOL
+        chown "$REAL_USER:$REAL_USER" "$XDG_CONFIG_HOME/user-dirs.dirs"
+        chmod 644 "$XDG_CONFIG_HOME/user-dirs.dirs"
+    fi
+}
+
 print_status "Setting up system for user: $REAL_USER"
 
-# Fix GPG directory permissions
+# Setup GPG with XDG compliance
 setup_gpg() {
-    print_status "Checking GPG directory permissions..."
+    print_status "Setting up GPG with XDG compliance..."
     
-    if [ ! -d "$REAL_HOME/.gnupg" ]; then
-        mkdir -p "$REAL_HOME/.gnupg"
-        print_status "Created .gnupg directory"
+    GPG_DIR="$XDG_DATA_HOME/gnupg"
+    
+    if [ ! -d "$GPG_DIR" ]; then
+        mkdir -p "$GPG_DIR"
+        print_status "Created XDG-compliant GPG directory"
     fi
     
-    current_perm=$(stat -c "%a" "$REAL_HOME/.gnupg")
+    current_perm=$(stat -c "%a" "$GPG_DIR")
     if [ "$current_perm" != "700" ]; then
-        chown -R "$REAL_USER:$REAL_USER" "$REAL_HOME/.gnupg"
-        chmod 700 "$REAL_HOME/.gnupg"
-        find "$REAL_HOME/.gnupg" -type f -exec chmod 600 {} \;
+        chown -R "$REAL_USER:$REAL_USER" "$GPG_DIR"
+        chmod 700 "$GPG_DIR"
+        find "$GPG_DIR" -type f -exec chmod 600 {} \;
         print_status "Fixed GPG directory permissions"
     else
         print_warning "GPG directory permissions already correct"
     fi
+    
+    # Create GPG config to use XDG directory
+    if [ ! -f "$XDG_CONFIG_HOME/gnupg/gpg.conf" ]; then
+        mkdir -p "$XDG_CONFIG_HOME/gnupg"
+        touch "$XDG_CONFIG_HOME/gnupg/gpg.conf"
+        chown -R "$REAL_USER:$REAL_USER" "$XDG_CONFIG_HOME/gnupg"
+        chmod 700 "$XDG_CONFIG_HOME/gnupg"
+    fi
+}
+
+# Function to check if a package is installed
+is_package_installed() {
+    dpkg -l "$1" &> /dev/null
+    return $?
+}
+
+# Function to check if a repository is already added
+is_repo_added() {
+    grep -h "^deb.*$1" /etc/apt/sources.list /etc/apt/sources.list.d/* &> /dev/null
+    return $?
+}
+
+# Function to check if a flatpak remote exists
+is_flatpak_remote_exists() {
+    flatpak remotes --show-details | grep -q "^$1"
+    return $?
+}
+
+# Function to check if a flatpak app is installed
+is_flatpak_installed() {
+    flatpak list --app | grep -q "^$1"
+    return $?
 }
 
 # Add repositories
@@ -199,7 +279,7 @@ setup_zsh() {
     fi
     
     # Check Oh My Zsh installation
-    if [ ! -d "$REAL_HOME/.oh-my-zsh" ]; then
+    if [ ! -d "$XDG_CONFIG_HOME/oh-my-zsh" ]; then
         print_status "Installing Oh My Zsh..."
         su - "$REAL_USER" -c 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
     else
@@ -230,15 +310,15 @@ setup_dotfiles() {
     print_status "Setting up dotfiles..."
     
     # Install oh-my-zsh if not already installed
-    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    if [ ! -d "$XDG_CONFIG_HOME/oh-my-zsh" ]; then
         curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | RUNZSH=no KEEP_ZSHRC=yes sh
     fi
 
     # Create and set permissions for oh-my-zsh directories
-    mkdir -p "$HOME/.oh-my-zsh/cache/completions"
-    mkdir -p "$HOME/.oh-my-zsh-custom"
-    chmod -R 755 "$HOME/.oh-my-zsh"
-    chmod -R 755 "$HOME/.oh-my-zsh-custom"
+    mkdir -p "$XDG_CONFIG_HOME/oh-my-zsh/cache/completions"
+    mkdir -p "$XDG_CONFIG_HOME/oh-my-zsh-custom"
+    chmod -R 755 "$XDG_CONFIG_HOME/oh-my-zsh"
+    chmod -R 755 "$XDG_CONFIG_HOME/oh-my-zsh-custom"
 }
 
 # Setup GNOME settings
@@ -292,8 +372,7 @@ setup_users() {
 
 # Main execution
 main() {
-    print_status "Starting system setup..."
-    
+    setup_xdg_dirs
     setup_gpg
     add_repositories
     install_packages

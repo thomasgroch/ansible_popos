@@ -24,89 +24,15 @@ print_error() {
     echo -e "${RED}[!] $1${NC}"
 }
 
-# Detect the Linux distribution and package manager
-detect_distro() {
-    if [ -f /etc/os-release ]; then
-        . /etc/os-release
-        DISTRO_NAME=$ID
-        DISTRO_FAMILY=$ID_LIKE
-    else
-        print_error "Could not detect Linux distribution"
-        exit 1
-    fi
-
-    # Detect package manager
-    if command -v apt-get >/dev/null 2>&1; then
-        PKG_MANAGER="apt-get"
-        PKG_INSTALL="apt-get install -y"
-        PKG_UPDATE="apt-get update"
-        PKG_CHECK="dpkg -l"
-        REPO_ADD="add-apt-repository -y"
-    elif command -v dnf >/dev/null 2>&1; then
-        PKG_MANAGER="dnf"
-        PKG_INSTALL="dnf install -y"
-        PKG_UPDATE="dnf check-update"
-        PKG_CHECK="rpm -q"
-        REPO_ADD="dnf config-manager --add-repo"
-    elif command -v pacman >/dev/null 2>&1; then
-        PKG_MANAGER="pacman"
-        PKG_INSTALL="pacman -S --noconfirm"
-        PKG_UPDATE="pacman -Sy"
-        PKG_CHECK="pacman -Q"
-        REPO_ADD="echo"  # Arch uses pacman.conf for repos
-        
-        # Check for AUR helper
-        if command -v yay >/dev/null 2>&1; then
-            AUR_HELPER="yay"
-            AUR_INSTALL="yay -S --noconfirm"
-        elif command -v paru >/dev/null 2>&1; then
-            AUR_HELPER="paru"
-            AUR_INSTALL="paru -S --noconfirm"
-        fi
-    elif command -v zypper >/dev/null 2>&1; then
-        PKG_MANAGER="zypper"
-        PKG_INSTALL="zypper install -y"
-        PKG_UPDATE="zypper refresh"
-        PKG_CHECK="rpm -q"
-        REPO_ADD="zypper addrepo"
-    else
-        print_error "No supported package manager found"
-        exit 1
-    fi
-}
-
 # Function to check if a package is installed
 is_package_installed() {
-    case $PKG_MANAGER in
-        "apt-get")
-            dpkg -l "$1" &> /dev/null
-            ;;
-        "dnf"|"zypper")
-            rpm -q "$1" &> /dev/null
-            ;;
-        "pacman")
-            pacman -Q "$1" &> /dev/null
-            ;;
-    esac
+    dpkg -l "$1" &> /dev/null
     return $?
 }
 
 # Function to check if a repository is already added
 is_repo_added() {
-    case $PKG_MANAGER in
-        "apt-get")
-            grep -h "^deb.*$1" /etc/apt/sources.list /etc/apt/sources.list.d/* &> /dev/null
-            ;;
-        "dnf")
-            dnf repolist | grep -q "$1"
-            ;;
-        "pacman")
-            grep -q "$1" /etc/pacman.conf
-            ;;
-        "zypper")
-            zypper repos | grep -q "$1"
-            ;;
-    esac
+    grep -h "^deb.*$1" /etc/apt/sources.list /etc/apt/sources.list.d/* &> /dev/null
     return $?
 }
 
@@ -210,21 +136,43 @@ setup_gpg() {
     fi
 }
 
+# Function to check if a package is installed
+is_package_installed() {
+    dpkg -l "$1" &> /dev/null
+    return $?
+}
+
+# Function to check if a repository is already added
+is_repo_added() {
+    grep -h "^deb.*$1" /etc/apt/sources.list /etc/apt/sources.list.d/* &> /dev/null
+    return $?
+}
+
+# Function to check if a flatpak remote exists
+is_flatpak_remote_exists() {
+    flatpak remotes --show-details | grep -q "^$1"
+    return $?
+}
+
+# Function to check if a flatpak app is installed
+is_flatpak_installed() {
+    flatpak list --app | grep -q "^$1"
+    return $?
+}
+
 # Add repositories
 add_repositories() {
     print_status "Checking repositories..."
     
-    # Only add Guake PPA on Ubuntu-based systems
-    if [ "$DISTRO_FAMILY" = "debian" ]; then
-        if ! is_repo_added "linuxuprising/guake"; then
-            print_status "Adding Guake PPA..."
-            $REPO_ADD ppa:linuxuprising/guake
-        else
-            print_warning "Guake PPA already added"
-        fi
+    # Check Guake PPA
+    if ! is_repo_added "linuxuprising/guake"; then
+        print_status "Adding Guake PPA..."
+        add-apt-repository -y ppa:linuxuprising/guake
+    else
+        print_warning "Guake PPA already added"
     fi
     
-    # Flathub is distro-agnostic
+    # Check Flathub
     if ! is_flatpak_remote_exists "flathub"; then
         print_status "Adding Flathub repository..."
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -237,79 +185,45 @@ add_repositories() {
 install_packages() {
     print_status "Checking and installing packages..."
     
-    # Wait for any package manager locks to be released
-    case $PKG_MANAGER in
-        "apt-get")
-            while fuser /var/lib/dpkg/lock >/dev/null 2>&1 || fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do
-                sleep 1
-            done
-            ;;
-        "dnf")
-            while fuser /var/lib/dnf/lock >/dev/null 2>&1; do
-                sleep 1
-            done
-            ;;
-        "pacman")
-            while fuser /var/lib/pacman/db.lck >/dev/null 2>&1; do
-                sleep 1
-            done
-            ;;
-    esac
+    # Wait for any apt locks to be released
+    while fuser /var/lib/dpkg/lock >/dev/null 2>&1 || fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do
+        sleep 1
+    done
 
     local needs_update=false
-    
-    # Define package names for different distributions
-    # Format: apt-get,dnf,pacman,zypper
-    declare -A PACKAGE_NAMES=(
-        ["tigervnc"]="tigervnc-standalone-server,tigervnc,tigervnc,tigervnc"
-        ["ca-certificates"]="ca-certificates,ca-certificates,ca-certificates,ca-certificates"
-        ["zsh"]="zsh,zsh,zsh,zsh"
-        ["snapd"]="snapd,snapd,snapd-xdg-support,snapd"
-        ["dconf"]="dconf-cli,dconf,dconf,dconf"
-        ["python3-psutil"]="python3-psutil,python3-psutil,python-psutil,python3-psutil"
-        ["gnome-tweaks"]="gnome-tweaks,gnome-tweaks,gnome-tweaks,gnome-tweaks"
-        ["openssh"]="openssh-server,openssh-server,openssh,openssh"
-        ["bat"]="bat,bat,bat,bat"
-        ["ffmpeg"]="ffmpeg,ffmpeg,ffmpeg,ffmpeg"
-        ["virtualbox"]="virtualbox,virtualbox,virtualbox,virtualbox"
-        ["curl"]="curl,curl,curl,curl"
-        ["file"]="file,file,file,file"
-        ["git"]="git,git,git,git"
-        ["xclip"]="xclip,xclip,xclip,xclip"
-        ["xsel"]="xsel,xsel,xsel,xsel"
-        ["gufw"]="gufw,gufw,gufw,gufw"
-        ["guake"]="guake,guake,guake,guake"
-        ["encfs"]="encfs,encfs,encfs,encfs"
-        ["shellcheck"]="shellcheck,shellcheck,shellcheck,shellcheck"
-        ["iperf3"]="iperf3,iperf3,iperf3,iperf3"
-        ["bash"]="bash,bash,bash,bash"
-        ["openssl"]="openssl,openssl,openssl,openssl"
-        ["gopass"]="gopass,gopass,gopass,gopass"
+    PACKAGES=(
+        tigervnc-standalone-server
+        tigervnc-xorg-extension
+        ca-certificates
+        software-properties-common
+        zsh
+        snapd
+        dconf-cli
+        python3-psutil
+        gnome-tweaks
+        openssh-server
+        bat
+        ffmpeg
+        virtualbox
+        curl
+        file
+        git
+        xclip
+        xsel
+        gufw
+        guake
+        zsh
+        encfs
+        shellcheck
+        iperf3
+        bash
+        openssl
+        gopass
     )
-
-    # Define AUR packages for Arch Linux
-    declare -A AUR_PACKAGES=(
-        ["guake"]="guake"
-        ["gufw"]="gufw"
-    )
-
-    # Get package name for current distro
-    get_package_name() {
-        local generic_name=$1
-        local package_variants=${PACKAGE_NAMES[$generic_name]}
-        case $PKG_MANAGER in
-            "apt-get") echo "${package_variants%%,*}" ;;
-            "dnf") echo "${package_variants#*,}"; echo "${package_variants%%,*}" ;;
-            "pacman") echo "${package_variants#*,*,}"; echo "${package_variants%%,*}" ;;
-            "zypper") echo "${package_variants##*,}" ;;
-        esac
-    }
 
     # Check each package
-    for pkg in "${!PACKAGE_NAMES[@]}"; do
-        local pkg_name
-        pkg_name=$(get_package_name "$pkg")
-        if ! is_package_installed "$pkg_name"; then
+    for pkg in "${PACKAGES[@]}"; do
+        if ! is_package_installed "$pkg"; then
             needs_update=true
             break
         fi
@@ -317,33 +231,8 @@ install_packages() {
 
     if [ "$needs_update" = true ]; then
         print_status "Installing missing packages..."
-        $PKG_UPDATE
-
-        # Install packages based on package manager
-        for pkg in "${!PACKAGE_NAMES[@]}"; do
-            local pkg_name
-            pkg_name=$(get_package_name "$pkg")
-            
-            # Skip AUR packages on Arch if they'll be installed later
-            if [ "$PKG_MANAGER" = "pacman" ] && [ -n "${AUR_PACKAGES[$pkg]}" ]; then
-                continue
-            fi
-            
-            if ! is_package_installed "$pkg_name"; then
-                print_status "Installing $pkg_name..."
-                $PKG_INSTALL "$pkg_name" || print_warning "Failed to install $pkg_name"
-            fi
-        done
-
-        # Install AUR packages if on Arch Linux and AUR helper is available
-        if [ "$PKG_MANAGER" = "pacman" ] && [ -n "$AUR_HELPER" ]; then
-            for pkg in "${!AUR_PACKAGES[@]}"; do
-                if ! is_package_installed "${AUR_PACKAGES[$pkg]}"; then
-                    print_status "Installing ${AUR_PACKAGES[$pkg]} from AUR..."
-                    $AUR_INSTALL "${AUR_PACKAGES[$pkg]}" || print_warning "Failed to install ${AUR_PACKAGES[$pkg]} from AUR"
-                fi
-            done
-        fi
+        apt-get update
+        apt-get install -y "${PACKAGES[@]}"
     else
         print_warning "All packages are already installed"
     fi
@@ -483,7 +372,6 @@ setup_users() {
 
 # Main execution
 main() {
-    detect_distro
     setup_xdg_dirs
     setup_gpg
     add_repositories

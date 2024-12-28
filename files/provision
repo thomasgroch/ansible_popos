@@ -4,27 +4,31 @@ LOCALUSER="tg"
 ANSIBLEUSER="ansible"
 BRANCH="main"
 LOGFILE="/var/tmp/ansible.log"
+
 REPO="https://github.com/thomasgroch/ansible_popos"
 
-# Função para verificar processos ansible-pull em execução
+printf "\n$(date +"%Y-%m-%d %H:%M:%S") Executando provisionamento...\n" | tee -a "$LOGFILE"
+
 check_running() {
+  # Verificar se um processo ansible-pull já está em execução
   if pgrep -f ansible-pull > /dev/null; then
     printf "\n$(date +"%Y-%m-%d %H:%M:%S") Um processo ansible-pull já está em execução.\nSaindo.\n" | tee -a "$LOGFILE"
     exit 1
   fi
 }
 
+execute_ansible_pull() {
+  # Executar ansible-pull com opções comuns
+COMMON_OPTS="--vault-password-file /home/${ANSIBLEUSER}/.vault_key --url $REPO --checkout $BRANCH"
+  printf "\n$(date +"%Y-%m-%d %H:%M:%S") Executando ansible-pull...\n" | tee -a "$LOGFILE"
+  if ! ansible-pull $COMMON_OPTS >> "$LOGFILE" 2>&1; then
+    printf "\n$(date +"%Y-%m-%d %H:%M:%S") Falha na execução do ansible-pull.\nErro: $(cat /var/tmp/ansible.log | tail -n 1)\n" | tee -a "$LOGFILE"
+  fi
+}
+
 # Lógica principal do script
 check_running
-COMMON_OPTS="--vault-password-file /home/${ANSIBLEUSER}/.vault_key --url $REPO --checkout $BRANCH"
-
-# Executar ansible-pull
-printf "\n$(date +"%Y-%m-%d %H:%M:%S") Executando ansible-pull...\n" | tee -a "$LOGFILE"
-if [[ ! -z "$1" ]]; then
-  ansible-pull --tags "$1" $COMMON_OPTS >> "$LOGFILE" 2>&1
-else
-  ansible-pull $COMMON_OPTS >> "$LOGFILE" 2>&1
-fi
+execute_ansible_pull
 
 if [ $? -eq 0 ]; then
   printf "\n$(date +"%Y-%m-%d %H:%M:%S") ansible-pull executado com sucesso.\n" | tee -a "$LOGFILE"

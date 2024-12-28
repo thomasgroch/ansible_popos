@@ -1,17 +1,8 @@
-### Cron jobs management playbook
-
 - name: system setup | cron | install cron package
   package:
     name:
       - "cron"
     state: latest
-
-# - name: system setup | cron | start and enable cronie daemon
-#   service:
-#     name: cronie
-#     state: started
-#     enabled: true
-#   when: ansible_distribution == "Archlinux"
 
 - name: system setup | cron | copy provision script to /usr/local/bin
   copy:
@@ -19,7 +10,7 @@
     dest: "/usr/local/bin/provision"
     owner: root
     group: root
-    mode: 0755
+    mode: '0755'
   become: true
 
 - name: system setup | cron | schedule automatic ansible provisioning
@@ -28,11 +19,10 @@
     user: ansible
     hour: "*"
     minute: "*/3"
-    job: "{ date; /usr/local/bin/provision; RC=$?; date; echo \"Exit code: $RC\"; } >> /var/tmp/ansible_provision.log 2>&1 && if [ $RC -eq 0 ]; then echo $(date) > /var/tmp/ansible_provision_last_run.txt; fi"
+    job: "/usr/local/bin/provision"
 
 - name: system setup | cron | schedule ansible cleanup at boot
   cron:
     name: "ansible refresh at boot"
     user: tg
-    special_time: reboot
-    job: "/bin/rm -rf /home/tg/.ansible"
+    job: "/bin/rm -rf /home/tg/.ansible/certs"
